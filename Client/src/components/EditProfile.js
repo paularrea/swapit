@@ -6,7 +6,7 @@ import service from "../api/service";
 
 const Profile = (props) => {
   const [finalUser, setUserInput] = useState({});
-let onChangeName = e => {
+  let onChangeName = e => {
     finalUser.name = e.target.value
 }
 let onChangelastName = e => {

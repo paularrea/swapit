@@ -9,9 +9,9 @@ const errorHandler = (err) => {
 };
 export default {
   service,
-  saveNewThing(newThing) {
+  uploadCreation(newCreation) {
     return service
-      .post("/events/create", newThing)
+      .post("/product/addCreation", newCreation)
       .then((res) => res.data)
       .catch(errorHandler);
   },
@@ -35,16 +35,22 @@ export default {
       .then((res) => res.data)
       .catch(errorHandler);
   },
-  addMessage(object) {
-    //necesito enviar al back la id del evento. la id de mi usuario
+  getAllTheProducts() {
     return service
-      .put("/events/message", object)
+      .get("/allproducts")
       .then((res) => res.data)
       .catch(errorHandler);
   },
-  getNotiInfo() {
+  getMyProducts() {
     return service
-      .get("/events/message")
+      .get("/myProducts")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getWantedCreation(productId) {
+    return service
+      .post("/product/want", productId)
       .then((res) => res.data)
       .catch(errorHandler);
   },
