@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+/* Navbar */
+.navIcons{
+  width: 2rem;
+}
+.navbar{
+  border-radius: 15px;
+  margin: 1rem;
+  width: 100%;
+}
+.profileImg{
+  object-fit: cover;
+  width: 150px;
+  border-radius: 10%;
+}

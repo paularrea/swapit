@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import axios from "axios";
 
@@ -6,62 +6,57 @@ import axios from "axios";
 function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [listOfUsers, setListOfUsers] = useState([]);
-  // const [messageErrPassword, setMessageErrPassword] = useState("");
-  // const [messageErrUser, setMessageErrUser] = useState("");
+  const [listOfUsers, setListOfUsers] = useState([]);
+  const [messageErrPassword, setMessageErrPassword] = useState("");
+  const [messageErrUser, setMessageErrUser] = useState("");
+  
+  let messageOn = <span className="text-danger">User doesn't exist</span>
+  
+  
+  useEffect(() => {
+    const fetchData = async () => {
+    const result = await axios.get("http://localhost:4000/api/users");
 
-
-  // let getAllUsers = async () => {
-  //   axios.get("http://localhost:4000/api/users");
-  //   await ((responseFromApi) => {
-  //     setListOfUsers(responseFromApi.data);
-  //   });
-  // };
-  // getAllUsers();
-
-
-  // let handleFormSubmit = (event) => {
-  //   event.preventDefault();
-    
-  //   //console.log('Login -> form submit', { username, password });
-  //   let errorMessage = listOfUsers.findIndex(
-  //     (user) => username === user.username
-  //   );
-  //   if (errorMessage === -1) {
-  //     setMessageErrUser(
-  //       errorMessage === -1 ? (
-  //         <span className="text-danger">User doesn't exist</span>
-  //       ) : (
-  //         <span></span>
-  //       )
-  //     );
-  //   } else {
-  //     props.login({ username, password });
-  //   }
-
-  //   let errorPassword = listOfUsers.findIndex(
-  //     (user) => password === user.password
-  //     );
-
-  //   console.log(errorPassword, "errorPassword");
-
-  //   if (errorPassword === -1) {
-  //     setMessageErrPassword(
-  //       errorPassword === -1 ? (
-  //         <span className="text-danger">Wrong Password</span>
-  //       ) : (
-  //         <span></span>
-  //       )
-  //     );
-  //   } else {
-  //     props.login({ username, password });
-  //   }
-  // };
+    setListOfUsers(result.data);
+    }
+    fetchData();
+  },[]);
 
   let handleFormSubmit = (event) => {
     event.preventDefault();
-    props.login({ username, password });
-  }
+    let errorMessage = listOfUsers.findIndex(
+      (user) => username === user.username
+      );
+      console.log(listOfUsers[1].username, username, "dataaaaaa")
+    if (errorMessage === -1) {
+      setMessageErrUser(
+        errorMessage === -1 ? (
+          messageOn 
+          ) : (
+            <div></div>
+         
+        )
+      );
+    } else {
+      props.login({ username, password });
+    }
+
+    let errorPassword = listOfUsers.findIndex(
+      (user) => password === user.password
+      );
+    if (errorPassword === -1) {
+      setMessageErrPassword(
+        errorPassword === -1 ? (
+          <span className="text-danger">Wrong Password</span>
+        ) : (
+          <span></span>
+        )
+      );
+    } else {
+      props.login({ username, password });
+    }
+  };
+
 
   return (
     <div className="fondoApp position-absolute">
@@ -78,7 +73,10 @@ function Login(props) {
                 value={username}
                 onChange={event => setUsername(event.target.value)}
               />
-              {/* {messageErrUser} */}
+              <div id="messageOn">
+              {messageErrUser}
+              </div>
+              
             </div>
             <div className="form-group">
               <input
@@ -91,7 +89,7 @@ function Login(props) {
                 onChange={event => setPassword(event.target.value)}
               />
             </div>
-            {/* {messageErrPassword} */}
+            {messageErrPassword}
 
             <div className="text-center pt-3">
               <input type="submit" value="Log in" className="btnBlueLog" />

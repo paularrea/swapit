@@ -10,13 +10,6 @@ function Signup(props) {
 
   let handleFormSubmit = (event) => {
     event.preventDefault();
-    const userDetails = {
-      Name: name,
-      Lastname: lastName,
-      Username: username,
-      Password: password,
-    };
-    console.log(userDetails);
     props.signup({ username, password, name, lastName });
   };
 
