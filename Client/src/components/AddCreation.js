@@ -59,7 +59,7 @@ const AddCreation = (props) => {
           />
         </div>
         <div className="form-group">
-          <label for="formGroupExampleInput">Title</label>
+          <label>Title</label>
           <input
             type="text"
             name="title"

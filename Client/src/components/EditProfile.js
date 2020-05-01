@@ -5,7 +5,13 @@ import axios from "axios";
 import service from "../api/service";
 
 const Profile = (props) => {
-  const [finalUser, setUserInput] = useState({});
+  const [finalUser, setUserInput] = useState({
+    name: props.user.name,
+    lastName: props.user.lastName,
+    imgPath: props.user.imgPath,
+  });
+
+
   let onChangeName = e => {
     finalUser.name = e.target.value
 }

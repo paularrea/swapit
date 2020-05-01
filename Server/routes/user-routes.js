@@ -74,8 +74,8 @@ router.get("/users", async (req, res, next) => {
   router.get("/myProducts", async (req, res, next) => {
     try {
       let userId = req.session.currentUser._id;
-      haveList = await User.findById(userId).populate("haveList")
-      res.json(haveList);
+      productList = await User.findById(userId).populate("haveList").populate("wantList")
+      res.json(productList);
     } catch (err) {
       res.json(err);
     }

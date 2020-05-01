@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   const [finalUser, setUserData] = useState({});
   const [myCreations, setMyCreations] = useState();
+  const [havesBtn, setBtnHaves] = useState(false);
+  const [wantsBtn, setBtnWants] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,13 +19,30 @@ const Profile = () => {
     fetchData();
   }, []);
 
-  const displayMyCreations = myCreations ? (
+  const displayHaveList = myCreations ? (
     myCreations.haveList.map((creation) => {
       return (
-        <div key={creation._id} className="col myCreationsProfile">
+        <Link to={`/private/product-details/${creation._id}`}>
+        <div key={creation._id} className="col haveListCard">
           <img src={creation.imgPath} alt="" />
-          <h5>{creation.title}</h5>
+          <p>{creation.title}</p>
         </div>
+        </Link>
+      );
+    })
+  ) : (
+    <div></div>
+  );
+
+  const displayWantList = myCreations ? (
+    myCreations.wantList.map((wantedCreations) => {
+      return (
+        <Link to={`/private/product-details/${wantedCreations._id}`}>
+        <div key={wantedCreations._id} className="col haveListCard">
+          <img src={wantedCreations.imgPath} alt="" />
+          <p>{wantedCreations.title}</p>
+        </div>
+        </Link>
       );
     })
   ) : (
@@ -47,10 +66,49 @@ const Profile = () => {
           </h5>
         </div>
       </div>
-      <Link className="btn addCreation-btn m-3" to="/private/creation-form">
+      <Link className="btn addCreation-btn m-4" to="/private/creation-form">
         Upload Creation
       </Link>
-      <div className="row">{displayMyCreations}</div>
+      <div>
+      <div className="row btn-group">
+        <div className="col">
+          <button
+            onClick={() => {
+              setBtnWants(false);
+              setBtnHaves(true);
+            }}
+            className={havesBtn === true ? "btn btn-primary" : "btn btn-dark"}
+          >
+            My Creations
+          </button>
+        </div>
+        <div className="col">
+          <button
+            onClick={() => {
+              setBtnWants(true);
+              setBtnHaves(false);
+            }}
+            className={wantsBtn === true ? "btn btn-primary" : "btn btn-dark"}
+          >
+            Wanted Creations
+          </button>
+        </div>
+      </div>
+      </div>
+      <div>
+        <div
+          id="haveList"
+          className="row haveList d-flex justify-content-center"
+        >
+          {havesBtn ? displayHaveList : <span></span>}
+        </div>
+        <div
+          id="wantList"
+          className="row wantList d-flex justify-content-center"
+        >
+          {wantsBtn ? displayWantList : <span></span>}
+        </div>
+      </div>
     </div>
   );
 };
