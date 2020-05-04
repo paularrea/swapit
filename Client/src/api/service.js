@@ -28,10 +28,10 @@ export default {
       .then((res) => res.data)
       .catch(errorHandler);
   },
-  deleteMember(object) {
+  deleteWant(object) {
     //necesito enviar al back la id del evento. la id de mi usuario
     return service
-      .post("/events/remove-member", object)
+      .post("/products/remove-want", object)
       .then((res) => res.data)
       .catch(errorHandler);
   },

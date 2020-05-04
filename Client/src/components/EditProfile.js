@@ -11,13 +11,12 @@ const Profile = (props) => {
     imgPath: props.user.imgPath,
   });
 
-
-  let onChangeName = e => {
-    finalUser.name = e.target.value
-}
-let onChangelastName = e => {
-    finalUser.lastName = e.target.value
-}
+  let onChangeName = (e) => {
+    finalUser.name = e.target.value;
+  };
+  let onChangelastName = (e) => {
+    finalUser.lastName = e.target.value;
+  };
   let fileUpload = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -27,29 +26,27 @@ let onChangelastName = e => {
         "http://localhost:4000/api/upload",
         formData
       );
-     finalUser.imgPath = res.data.secure_url;
+      finalUser.imgPath = res.data.secure_url;
     } catch (err) {
       console.log(err);
     }
   };
 
-  useEffect( () => {
+  useEffect(() => {
     const fetchData = async () => {
-      const finalUser =  await service.getUserInfo()    
-      setUserInput(finalUser)
-      console.log(finalUser, "finaaaaaal")
-    }
-    fetchData()
-      },[]);
+      const finalUser = await service.getUserInfo();
+      setUserInput(finalUser);
+    };
+    fetchData();
+  }, []);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(finalUser)
+    console.log(finalUser);
     await service.profileUpdate(finalUser);
     props.history.push("/private/profile");
     console.log("Edited!");
   };
-  
 
   return (
     <div>

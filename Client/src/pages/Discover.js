@@ -18,8 +18,8 @@ const Discover = (props) => {
     allProducts.map((product) => {
       if (product.creator !== props.user._id) {
         return (
-          <Link to={`/private/product-details/${product._id}`}>
-            <div key={product._id + "1"} className="col creationsCard">
+          <Link key={product._id} to={`/private/product-details/${product._id}`}>
+            <div  className="col creationsCard">
               <img src={product.imgPath} alt="" />
               <h3>{product.title}</h3>
             </div>

@@ -27,6 +27,36 @@ router.post("/product/addCreation", async (req, res, next) => {
     console.log(err);
   }
 });
+router.post("/products/remove-want", async (req, res, next) => {
+  const productId = req.body.productId;
+  const likeListId = req.body.likeListId;
+  const creatorId = req.body.creatorId;
+  const userId = req.session.currentUser._id;
+  console.log(likeListId);
+  try {
+    await Product.updateOne(
+      { _id: productId },
+      { $pull: { interestedUser: userId } }
+    );
+
+    await User.updateOne({ _id: userId }, { $pull: { wantList: productId } });
+    await User.updateOne(
+      { _id: creatorId },
+      {
+        $pull: {
+          likeList: {
+            productLiked: likeListId.productLiked,
+            userWhoLikes: likeListId.userWhoLikes,
+            _id: likeListId._id,
+          },
+        },
+      }
+    );
+    res.status(200).json("deleted from joinAccions");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 router.post("/product/want", async (req, res, next) => {
   const userId = req.session.currentUser._id;
@@ -41,7 +71,7 @@ router.post("/product/want", async (req, res, next) => {
     });
     let productSelected = await Product.findById(id);
     const likeList = await User.findByIdAndUpdate(productSelected.creator, {
-      $push: { likeList: { userwhoLikes: userId, productLiked: id } },
+      $push: { likeList: { userWhoLikes: userId, productLiked: id } },
     });
     res.status(200).json(newWantProduct, interested, likeList);
   } catch (err) {
@@ -180,5 +210,21 @@ router.get("/product/:id", (req, res, next) => {
 //       res.json(err);
 //     });
 // });
+router.delete("/product/:id", (req, res, next) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  Product.findByIdAndRemove(req.params.id)
+    .then(() => {
+      res.json({
+        message: `The product with this id: ${req.params.id} is removed successfully.`,
+      });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
 module.exports = router;

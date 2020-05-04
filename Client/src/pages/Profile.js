@@ -8,57 +8,62 @@ const Profile = () => {
   const [myCreations, setMyCreations] = useState();
   const [havesBtn, setBtnHaves] = useState(false);
   const [wantsBtn, setBtnWants] = useState(true);
-
+  
+  
   useEffect(() => {
     const fetchData = async () => {
       const UserfromDB = await service.getUserInfo();
       const creations = await service.getMyProducts();
       setUserData(UserfromDB);
-      setMyCreations(creations);
+      setMyCreations(creations); 
     };
     fetchData();
   }, []);
+  
 
-  const displayHaveList = myCreations ? (
+ const displayHaveList = myCreations && (
     myCreations.haveList.map((creation) => {
       return (
-        <Link to={`/private/product-details/${creation._id}`}>
-        <div key={creation._id} className="col haveListCard">
+        <div key={creation._id}>
+        <Link  to={`/private/product-details/${creation._id}`}>
+        <div  className="col haveListCard">
           <img src={creation.imgPath} alt="" />
           <p>{creation.title}</p>
+          <p className="text-danger">{creation.interestedUser.length && creation.interestedUser.length}</p>
         </div>
         </Link>
+        <Link to={`/private/product-delete/${creation._id}`} >🗑</Link>
+        </div>
       );
     })
-  ) : (
-    <div></div>
-  );
+  ) 
 
-  const displayWantList = myCreations ? (
+  const displayWantList = myCreations && (
     myCreations.wantList.map((wantedCreations) => {
+
       return (
-        <Link to={`/private/product-details/${wantedCreations._id}`}>
-        <div key={wantedCreations._id} className="col haveListCard">
+        <Link key={wantedCreations._id} to={`/private/product-details/${wantedCreations._id}`}>
+        <div  className="col haveListCard">
           <img src={wantedCreations.imgPath} alt="" />
           <p>{wantedCreations.title}</p>
         </div>
         </Link>
+        
       );
     })
-  ) : (
-    <div></div>
-  );
+  ) 
+
 
   return (
     <div>
       <Link className="btn btn-primary" to="/private/edit-profile">
         Edit Profile
       </Link>
-      <div className="row d-flex align-items-center mt-3">
-        <div className="col">
+      <div className=" d-flex text-left align-items-center justify-content-center mt-3">
+        <div className="">
           <img className="profileImg" src={finalUser.imgPath} alt="perfil" />
         </div>
-        <div className="col">
+        <div className="ml-2">
           <h5>
             <b>
               {finalUser.name} {finalUser.lastName}
@@ -71,7 +76,7 @@ const Profile = () => {
       </Link>
       <div>
       <div className="row btn-group">
-        <div className="col">
+        <div className="col m-2"> 
           <button
             onClick={() => {
               setBtnWants(false);
@@ -79,10 +84,11 @@ const Profile = () => {
             }}
             className={havesBtn === true ? "btn btn-primary" : "btn btn-dark"}
           >
-            My Creations
+           Creations 
           </button>
-        </div>
-        <div className="col">
+          <br/>
+          <span>{`(${displayHaveList && myCreations.haveList.length})`}</span>
+        </div><div className="col m-2">
           <button
             onClick={() => {
               setBtnWants(true);
@@ -90,23 +96,25 @@ const Profile = () => {
             }}
             className={wantsBtn === true ? "btn btn-primary" : "btn btn-dark"}
           >
-            Wanted Creations
+            Wishes  
           </button>
+          <span>{`(${displayWantList && myCreations.wantList.length})`}</span>
         </div>
       </div>
+
       </div>
       <div>
         <div
           id="haveList"
           className="row haveList d-flex justify-content-center"
         >
-          {havesBtn ? displayHaveList : <span></span>}
+          {havesBtn && displayHaveList}
         </div>
         <div
           id="wantList"
           className="row wantList d-flex justify-content-center"
         >
-          {wantsBtn ? displayWantList : <span></span>}
+          {wantsBtn && displayWantList}
         </div>
       </div>
     </div>

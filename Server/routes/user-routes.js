@@ -3,14 +3,13 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const User = require("../models/User");
 
-
 router.get("/profile", async (req, res, next) => {
-  try{
-    const userId = req.session.currentUser._id
-    const userInfo =  await User.findById(userId)
-       res.json(userInfo);
-  }catch(err){
-    console.log(err)
+  try {
+    const userId = req.session.currentUser._id;
+    const userInfo = await User.findById(userId);
+    res.json(userInfo);
+  } catch (err) {
+    console.log(err);
   }
 });
 // router.get("/my-events/:id", async (req, res, next) => {
@@ -25,11 +24,11 @@ router.get("/profile", async (req, res, next) => {
 // });
 
 router.get("/users", async (req, res, next) => {
-  try{
-    const allUsers=  await User.find() 
-       res.json(allUsers);
-  }catch(err){
-    console.log(err)
+  try {
+    const allUsers = await User.find();
+    res.json(allUsers);
+  } catch (err) {
+    console.log(err);
   }
 });
 
@@ -48,7 +47,7 @@ router.get("/users", async (req, res, next) => {
 //       res.status(400).json({ message: 'Specified id is not valid' });
 //       return;
 //     }
-//     User.findById(req.params.id) 
+//     User.findById(req.params.id)
 //       .then(response => {
 //         res.status(200).json(response);
 //       })
@@ -56,28 +55,30 @@ router.get("/users", async (req, res, next) => {
 //         res.json(err);
 //       })
 //   })
-  router.put('/users/edit-profile', (req, res, next)=>{
-    const {name, _id, lastName, imgPath} = req.body
-    if(!mongoose.Types.ObjectId.isValid(_id)) {
-      res.status(400).json({ message: 'Specified id is not valid' });
-      return;
-    }
-    User.findByIdAndUpdate(_id, {name, lastName, imgPath})
-      .then((res) => {
-        res.json({ message: `users with ${_id} is updated successfully.` });
-      })
-      .catch(err => {
-        res.json(err);
-      })
-  })
-
-  router.get("/myProducts", async (req, res, next) => {
-    try {
-      let userId = req.session.currentUser._id;
-      productList = await User.findById(userId).populate("haveList").populate("wantList")
-      res.json(productList);
-    } catch (err) {
+router.put("/users/edit-profile", (req, res, next) => {
+  const { name, _id, lastName, imgPath } = req.body;
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+  User.findByIdAndUpdate(_id, { name, lastName, imgPath })
+    .then((res) => {
+      res.json({ message: `users with ${_id} is updated successfully.` });
+    })
+    .catch((err) => {
       res.json(err);
-    }
-  });
+    });
+});
+
+router.get("/myProducts", async (req, res, next) => {
+  try {
+    let userId = req.session.currentUser._id;
+    productList = await User.findById(userId)
+      .populate("haveList")
+      .populate("wantList");
+    res.json(productList);
+  } catch (err) {
+    res.json(err);
+  }
+});
 module.exports = router;
