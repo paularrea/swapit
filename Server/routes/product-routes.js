@@ -79,6 +79,7 @@ router.post("/product/want", async (req, res, next) => {
   }
 });
 
+
 router.get("/product/:id", (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: "Specified id is not valid" });
@@ -160,39 +161,22 @@ router.get("/product/:id", (req, res, next) => {
 //   }
 // });
 
-// router.get("/events/:id", (req, res, next) => {
-//   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-//     res.status(400).json({ message: "Specified id is not valid" });
-//     return;
-//   }
-//   Event.findById(req.params.id)
-//     .populate("creator")
-//     .populate("members")
-
-//     .then((response) => {
-//       res.status(200).json(response);
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
-
-// router.put("/events/:id", (req, res, next) => {
-//   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-//     res.status(400).json({ message: "Specified id is not valid" });
-//     return;
-//   }
-
-//   Event.findByIdAndUpdate(req.params.id, req.body)
-//     .then(() => {
-//       res.json({
-//         message: `events with ${req.params.id} is updated successfully.`,
-//       });
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
+router.put("/edit-product/:id", (req, res, next) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+  console.log(req.body , 'info')
+  Product.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      res.json({
+        message: `product with ${req.params.id} is updated successfully.`,
+      });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
 // router.delete("/events/:id", (req, res, next) => {
 //   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {

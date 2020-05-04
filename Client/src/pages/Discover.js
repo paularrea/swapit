@@ -18,8 +18,11 @@ const Discover = (props) => {
     allProducts.map((product) => {
       if (product.creator !== props.user._id) {
         return (
-          <Link key={product._id} to={`/private/product-details/${product._id}`}>
-            <div  className="col creationsCard">
+          <Link
+            key={product._id}
+            to={`/private/product-details/${product._id}`}
+          >
+            <div className="col creationsCard">
               <img src={product.imgPath} alt="" />
               <h3>{product.title}</h3>
             </div>
@@ -33,7 +36,11 @@ const Discover = (props) => {
     <div></div>
   );
 
-  return <div className="row d-flex justify-content-center">{displayAllCreations}</div>;
+  return (
+    <div className="row d-flex justify-content-center">
+      {displayAllCreations}
+    </div>
+  );
 };
 
 export default withAuth(Discover);

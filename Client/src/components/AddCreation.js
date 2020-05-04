@@ -89,7 +89,8 @@ const AddCreation = (props) => {
             id="categoryInput"
             placeholder="Category"
             onChange={(e) => onChange(e)}
-          >
+          >    
+            <option disabled selected>select category...</option>
             <option value="drawings">Drawings</option>
             <option value="handmade">Handmade</option>
             <option value="wood">Wood</option>

@@ -4,7 +4,7 @@ import logo from "../img/user-solid.svg";
 import axios from "axios";
 import service from "../api/service";
 
-const Profile = (props) => {
+const EditProfile = (props) => {
   const [finalUser, setUserInput] = useState({
     name: props.user.name,
     lastName: props.user.lastName,
@@ -111,4 +111,4 @@ const Profile = (props) => {
   );
 };
 
-export default withAuth(Profile);
+export default withAuth(EditProfile);

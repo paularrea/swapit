@@ -48,6 +48,13 @@ export default {
       .catch(errorHandler);
   },
 
+  updateProduct(productUpdate) {
+    return service
+      .put("/edit-product/:id", productUpdate)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   getWantedCreation(productId) {
     return service
       .post("/product/want", productId)

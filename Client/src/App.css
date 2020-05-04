@@ -97,6 +97,15 @@ object-fit: cover;
   border-radius: 5px;
   }
 
+  .creationsCard>img:hover {
+    box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
+    margin-bottom: 1px;
+  }
+
+  .creationsCard h3{
+    color: #282c34;
+    text-decoration: none;
+  }
   /* details */
 
   .detailsCard img{

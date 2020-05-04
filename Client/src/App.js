@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Switch } from "react-router-dom";
-import "leaflet/dist/leaflet.css";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Private from "./pages/Private";

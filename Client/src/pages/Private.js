@@ -6,6 +6,7 @@ import Discover from "./Discover";
 import Profile from "./Profile";
 import Notifications from "./Notifications";
 import EditProfile from "../components/EditProfile";
+import EditProduct from "../components/EditProduct";
 import AddCreation from "../components/AddCreation";
 import ProductDetails from "../components/ProductDetails";
 import ModalDelete from "../components/ModalDelete";
@@ -29,6 +30,7 @@ const Private = () => {
           <Route exact path="/private/creation-form" component={AddCreation} />
           <Route exact path="/private/product-details/:id" component={ProductDetails} />
           <Route exact path="/private/product-delete/:id" component={ModalDelete} />
+          <Route exact path="/private/edit-product/:id" component={EditProduct} />
           
         </Switch>
       </div>
