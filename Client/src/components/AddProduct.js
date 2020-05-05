@@ -3,7 +3,7 @@ import axios from "axios";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 
-const AddCreation = (props) => {
+const AddProduct = (props) => {
   const [creation, setCreation] = useState({
     title: "",
     description: "",
@@ -92,7 +92,8 @@ const AddCreation = (props) => {
           >    
             <option disabled selected>select category...</option>
             <option value="drawings">Drawings</option>
-            <option value="handmade">Handmade</option>
+            <option value="handmade">Textile</option>
+            <option value="handmade">Decoration</option>
             <option value="wood">Wood</option>
             <option value="photography">Photography</option>
           </select>
@@ -108,4 +109,4 @@ const AddCreation = (props) => {
   );
 };
 
-export default withAuth(AddCreation);
+export default withAuth(AddProduct);

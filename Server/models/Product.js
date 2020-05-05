@@ -11,7 +11,7 @@ let productsSchema = new Schema(
     interestedUser: [{ type: Schema.Types.ObjectId, ref: "User" }],
     category: {
       type: String,
-      enum: ["photography", "drawings", "handmade", "wood"],
+      enum: ["photography", "drawings", "textile", "wood", "decoration"],
     },
     creator: { type: Schema.Types.ObjectId, ref: "User" },
   },

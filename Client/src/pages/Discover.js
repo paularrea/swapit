@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
+import FilterSearch from "../components/FilterSearch";
+
 
 const Discover = (props) => {
   const [allProducts, setAllProducts] = useState();
@@ -37,8 +39,11 @@ const Discover = (props) => {
   );
 
   return (
-    <div className="row d-flex justify-content-center">
-      {displayAllCreations}
+    <div>
+       <div classNameName="">
+      <FilterSearch allProducts = {allProducts}/>
+      </div>
+     
     </div>
   );
 };
