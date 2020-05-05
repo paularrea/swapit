@@ -54,6 +54,11 @@
 
 /* profile */
 
+.creatorDetails img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 .haveListCard img{
 max-width: 10.5rem;
 max-height: 100%;
@@ -116,7 +121,83 @@ object-fit: cover;
 
   .detailsCard img{
     max-width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    border-radius: 5px;
   }
+  
+  .imgContainer{
+    position: relative;
+    background-size: cover;
+    min-width: 95%;
+    min-height: 400px;
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 5px;
+    
+  }
+
+  .btn-heart {
+    position: absolute;
+    right: 3%;
+    width: 50px;
+    height: 50px;
+    bottom: 3%;
+    background-color: rgba(255,255,255,.2);
+    border-radius: 50%;
+    padding: 10px;
+  }
+.swapit-btn{
+  position: absolute;
+  bottom: 3%;
+  margin: 0 auto;
+  left: 3%;
+
+}
+.swapit-btn button{
+  font-size: 25px;
+  padding: 5px 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none !important;
+}
+
+.creatorImage{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.creatorDetails{
+  font-size: 15px;
+  color: #282c34;
+
+}
+.creatorDetails p {
+  padding: 0 20px;
+}
+
+.creationsCard{
+  border-radius: 10px !important;
+}
+.creationsCard:hover{
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
+  margin-bottom: 1px;
+}
+
+.descriptionCard{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.descriptionCard:hover{
+
+    text-overflow: unset;
+    overflow:show;
+    white-space: normal;
+
+
+}
+.imgCard{
+  object-fit: cover;
+  width: 100%;
+  max-height: 300px;
+  border-radius: none !important;
+  
+}

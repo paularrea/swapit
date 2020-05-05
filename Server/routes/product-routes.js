@@ -86,7 +86,7 @@ router.get("/product/:id", (req, res, next) => {
     return;
   }
   Product.findById(req.params.id)
-    .populate("creator")
+    .populate("creator").populate('interestedUser')
     .then((response) => {
       res.status(200).json(response);
     })

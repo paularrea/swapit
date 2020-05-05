@@ -2,11 +2,23 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const User = require("../models/User");
+const Product = require("../models/Product");
 
 router.get("/profile", async (req, res, next) => {
   try {
     const userId = req.session.currentUser._id;
     const userInfo = await User.findById(userId);
+    res.json(userInfo);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.get("/user-profile/:id", async (req, res, next) => {
+  try {
+
+    const userProfileId = req.params.id
+    const userInfo = await User.findById(userProfileId).populate("haveList");
     res.json(userInfo);
   } catch (err) {
     console.log(err);

@@ -14,13 +14,14 @@ const Profile = () => {
     const fetchData = async () => {
       const UserfromDB = await service.getUserInfo();
       const creations = await service.getMyProducts();
+
       setUserData(UserfromDB);
       setMyCreations(creations); 
     };
     fetchData();
   }, []);
   
-
+  console.log(finalUser, 'user')
  const displayHaveList = myCreations && (
     myCreations.haveList.map((creation) => {
       return (
