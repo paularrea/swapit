@@ -37,7 +37,6 @@ const EditProduct = (props) => {
   };
 
   useEffect(() => {
-    console.log(productEdited.id, "productEdited");
     const fetchData = async () => {
         const productInfo = await axios.get(
             `http://localhost:4000/api/product/${productId}`

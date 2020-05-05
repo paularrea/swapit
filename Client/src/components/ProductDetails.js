@@ -5,7 +5,7 @@ import service from "../api/service";
 import heartOff from "../img/heart-regular.png";
 import heartOn from "../img/heart-solid.png";
 import { Link } from "react-router-dom";
-import EditProduct from "./EditProduct";
+
 
 const ProductDetails = (props) => {
   const [productInfo, setProductInfo] = useState();
@@ -72,7 +72,7 @@ const ProductDetails = (props) => {
     productInfo.interestedUser.findIndex((user) => user === props.user._id);
 
   let isEqual =
-    productInfo !== undefined && props.user._id == productInfo.creator._id;
+    productInfo !== undefined && props.user._id === productInfo.creator._id;
   console.log(isEqual, "isEqual");
 
   const likedProduct = !isEqual ? (

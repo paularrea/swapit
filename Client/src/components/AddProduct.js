@@ -92,8 +92,8 @@ const AddProduct = (props) => {
           >    
             <option disabled selected>select category...</option>
             <option value="drawings">Drawings</option>
-            <option value="handmade">Textile</option>
-            <option value="handmade">Decoration</option>
+            <option value="textile">Textile</option>
+            <option value="decoration">Decoration</option>
             <option value="wood">Wood</option>
             <option value="photography">Photography</option>
           </select>
