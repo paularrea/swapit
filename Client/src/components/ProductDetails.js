@@ -118,7 +118,11 @@ const ProductDetails = (props) => {
   const creatorDetails = productInfo && (
     <div className="creatorDetails row m-3">
       <div className="col">
-        <img className ="creatorImage" src={productInfo.creator.imgPath} alt="" />
+        <img
+          className="creatorImage"
+          src={productInfo.creator.imgPath}
+          alt=""
+        />
       </div>
       <div className="col">
         <p>
@@ -138,13 +142,15 @@ const ProductDetails = (props) => {
       </div>
       <h3 className="text-center mt-3">{productInfo.title}</h3>
       <div className="text-left m-3">
-        <p>Created by:</p>
-        <Link to={`/private/user-profile/${userId}`}>
-          <div>{creatorDetails}</div>
-        </Link>
-    
-        <p>Description:</p>
-        <p>{productInfo.description}</p>
+        <b>
+          <p>Created by:</p>
+        </b>
+        <Link to={`/private/user-profile/${userId}`}>{creatorDetails}</Link>
+
+        <b>
+          <p>Description:</p>
+        </b>
+        {productInfo.description}
       </div>
     </div>
   );

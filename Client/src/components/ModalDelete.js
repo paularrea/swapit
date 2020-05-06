@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { withAuth } from "../lib/AuthProvider";
 
 
 const ModalDelete = (props) => {
@@ -8,7 +9,18 @@ const ModalDelete = (props) => {
  let deleteProduct = (e) => { 
       const { params } = props.match;
       const productId = params.id;
-       axios.delete(`http://localhost:4000/api/product/${productId}`);
+      const userId = props.user._id;
+      const likeListToRemove = props.user.likeList;
+      const filteredLikeList = [];
+      likeListToRemove.forEach(obj => {
+          console.log(productId, obj.productLiked, 'ñlcksdnckjsfnjkvsdfnkvjfs')
+          if(productId === obj.productLiked){
+            filteredLikeList.push(obj)
+          }
+      });
+      console.log(filteredLikeList, 'filtered')
+      axios.post(`http://localhost:4000/api/remove-product-link`, {userId, productId, filteredLikeList});
+        // axios.delete(`http://localhost:4000/api/product/${productId}`);
       props.history.push("/private/profile")    
   }
   return <div>
@@ -21,4 +33,4 @@ const ModalDelete = (props) => {
   </div>;
 };
 
-export default ModalDelete;
+export default withAuth(ModalDelete);

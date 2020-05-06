@@ -162,6 +162,7 @@ object-fit: cover;
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.2);
 }
 
 .creatorDetails{
@@ -173,10 +174,10 @@ object-fit: cover;
   padding: 0 20px;
 }
 
-.creationsCard{
-  border-radius: 10px !important;
+.creationsCard img{
+  border-radius: 1px;
 }
-.creationsCard:hover{
+.creationsCard img:hover{
   box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
   margin-bottom: 1px;
 }
@@ -200,4 +201,39 @@ object-fit: cover;
   max-height: 300px;
   border-radius: none !important;
   
+}
+
+/* discover */
+
+.discoverCard img{
+  border-radius: 5px;
+  object-fit: cover;
+  width: 100%;
+  max-width:450px;
+  max-height: 350px;
+  object-fit: cover;
+
+}
+.discoverCard img:hover{
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
+  margin-bottom: 1px;
+}
+
+.btnCategory{
+  width: 120px;
+  height: 35px;
+  margin-bottom: 5px;
+}
+
+#category-collapse {
+margin: 10px;
+}
+
+#category-collapse button {
+  width: 100%;
+}
+
+.btn-searchCategory{
+  width: 100%;
+  height: 45px;
 }

@@ -52,7 +52,7 @@ router.post("/products/remove-want", async (req, res, next) => {
         },
       }
     );
-    res.status(200).json("deleted from joinAccions");
+    res.status(200).json("deleted from your wantList");
   } catch (err) {
     console.log(err);
   }
@@ -79,6 +79,35 @@ router.post("/product/want", async (req, res, next) => {
   }
 });
 
+router.post("/remove-product-link", async (req, res, next) => {
+  // if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+  //   res.status(400).json({ message: "Specified id is not valid" });
+  //   return;
+  // }
+  try {
+    const userId = req.body.userId;
+    const productId = req.body.productId
+    const likeListToRemove = req.body.filteredLikeList
+    likeListToRemove.map(listToRemove => {
+      console.log(listToRemove.productLiked, 'productliked')
+      return User.findByIdAndUpdate(userId, {
+        $pull: {
+          likeList: {
+            productLiked: listToRemove.productLiked,
+            userWhoLikes: listToRemove.userWhoLikes,
+            _id: listToRemove._id,
+          },
+        },
+      });
+    })
+   
+    // await User.updateMany({ $pull: { wantList : productId } });
+
+    res.json(`links removed succesfully`);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 router.get("/product/:id", (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -86,7 +115,8 @@ router.get("/product/:id", (req, res, next) => {
     return;
   }
   Product.findById(req.params.id)
-    .populate("creator").populate('interestedUser')
+    .populate("creator")
+    .populate("interestedUser")
     .then((response) => {
       res.status(200).json(response);
     })
@@ -166,7 +196,7 @@ router.put("/edit-product/:id", (req, res, next) => {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
-  console.log(req.body , 'info')
+  console.log(req.body, "info");
   Product.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
       res.json({
@@ -194,21 +224,21 @@ router.put("/edit-product/:id", (req, res, next) => {
 //       res.json(err);
 //     });
 // });
-router.delete("/product/:id", (req, res, next) => {
+router.delete("/product/:id", async (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
+  try {
+    const removeProductId = req.params.id;
+    await Product.findByIdAndRemove(removeProductId);
 
-  Product.findByIdAndRemove(req.params.id)
-    .then(() => {
-      res.json({
-        message: `The product with this id: ${req.params.id} is removed successfully.`,
-      });
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+    res.json(`the product ${removeProductId} is been removed`);
+  } catch (err) {
+    console.log(err);
+  }
 });
+
+
 
 module.exports = router;

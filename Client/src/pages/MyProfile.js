@@ -21,7 +21,7 @@ const Profile = () => {
     fetchData();
   }, []);
   
-  console.log(finalUser, 'user')
+
  const displayHaveList = myCreations && (
     myCreations.haveList.map((creation) => {
       return (
