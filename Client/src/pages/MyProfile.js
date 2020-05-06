@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
+import logoutLogo from "../img/sign-out-alt-solid.svg";
+import backLogo from "../img/back.png";
 
-const Profile = () => {
+const Profile = (props) => {
   const [finalUser, setUserData] = useState({});
   const [myCreations, setMyCreations] = useState();
   const [havesBtn, setBtnHaves] = useState(false);
@@ -21,10 +23,12 @@ const Profile = () => {
     fetchData();
   }, []);
   
-
+  const { logout } = props;
  const displayHaveList = myCreations && (
     myCreations.haveList.map((creation) => {
       return (
+       
+       
         <div key={creation._id}>
         <Link  to={`/private/product-details/${creation._id}`}>
         <div  className="col haveListCard">
@@ -35,6 +39,7 @@ const Profile = () => {
         </Link>
         <Link to={`/private/product-delete/${creation._id}`} >🗑</Link>
         </div>
+       
       );
     })
   ) 
@@ -56,10 +61,20 @@ const Profile = () => {
 
 
   return (
-    <div>
-      <Link className="btn btn-primary" to="/private/edit-profile">
-        Edit Profile
+    <div className="container">
+      <div className ="d-flex">
+<Link className=" justify-content-start mt-3 ml-2 " to = "/private"><img className="backIcons" src={backLogo} alt="backlogo"/></Link>
+    
+     <div className="logandedit">
+       <Link className="m-3"  to="/private/edit-profile">
+        Edit
       </Link>
+       <Link  to={"/"} onClick={logout} id="home-btn">
+          <img className="navIcons mr-3" src={logoutLogo} alt="Logout" />
+        </Link>
+      
+      </div>
+      </div> 
       <div className=" d-flex text-left align-items-center justify-content-center mt-3">
         <div className="">
           <img className="profileImg" src={finalUser.imgPath} alt="perfil" />

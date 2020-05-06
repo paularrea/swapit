@@ -1,7 +1,7 @@
 import React from "react";
 import { withAuth } from "../lib/AuthProvider";
 import { Switch, Route } from "react-router-dom";
-import Navbar from "../components/Navbar";
+
 import Discover from "./Discover";
 import Profile from "./MyProfile";
 import Notifications from "./Notifications";
@@ -15,9 +15,7 @@ import UsersProfiles from "../pages/UsersProfiles";
 const Private = () => {
   return (
     <div className="text-center  ">
-      <div className ="d-flex justify-content-center">
-        <Navbar />
-      </div>
+
       <div>
         <Switch>
           <Route exact path="/private" component={Discover} />

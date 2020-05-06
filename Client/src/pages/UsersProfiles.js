@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const UsersProfiles = (props) => {
   const [userProfile, setUserProfile] = useState();
@@ -17,10 +18,11 @@ const UsersProfiles = (props) => {
     fetchData();
   }, [profileId]);
 
-  console.log(userProfile, "info");
-
   return (
     <div>
+      <div className ="d-flex justify-content-center">
+        <Navbar />
+      </div>
       <img
         className="creatorImage"
         src={userProfile !== undefined && userProfile.imgPath}
@@ -43,7 +45,7 @@ const UsersProfiles = (props) => {
                     <img
                       className="card-img-top imgCard"
                       src={product.imgPath}
-                      alt="Card image cap"
+                      alt="cardImg"
                     />{" "}
                   </Link>
                   <div className="card-body">
@@ -51,7 +53,9 @@ const UsersProfiles = (props) => {
                     <p className="card-text">
                       <small className="text-muted">{product.category}</small>
                     </p>
-                    <p className="card-text text-left descriptionCard">{product.description}</p>
+                    <p className="card-text text-left descriptionCard">
+                      {product.description}
+                    </p>
                   </div>
                 </div>
               </div>

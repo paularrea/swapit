@@ -13,14 +13,14 @@ const ModalDelete = (props) => {
       const likeListToRemove = props.user.likeList;
       const filteredLikeList = [];
       likeListToRemove.forEach(obj => {
-          console.log(productId, obj.productLiked, 'ñlcksdnckjsfnjkvsdfnkvjfs')
+        
           if(productId === obj.productLiked){
             filteredLikeList.push(obj)
           }
       });
-      console.log(filteredLikeList, 'filtered')
+      
       axios.post(`http://localhost:4000/api/remove-product-link`, {userId, productId, filteredLikeList});
-        // axios.delete(`http://localhost:4000/api/product/${productId}`);
+        axios.delete(`http://localhost:4000/api/product/${productId}`);
       props.history.push("/private/profile")    
   }
   return <div>

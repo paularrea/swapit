@@ -3,6 +3,8 @@ import { withAuth } from "../lib/AuthProvider";
 import logo from "../img/user-solid.svg";
 import axios from "axios";
 import service from "../api/service";
+import { Link } from "react-router-dom";
+import backLogo from "../img/back.png";
 
 const EditProfile = (props) => {
   const [finalUser, setUserInput] = useState({
@@ -42,14 +44,14 @@ const EditProfile = (props) => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(finalUser);
     await service.profileUpdate(finalUser);
     props.history.push("/private/profile");
     console.log("Edited!");
   };
 
   return (
-    <div>
+    <div className="container">
+      <Link className="d-flex justify-content-start mt-3 ml-2" to = "/private/profile"><img className ="backIcons" src={backLogo} alt="backlogo"/></Link>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
           <div className="col text-center pb-3">
@@ -102,7 +104,7 @@ const EditProfile = (props) => {
         </div>
 
         <div className="text-center">
-          <button className="btn btnBlue" type="submit">
+          <button className="btn btn-outline-primary" type="submit">
             Save Profile
           </button>
         </div>

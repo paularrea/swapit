@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 import FilterSearch from "../components/FilterSearch";
+import Navbar from "../components/Navbar";
 
 
 const Discover = (props) => {
@@ -19,7 +20,10 @@ const Discover = (props) => {
 
   return (
     <div>
-       <div className="">
+      <div className ="d-flex justify-content-center">
+        <Navbar/>
+      </div>
+       <div className="container">
       <FilterSearch allProducts = {allProducts}/>
       </div>
      

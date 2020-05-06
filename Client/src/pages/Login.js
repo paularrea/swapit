@@ -27,7 +27,6 @@ function Login(props) {
     let errorMessage = listOfUsers.findIndex(
       (user) => username === user.username
       );
-      console.log(listOfUsers[1].username, username, "dataaaaaa")
     if (errorMessage === -1) {
       setMessageErrUser(
         errorMessage === -1 ? (

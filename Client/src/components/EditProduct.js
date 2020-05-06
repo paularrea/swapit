@@ -9,7 +9,6 @@ const EditProduct = (props) => {
   const { params } = props.match;
   let productId = params.id;
 
-  console.log(props, "proooops");
   let onChangeTitle = (e) => {
     productEdited.title = e.target.value;
   };
@@ -46,11 +45,10 @@ const EditProduct = (props) => {
     fetchData();
   }, [productId]);
 
-  console.log(productEdited, 'productInfo')
+
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(productEdited);
     await axios.put(`http://localhost:4000/api/edit-product/${productId}`, productEdited)
     props.history.push("/private/profile");
     console.log("Edited!");

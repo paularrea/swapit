@@ -29,10 +29,10 @@ const AddProduct = (props) => {
 
   let onChange = (e) => {
     e.preventDefault();
-    const { name, value } = e.target;
+    const { name, defaultValue } = e.target;
     setCreation({
       ...creation,
-      [name]: value,
+      [name]: defaultValue,
     });
   };
 
@@ -83,19 +83,21 @@ const AddProduct = (props) => {
         <div className="form-group">
           <label>Category</label>
           <select
+            
             name="category"
             type="text"
             className="form-control text-center"
             id="categoryInput"
             placeholder="Category"
             onChange={(e) => onChange(e)}
+            
           >    
-            <option disabled selected>select category...</option>
-            <option value="drawings">Drawings</option>
-            <option value="textile">Textile</option>
-            <option value="decoration">Decoration</option>
-            <option value="wood">Wood</option>
-            <option value="photography">Photography</option>
+            <option disabled selected >select category...</option>
+            <option defaultValue="drawings">Drawings</option>
+            <option defaultValue="textile">Textile</option>
+            <option defaultValue="decoration">Decoration</option>
+            <option defaultValue="wood">Wood</option>
+            <option defaultValue="photography">Photography</option>
           </select>
         </div>
         <div>

@@ -24,7 +24,7 @@ const ProductDetails = (props) => {
     fetchData();
   }, [productId, buttonOn]);
 
-  console.log(productInfo, "info");
+  
 
   useEffect(() => {
     let getLikeList = () => {
@@ -72,7 +72,6 @@ const ProductDetails = (props) => {
   let userExist =
     productInfo !== undefined &&
     productInfo.interestedUser.findIndex((user) => user._id === props.user._id);
-  console.log(userExist, "userExist");
 
   let isEqual =
     productInfo !== undefined && props.user._id === productInfo.creator._id;

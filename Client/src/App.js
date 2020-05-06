@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <AuthProvider>
        
-        <div className="container">
+        <div>
           
 
           <Switch>

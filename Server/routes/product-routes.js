@@ -61,7 +61,6 @@ router.post("/products/remove-want", async (req, res, next) => {
 router.post("/product/want", async (req, res, next) => {
   const userId = req.session.currentUser._id;
   const id = req.body._id;
-  console.log(id, " IDDDDDDDDDDDDD");
   try {
     const newWantProduct = await User.findByIdAndUpdate(userId, {
       $push: { wantList: id },
@@ -86,24 +85,26 @@ router.post("/remove-product-link", async (req, res, next) => {
   // }
   try {
     const userId = req.body.userId;
-    const productId = req.body.productId
-    const likeListToRemove = req.body.filteredLikeList
-    likeListToRemove.map(listToRemove => {
-      console.log(listToRemove.productLiked, 'productliked')
-      return User.findByIdAndUpdate(userId, {
-        $pull: {
-          likeList: {
-            productLiked: listToRemove.productLiked,
-            userWhoLikes: listToRemove.userWhoLikes,
-            _id: listToRemove._id,
+    const productId = req.body.productId;
+    const likeListToRemove = req.body.filteredLikeList;
+    likeListToRemove.map(async (listToRemove) => {
+     await User.updateOne(
+        { _id: userId },
+        {
+          $pull: {
+            likeList: {
+              productLiked: listToRemove.productLiked,
+              userWhoLikes: listToRemove.userWhoLikes,
+              _id: listToRemove._id,
+            },
           },
-        },
-      });
-    })
-   
-    // await User.updateMany({ $pull: { wantList : productId } });
+        }
+        );
+        res.json(`links removed succesfully`);
+    });
 
-    res.json(`links removed succesfully`);
+    await User.updateMany({ $pull: { wantList: productId } });
+
   } catch (err) {
     console.log(err);
   }
@@ -238,7 +239,5 @@ router.delete("/product/:id", async (req, res, next) => {
     console.log(err);
   }
 });
-
-
 
 module.exports = router;
