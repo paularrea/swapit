@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { Collapse, Button } from "react-bootstrap";
+import dropAbajo from "../img/dropAbajo.png";
+import dropArriba from "../img/dropArriba.png";
 
 const FilterSearch = (props) => {
   const [filteredCategory, setFilteredCategory] = useState();
   const [openCategory, setOpenCategory] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   let filterChange = (e) => {
     setFilteredCategory(e.target.value);
@@ -14,7 +16,6 @@ const FilterSearch = (props) => {
   let searchHandler = (query) => {
     setSearchQuery(query.target.value);
   };
-  
 
   const displayAllProducts =
     props.allProducts &&
@@ -27,39 +28,21 @@ const FilterSearch = (props) => {
           >
             <div className="col discoverCard mt-3">
               <img src={product.imgPath} alt="" />
-              <h3>{product.title}</h3>
+              <h4>{product.title}</h4>
             </div>
           </Link>
         )
       );
     });
-    const searchBarProducts = 
-    searchQuery && props.allProducts.filter(
-      
-        (product) =>
-          product.title
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase()) 
-    )
-  const displayFilteredProducts =
-  
-    searchBarProducts ? searchBarProducts.map((product) => {
-     return(<Link
-      key={product._id}
-      to={`/private/product-details/${product._id}`}
-    >
-      <div className="col creationsCard">
-        <img src={product.imgPath} alt="" />
-        <h3>{product.title}</h3>
-      </div>
-    </Link>) 
-      
-    }) : (
-    props.allProducts &&
-    props.allProducts.map((product) => {
-      return (
-        product.creator !== props.user._id &&
-        (filteredCategory === product.category ? (
+  const searchBarProducts =
+    searchQuery &&
+    props.allProducts.filter((product) =>
+      product.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+  const displayFilteredProducts = searchBarProducts
+    ? searchBarProducts.map((product) => {
+        return (
           <Link
             key={product._id}
             to={`/private/product-details/${product._id}`}
@@ -69,46 +52,69 @@ const FilterSearch = (props) => {
               <h3>{product.title}</h3>
             </div>
           </Link>
-        ) : (
+        );
+      })
+    : props.allProducts &&
+      props.allProducts.map((product) => {
+        return (
           product.creator !== props.user._id &&
-          filteredCategory === "allProducts" && (
+          (filteredCategory === product.category ? (
             <Link
               key={product._id}
               to={`/private/product-details/${product._id}`}
             >
-              <div className="col creationsCard">
+              <div className="col creationsCard mt-3">
                 <img src={product.imgPath} alt="" />
                 <h3>{product.title}</h3>
               </div>
             </Link>
-          )
-        ))
-      );
-    }));
-   
-    
+          ) : (
+            product.creator !== props.user._id &&
+            filteredCategory === "allProducts" && (
+              <Link
+                key={product._id}
+                to={`/private/product-details/${product._id}`}
+              >
+                <div className="col creationsCard mt-3">
+                  <img src={product.imgPath} alt="" />
+                  <h3>{product.title}</h3>
+                </div>
+              </Link>
+            )
+          ))
+        );
+      });
 
   return (
     <div>
       <div className="d-flex justify-content-center ">
-          <input
-            className="searchBar mb-2 p-2"
-            placeholder="Search..."
-            type="text"
-            name="search"
-            onChange={(e) => searchHandler(e)}
-          />
-        </div>
-      <Button
-        className="btn-searchCategory"
-        onClick={() => setOpenCategory(!openCategory)}
-        aria-controls="category-collapse"
-        aria-expanded={openCategory}
-      >
-        search for category ...
-      </Button>
+        <input
+          className="searchBar mb-2 pl-3"
+          placeholder="Search..."
+          type="text"
+          name="search"
+          onChange={(e) => searchHandler(e)}
+        />
+      </div>
+    
+        <Button
+          className="btn-searchCategory text-left"
+          onClick={() => setOpenCategory(!openCategory)}
+          aria-controls="category-collapse"
+          aria-expanded={openCategory}
+        >
+          <div className='d-flex justify-content-between align-items-center'>
+          <p className=''>Filter by category...</p>
+          <img
+          className='dropdown'
+          src={openCategory !== false ? dropArriba : dropAbajo}
+          alt={openCategory === true ? "drop arriba" : "drop abajo"}
+        /></div>
+        </Button>
+      
       <Collapse in={openCategory}>
-          <div id="category-collapse"
+        <div
+          id="category-collapse"
           role="group"
           aria-label="Basic example"
           className="m-1 category-group"
@@ -117,7 +123,7 @@ const FilterSearch = (props) => {
             <button
               type="button"
               onClick={(e) => filterChange(e)}
-              className="btn btn-drawings text-light btnCategory"
+              className="btn btn-drawings btnCategory"
               value="drawings"
             >
               Drawings
@@ -128,7 +134,7 @@ const FilterSearch = (props) => {
               type="button"
               value="wood"
               onClick={(e) => filterChange(e)}
-              className="btn btn-wood text-light btnCategory"
+              className="btn btn-wood btnCategory"
             >
               Wood
             </button>
@@ -137,7 +143,7 @@ const FilterSearch = (props) => {
             <button
               type="button"
               onClick={(e) => filterChange(e)}
-              className="btn btn-textile text-light btnCategory"
+              className="btn btn-textile btnCategory"
               value="textile"
             >
               Textile
@@ -176,9 +182,8 @@ const FilterSearch = (props) => {
         </div>
       </Collapse>
       <div className="row d-flex justify-content-center">
-        
-        {(searchQuery.length <= 0 && filteredCategory === undefined)?
-           displayAllProducts 
+        {searchQuery.length <= 0 && filteredCategory === undefined
+          ? displayAllProducts
           : displayFilteredProducts}
       </div>
     </div>
