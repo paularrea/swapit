@@ -92,7 +92,7 @@ const FilterSearch = (props) => {
     <div>
       <div className="d-flex justify-content-center ">
           <input
-            className="searchBar"
+            className="searchBar mb-2 p-2"
             placeholder="Search..."
             type="text"
             name="search"
@@ -111,12 +111,13 @@ const FilterSearch = (props) => {
           <div id="category-collapse"
           role="group"
           aria-label="Basic example"
+          className="m-1 category-group"
         >
           <div>
             <button
               type="button"
               onClick={(e) => filterChange(e)}
-              className="btn btn-secondary btnCategory"
+              className="btn btn-drawings text-light btnCategory"
               value="drawings"
             >
               Drawings
@@ -127,7 +128,7 @@ const FilterSearch = (props) => {
               type="button"
               value="wood"
               onClick={(e) => filterChange(e)}
-              className="btn btn-secondary btnCategory"
+              className="btn btn-wood text-light btnCategory"
             >
               Wood
             </button>
@@ -136,7 +137,7 @@ const FilterSearch = (props) => {
             <button
               type="button"
               onClick={(e) => filterChange(e)}
-              className="btn btn-secondary btnCategory"
+              className="btn btn-textile text-light btnCategory"
               value="textile"
             >
               Textile
@@ -147,7 +148,7 @@ const FilterSearch = (props) => {
               value="decoration"
               type="button"
               onClick={(e) => filterChange(e)}
-              className="btn btn-secondary btnCategory"
+              className="btn btn-decoration btnCategory"
             >
               Decoration
             </button>
@@ -157,7 +158,7 @@ const FilterSearch = (props) => {
               value="photography"
               type="button"
               onClick={(e) => filterChange(e)}
-              className="btn btn-secondary btnCategory"
+              className="btn btn-photograpy btnCategory"
             >
               Photograpy
             </button>
@@ -176,9 +177,9 @@ const FilterSearch = (props) => {
       </Collapse>
       <div className="row d-flex justify-content-center">
         
-        {searchQuery.length > 0 
-           ? displayFilteredProducts
-          : displayAllProducts}
+        {(searchQuery.length <= 0 && filteredCategory === undefined)?
+           displayAllProducts 
+          : displayFilteredProducts}
       </div>
     </div>
   );

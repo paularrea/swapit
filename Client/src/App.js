@@ -8,14 +8,15 @@ import Landing from "./pages/Landing";
 import AuthProvider from "./lib/AuthProvider";
 import AnonRoute from "./components/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute";
-
+import bgImg from './img/bgSwapit2.png'
 
 class App extends Component {
   render() {
     return (
       <AuthProvider>
        
-        <div>
+        <div className="bgImg">
+         
           
 
           <Switch>
