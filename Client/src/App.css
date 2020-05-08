@@ -43,12 +43,23 @@
 .backIcons{
 width: 1rem;
 }
+.backLogo{
+  width: 20px;
+ 
+  }
 .logandedit{
   display: flex;
   align-content: center;
   width: 100%;
   align-items: center;
   justify-content: flex-end;
+}
+.backBG{
+top: 50px;
+padding: 10px;
+width: 50px;
+border-radius: 50%;
+background-color: rgba(255,255,255,.2);
 }
 .navbar{
   
@@ -160,6 +171,16 @@ object-fit: cover;
     border-radius: 50%;
     padding: 10px;
   }
+  .btn-back {
+    position: absolute;
+    left: 3%;
+    width: 50px;
+    height: 50px;
+    top: 3%;
+    background-color: rgba(255,255,255,.2);
+    border-radius: 50%;
+    padding: 10px;
+  }
 .swapit-btn{
   position: absolute;
   bottom: 3%;
@@ -238,12 +259,11 @@ object-fit: cover;
 .btnCategory{
   width: 120px;
   height: 35px;
-  margin-bottom: 5px;
+  border-radius: 0px !important;
+  
 }
 
-#category-collapse {
-margin: 10px;
-}
+
 
 #category-collapse button {
   width: 100%;

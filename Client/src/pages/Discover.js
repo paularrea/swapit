@@ -4,9 +4,9 @@ import { withAuth } from "../lib/AuthProvider";
 import FilterSearch from "../components/FilterSearch";
 import Navbar from "../components/Navbar";
 
-
 const Discover = (props) => {
   const [allProducts, setAllProducts] = useState();
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,17 +16,20 @@ const Discover = (props) => {
     fetchData();
   }, []);
 
+ 
   
 
   return (
     <div>
-      <div className ="d-flex justify-content-center">
-        <Navbar/>
+      <div className="d-flex justify-content-center">
+        <Navbar />
       </div>
-       <div className="container">
-      <FilterSearch allProducts = {allProducts}/>
+      <div className="container">
+        
+        
+        <FilterSearch allProducts={allProducts} />
+        
       </div>
-     
     </div>
   );
 };

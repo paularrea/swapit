@@ -5,6 +5,8 @@ import service from "../api/service";
 import heartOff from "../img/heart-regular.png";
 import heartOn from "../img/heart-solid.png";
 import { Link } from "react-router-dom";
+import backLogo from "../img/back.png";
+
 
 const ProductDetails = (props) => {
   const [productInfo, setProductInfo] = useState();
@@ -23,8 +25,6 @@ const ProductDetails = (props) => {
     };
     fetchData();
   }, [productId, buttonOn]);
-
-  
 
   useEffect(() => {
     let getLikeList = () => {
@@ -86,6 +86,7 @@ const ProductDetails = (props) => {
           src={heartOn}
           className="heart"
         ></img>
+        
       </div>
     ) : (
       <div className="swapit-absolute">
@@ -115,15 +116,15 @@ const ProductDetails = (props) => {
   );
 
   const creatorDetails = productInfo && (
-    <div className="creatorDetails row m-3">
-      <div className="col">
+    <div className="creatorDetails d-flex justify-content-start align-items-center">
+      <div>
         <img
           className="creatorImage"
           src={productInfo.creator.imgPath}
           alt=""
         />
       </div>
-      <div className="col">
+      <div>
         <p>
           {productInfo.creator.name} {productInfo.creator.lastName}
         </p>
@@ -137,6 +138,12 @@ const ProductDetails = (props) => {
         className="imgContainer"
         style={{ backgroundImage: `url(${productInfo.imgPath})` }}
       >
+        <div className="btn-back  d-flex align-items-center">
+         
+          <Link className="" to="/private">
+            <img className="backLogo" src={backLogo} alt="heart" />
+          </Link>
+        </div>
         {likedProduct}
       </div>
       <h3 className="text-center mt-3">{productInfo.title}</h3>

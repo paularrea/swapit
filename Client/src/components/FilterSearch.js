@@ -6,10 +6,15 @@ import { Collapse, Button } from "react-bootstrap";
 const FilterSearch = (props) => {
   const [filteredCategory, setFilteredCategory] = useState();
   const [openCategory, setOpenCategory] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   let filterChange = (e) => {
     setFilteredCategory(e.target.value);
   };
+  let searchHandler = (query) => {
+    setSearchQuery(query.target.value);
+  };
+  
 
   const displayAllProducts =
     props.allProducts &&
@@ -28,8 +33,28 @@ const FilterSearch = (props) => {
         )
       );
     });
-
+    const searchBarProducts = 
+    searchQuery && props.allProducts.filter(
+      
+        (product) =>
+          product.title
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) 
+    )
   const displayFilteredProducts =
+  
+    searchBarProducts ? searchBarProducts.map((product) => {
+     return(<Link
+      key={product._id}
+      to={`/private/product-details/${product._id}`}
+    >
+      <div className="col creationsCard">
+        <img src={product.imgPath} alt="" />
+        <h3>{product.title}</h3>
+      </div>
+    </Link>) 
+      
+    }) : (
     props.allProducts &&
     props.allProducts.map((product) => {
       return (
@@ -59,10 +84,21 @@ const FilterSearch = (props) => {
           )
         ))
       );
-    });
+    }));
+   
+    
 
   return (
     <div>
+      <div className="d-flex justify-content-center ">
+          <input
+            className="searchBar"
+            placeholder="Search..."
+            type="text"
+            name="search"
+            onChange={(e) => searchHandler(e)}
+          />
+        </div>
       <Button
         className="btn-searchCategory"
         onClick={() => setOpenCategory(!openCategory)}
@@ -139,8 +175,9 @@ const FilterSearch = (props) => {
         </div>
       </Collapse>
       <div className="row d-flex justify-content-center">
-        {filteredCategory !== undefined
-          ? displayFilteredProducts
+        
+        {searchQuery.length > 0 
+           ? displayFilteredProducts
           : displayAllProducts}
       </div>
     </div>
