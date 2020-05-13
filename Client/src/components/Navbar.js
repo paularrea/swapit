@@ -20,7 +20,7 @@ class Navbar extends Component {
     return (
       <div className="row d-flex justify-content-between align-items-center navbar mb-3">
          <Link to={"/private"} id="swapit-btn">
-          <h1 className ="text-light">Swap it!</h1>
+          <h1 className ="text-dark">Swap it!</h1>
         </Link>
         <div className ="d-flex justify-content-end">
         <Link to={"/private/notifications"} id="notifications-btn">

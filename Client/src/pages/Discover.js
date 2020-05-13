@@ -18,9 +18,9 @@ const Discover = (props) => {
   return (
     <div>
       <div className="d-flex justify-content-center">
-        <Navbar />
+        <Navbar className="position-relative" />
       </div>
-      <div className="container">
+      <div className=" marginDiscover ">
         <FilterSearch allProducts={allProducts} />
       </div>
     </div>
