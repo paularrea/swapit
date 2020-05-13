@@ -149,7 +149,9 @@ width: 95%;
   height: 12px;
   bottom: 6px;
 }
-
+.creationsCard{
+  
+}
 
 .creationsCard img{
 object-fit: cover;

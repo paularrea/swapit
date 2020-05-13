@@ -4,6 +4,7 @@ import { withAuth } from "../lib/AuthProvider";
 import { Collapse, Button } from "react-bootstrap";
 import dropAbajo from "../img/dropAbajo.png";
 import dropArriba from "../img/dropArriba.png";
+import MasonryLayout from "./MasonryLayout";
 
 const FilterSearch = (props) => {
   const [filteredCategory, setFilteredCategory] = useState();
@@ -22,15 +23,17 @@ const FilterSearch = (props) => {
     props.allProducts.map((product) => {
       return (
         product.creator !== props.user._id && (
-          <Link
-            key={product._id}
-            to={`/private/product-details/${product._id}`}
-          >
-            <div className="col discoverCard mt-3">
-              <img src={product.imgPath} alt="" />
-              <h4>{product.title}</h4>
-            </div>
-          </Link>
+          // <MasonryLayout columns={3} gap={25}>
+            <Link
+              key={product._id}
+              to={`/private/product-details/${product._id}`}
+            >
+              <div className="col-lg-12 col-sx-12 col-md-3  discoverCard mt-3">
+                <img src={product.imgPath} alt="" />
+                <h4>{product.title}</h4>
+              </div>
+            </Link>
+        
         )
       );
     });
@@ -96,22 +99,23 @@ const FilterSearch = (props) => {
           onChange={(e) => searchHandler(e)}
         />
       </div>
-    
-        <Button
-          className="btn-searchCategory text-left"
-          onClick={() => setOpenCategory(!openCategory)}
-          aria-controls="category-collapse"
-          aria-expanded={openCategory}
-        >
-          <div className='d-flex justify-content-between align-items-center'>
-          <p className=''>Filter by category...</p>
+
+      <Button
+        className="btn-searchCategory text-left"
+        onClick={() => setOpenCategory(!openCategory)}
+        aria-controls="category-collapse"
+        aria-expanded={openCategory}
+      >
+        <div className="d-flex justify-content-between align-items-center">
+          <p className="">Filter by category...</p>
           <img
-          className='dropdown'
-          src={openCategory !== false ? dropArriba : dropAbajo}
-          alt={openCategory === true ? "drop arriba" : "drop abajo"}
-        /></div>
-        </Button>
-      
+            className="dropdown"
+            src={openCategory !== false ? dropArriba : dropAbajo}
+            alt={openCategory === true ? "drop arriba" : "drop abajo"}
+          />
+        </div>
+      </Button>
+
       <Collapse in={openCategory}>
         <div
           id="category-collapse"
@@ -181,6 +185,7 @@ const FilterSearch = (props) => {
           </div>
         </div>
       </Collapse>
+
       <div className="row d-flex justify-content-center">
         {searchQuery.length <= 0 && filteredCategory === undefined
           ? displayAllProducts

@@ -20,7 +20,7 @@ const UsersProfiles = (props) => {
 
   return (
     <div>
-      <div className ="d-flex justify-content-center">
+      <div className="d-flex justify-content-center">
         <Navbar />
       </div>
       <img
@@ -32,31 +32,29 @@ const UsersProfiles = (props) => {
         {userProfile !== undefined && userProfile.name}{" "}
         {userProfile !== undefined && userProfile.lastName}
       </h3>
-      <div>
+      <div className="row d-flex justify-content-center">
         {userProfile !== undefined &&
           userProfile.haveList.map((product) => {
             return (
-              <div className="card-columns">
-                <div className="card creationsCard ">
-                  <Link
-                    key={product._id}
-                    to={`/private/product-details/${product._id}`}
-                  >
-                    <img
-                      className="card-img-top imgCard"
-                      src={product.imgPath}
-                      alt="cardImg"
-                    />{" "}
-                  </Link>
-                  <div className="card-body">
-                    <h5 className="card-title">{product.title}</h5>
-                    <p className="card-text">
-                      <small className="text-muted">{product.category}</small>
-                    </p>
-                    <p className="card-text text-left descriptionCard">
-                      {product.description}
-                    </p>
-                  </div>
+              <div className="col-lg-2 col-sx-4 col-md-4 card creationsCard bg-light">
+                <Link
+                  key={product._id}
+                  to={`/private/product-details/${product._id}`}
+                >
+                  <img
+                    className="card-img-top imgCard"
+                    src={product.imgPath}
+                    alt="cardImg"
+                  />{" "}
+                </Link>
+                <div className="card-body">
+                  <h5 className="card-title">{product.title}</h5>
+                  <p className="card-text">
+                    <small className="text-muted">{product.category}</small>
+                  </p>
+                  <p className="card-text text-left descriptionCard">
+                    {product.description}
+                  </p>
                 </div>
               </div>
             );

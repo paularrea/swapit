@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import notiLogo from "../img/telegram-plane-brands.svg";
-import { withAuth } from "../lib/AuthProvider"; //	<-- UPDATE HERE
+import { withAuth } from "../lib/AuthProvider";
 
 class Navbar extends Component {
   constructor(props) {
@@ -26,7 +26,6 @@ class Navbar extends Component {
         <Link to={"/private/notifications"} id="notifications-btn">
           <img className="navIcons mx-2" src={notiLogo} alt="Notifications" />
         </Link>
-       
         <Link to={"/private/profile"}  id="profile-btn">
           <img className="profileImgNav mx-2" src={this.props.user.imgPath} alt="Profile" />
         </Link>
