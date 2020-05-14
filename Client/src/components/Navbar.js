@@ -18,17 +18,23 @@ class Navbar extends Component {
   }
   render() {
     return (
-      <div className="row d-flex justify-content-between align-items-center navbar mb-3">
-         <Link to={"/private"} id="swapit-btn">
-          <h1 className ="text-dark">Swap it!</h1>
-        </Link>
-        <div className ="d-flex justify-content-end">
-        <Link to={"/private/notifications"} id="notifications-btn">
-          <img className="navIcons mx-2" src={notiLogo} alt="Notifications" />
-        </Link>
-        <Link to={"/private/profile"}  id="profile-btn">
-          <img className="profileImgNav mx-2" src={this.props.user.imgPath} alt="Profile" />
-        </Link>
+      <div className="row d-flex justify-content-between align-items-center navbar">
+        <div className=''>
+          <Link to={"/private"} id="swapit-btn">
+            <h1 className="text-dark">Swap it!</h1>
+          </Link>
+        </div>
+        <div className="d-flex justify-content-end">
+          <Link to={"/private/notifications"} id="notifications-btn">
+            <img className="navIcons mx-2" src={notiLogo} alt="Notifications" />
+          </Link>
+          <Link to={"/private/profile"} id="profile-btn">
+            <img
+              className="profileImgNav mx-3"
+              src={this.props.user.imgPath}
+              alt="Profile"
+            />
+          </Link>
         </div>
       </div>
     );

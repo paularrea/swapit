@@ -29,10 +29,10 @@ const AddProduct = (props) => {
 
   let onChange = (e) => {
     e.preventDefault();
-    const { name, defaultValue } = e.target;
+    const { name, value } = e.target;
     setCreation({
       ...creation,
-      [name]: defaultValue,
+      [name]: value,
     });
   };
 
@@ -93,11 +93,11 @@ const AddProduct = (props) => {
             
           >    
             <option disabled selected >select category...</option>
-            <option defaultValue="drawings">Drawings</option>
-            <option defaultValue="textile">Textile</option>
-            <option defaultValue="decoration">Decoration</option>
-            <option defaultValue="wood">Wood</option>
-            <option defaultValue="photography">Photography</option>
+            <option value="drawings">Drawings</option>
+            <option value="textile">Textile</option>
+            <option value="decoration">Decoration</option>
+            <option value="wood">Wood</option>
+            <option value="photography">Photography</option>
           </select>
         </div>
         <div>

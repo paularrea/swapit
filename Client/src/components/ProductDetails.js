@@ -135,9 +135,9 @@ const ProductDetails = (props) => {
   const showDetails = productInfo && (
     <div className="detailsCard">
       <div
-        className="imgContainer"
-        style={{ backgroundImage: `url(${productInfo.imgPath})` }}
+        className="detailsContainer imgContainer position-relative"
       >
+        <img src={productInfo.imgPath} className='detailsImgCard' alt=""/>
         <div className="btn-back  d-flex align-items-center">
          
           <Link className="" to="/private">
@@ -146,8 +146,8 @@ const ProductDetails = (props) => {
         </div>
         {likedProduct}
       </div>
+      <div className="detailsContainer text-left">
       <h3 className="text-center mt-3">{productInfo.title}</h3>
-      <div className="text-left m-3">
         <b>
           <p>Created by:</p>
         </b>

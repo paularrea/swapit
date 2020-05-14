@@ -2,16 +2,46 @@
   text-align: center;
   
 }
+*{
+  box-sizing: border-box;
+}
+
 
 @media (min-width: 600px) {
+
+  /* navbar */
+
+.navbar{
+  margin: 1% 4% 1% 4% !important;
+}
+  /* details */
+.detailsCard{
+  display: table;
+  width: 100%;
+}
+
+.detailsContainer{
+  display: table-cell;
+  width: 50%;
+  height: 800px;
+  object-fit: cover;
+  position: relative;
+  padding: 30px;
+}
+
+.detailsImgCard{
+  width: 80%;
+}
+
+/* discover */
 .searchBarDiv{
   position: absolute;
-  top: 1.2%;
+  top: 3%;
   left: 22%;
   width: 60% !important;
 }
 .marginDiscover{
-  margin-top: -2% !important;
+  margin-top: -0.5% !important;
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -43,10 +73,19 @@
 }
 }
 
+/* ipad */
+@media only screen and (max-width: 1000px) and (min-width: 600px){
 
+  .searchBarDiv{
+    position: absolute;
+    width: 50% !important;
+    top: 2%;
+    left: 26%;
+  
+  }
+}
 
-
-
+/* mobile */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -214,10 +253,8 @@ object-fit: cover;
     background-size: cover;
     min-width: 95%;
     min-height: 400px;
-    max-width: 100%;
     max-height: 500px;
     border-radius: 5px;
-    
   }
 
   .btn-heart {
@@ -315,36 +352,113 @@ object-fit: cover;
 .discoverCard h5{
   color: #282c34;
 }
-/* categories */
+/* desktop categories */
 
-  .btnCategory{
-    width: 120px;
-    height: 35px;
-    border-radius: 0px !important;
-    padding-bottom:35px!important;
-    font-size: 16px !important;
-  }
-  .btnCategory2{
-    width: 120px;
-    height: 35px;
-    border-radius: 10px !important;
-    padding-bottom:35px!important;
-    font-size: 16px !important;
-  }
-  
-  .btnCategory:hover{
-    width: 150px;
-    height: 50px;
-    font-size: 25px !important;
+.btnCategory2{
+  width: 20%;
+  height: 70px;
+  border-radius: 15px !important;
+  font-size: 20px !important;
+  border: .5px solid black !important;
+}
+  .btnCategory2:after{
+    content: "";
+    width: 40%;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: transparent;
+    background-position : center right;
+    background-repeat:no-repeat;
+
+   
+    
+
+
   }
 
+  .btn-drawings2:after{
+    background-image: url('./img/drawingsBlack.png');
+    background-size: 40%;
+  }
+  .btn-drawings2:hover:after{
+    background-image: url('./img/drawingsWhite.png');
+  }
+  .btn-drawings2:focus:after{
+    background-image: url('./img/drawingsWhite.png');
+  }
+ 
+  .btn-wood2:after{
+    background-image: url('./img/woodBlack.png');
+    background-size: 50%;
+  }
+  .btn-wood2:hover:after{
+    background-image: url('./img/woodWhite.png');
+  }
+  .btn-wood2:focus:after{
+    background-image: url('./img/woodWhite.png');
+  }
+  .btn-textile2:after{
+    background-image: url('./img/textileBlack.png');
+    background-size: 45%;
+  }
+  .btn-textile2:hover:after{
+    background-image: url('./img/textileWhite.png');
+  }
+  .btn-textile2:focus:after{
+    background-image: url('./img/textileWhite.png');
+  }
+  .btn-decoration2:after{
+    background-image: url('./img/decorationBlack.png');
+    background-size: 35%;
+  }
+  .btn-decoration2:hover:after{
+    background-image: url('./img/decorationWhite.png');
+  }
+  .btn-decoration2:focus:after{
+    background-image: url('./img/decorationWhite.png');
+  }
+  .btn-photography2:after{
+    background-image: url('./img/photographyBlack.png');
+    background-size: 60%;
+  }
+  .btn-photography2:hover:after{
+    background-image: url('./img/photographyWhite.png');
+  }
+  .btn-photography2:focus:after{
+    background-image: url('./img/photographyWhite.png');
+  }
+  .btn-allProducts2:after{
+    background-image: url('./img/allProductsBlack.png');
+    background-size: 40%;
+  }
+  .btn-allProducts2:hover:after{
+    background-image: url('./img/allProductsWhite.png');
+  }
+  .btn-allProducts2:focus:after{
+    background-image: url('./img/allProductsWhite.png');
+  }
+
+
+
+
+
+
+/* mobile categories */
+
+.btnCategory{
+  width: 120px;
+  height: 35px;
+  border-radius: 0px !important;
+  padding-bottom:35px!important;
+  font-size: 16px !important;
+}
 
 .btn-drawings{
 background-color:rgba(66, 21, 55, .9) !important;
 border: 3px solid #320A28 !important;
 color: oldlace !important
 }
-
 
 .btn-wood{
   background-color: rgba(81, 23, 48, .9) !important;
@@ -364,33 +478,24 @@ color: oldlace !important
   color: #282c34 !important;
 }
 
-.btn-photograpy{
+.btn-photography{
   background-color: rgb(226, 218, 160) !important;
   border: 3px solid  rgb(224, 214, 138)!important;
   color: #282c34 !important;
 }
-.btn-drawings2{
 
-  border: 2px solid black!important;
-  color: black !important
-  }
   .btn-drawings2:hover{
     background-color:rgba(66, 21, 55, .7) !important;
     border: 2px solid rgba(66, 21, 55, .9) !important;
     color: white !important
     }
+    
     .btn-drawings2:focus{
       background-color:rgba(66, 21, 55, .9) !important;
       border: 2px solid rgba(66, 21, 55, .9) !important;
     color: white !important
       }
     
-  
-  .btn-wood2{
-    
-    border: 2px solid black!important;
-    color: black !important
-  }
   .btn-wood2:hover{
     background-color: rgba(81, 23, 48, .5) !important;
     border: 2px solid rgba(81, 23, 48, .9) !important;
@@ -401,58 +506,41 @@ color: oldlace !important
     border: 2px solid rgba(81, 23, 48, .9) !important;
     color: white !important
   }
-  .btn-textile2{
-    
-    border: 2px solid black!important;
-    color: black !important
+
+  .btn-textile2:hover{
+    background-color: rgba(142, 68, 61, .6) !important;
+    border: 2px solid rgba(142, 68, 61, .6) !important;
+    color: white !important
   }
   .btn-textile2:focus{
-    background-color: rgba(142, 68, 61, .9) !important;
-    border: 2px solid rgba(142, 68, 61, .5) !important;
+    background-color: rgba(142, 68, 61, 1) !important;
+    border: 2px solid rgba(142, 68, 61, 1) !important;
     color: white !important
-    
   }
-  .btn-textile2:hover{
-    background-color: rgba(142, 68, 61, .5) !important;
-    border: 2px solid rgba(142, 68, 61, .5) !important;
-    color: white !important
-    
-  }
-  .btn-decoration2{
-    
-    border: 2px solid black!important;
-    color: black !important
-  }
+
   .btn-decoration2:hover{
-    background-color: rgba(203, 145, 115, .4) !important;
-    border: 2px solid rgba(203, 145, 115, .4) !important;
+    background-color: rgba(203, 145, 115, .6) !important;
+    border: 2px solid rgba(203, 145, 115, .6) !important;
     color: white !important
    
   }
   .btn-decoration2:focus{
-    background-color: rgba(203, 145, 115, .8) !important;
-    border: 2px solid rgba(203, 145, 115, .8) !important;
+    background-color: rgba(203, 145, 115, 1) !important;
+    border: 2px solid rgba(203, 145, 115, 1) !important;
     color: white !important
   }
-  .btn-photograpy2{
-    
-    border: 2px solid black!important;
-    color: black !important
-  }
-  .btn-photograpy2:hover{
-    background-color: rgba(226, 218, 160, .5) !important;
-    border: 2px solid rgba(226, 218, 160, .9)!important;
+
+  .btn-photography2:hover{
+    background-color:rgba(226, 218, 160, .6) !important;
+    border: 2px solid rgba(226, 218, 160, .6) !important;
     color: white !important
   }
-  .btn-photograpy2:focus{
-    background-color: rgba(226, 218, 160, .9) !important;
-    border: 2px solid rgba(226, 218, 160, .9)!important;
+  .btn-photography2:focus{
+    background-color: rgba(226, 218, 160, 1) !important;
+    border: 2px solid rgba(226, 218, 160, 1)!important;
     color: white !important
   }
-  .btn-allProducts2{
-    border: 2px solid black!important;
-    color: black !important
-  }
+  
   .btn-allProducts2:hover{
     background-color:rgba(99, 95, 95, .5)!important;
     border: 2px solid rgba(99, 95, 95, .5)!important;
