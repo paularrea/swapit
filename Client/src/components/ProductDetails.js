@@ -6,15 +6,23 @@ import heartOff from "../img/heart-regular.png";
 import heartOn from "../img/heart-solid.png";
 import { Link } from "react-router-dom";
 import backLogo from "../img/back.png";
+import Masonry from "react-masonry-css";
 
 
 const ProductDetails = (props) => {
   const [productInfo, setProductInfo] = useState();
+  const [allProducts, setAllProducts] = useState();
   const [likeListId, setLikeListId] = useState("");
   const [buttonOn, setButtonOn] = useState(false);
   const { params } = props.match;
   let productId = params.id;
   let userId = productInfo !== undefined && productInfo.creator._id;
+  let breakpointColumnsObj = {
+    default: 4,
+    1100: 4,
+    700: 2,
+    500: 2,
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +33,29 @@ const ProductDetails = (props) => {
     };
     fetchData();
   }, [productId, buttonOn]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const InfofromDB = await axios.get(
+        `http://localhost:4000/api//allproducts`
+      );
+      setAllProducts(InfofromDB.data);
+    };
+    fetchData();
+  }, []);
+  const filterRecomendations = allProducts !== undefined && allProducts.map(product => { if(product.category === productInfo.category && product.title !== productInfo.title){
+    return(
+      <Link
+            key={product._id}
+            to={`/private/product-details/${product._id}`}
+          >
+            <div className="creationsCard mt-3">
+              <img className="sizeMobile" src={product.imgPath} alt="" />
+            </div>
+          </Link>
+    )
+  }
+    
+  })
 
   useEffect(() => {
     let getLikeList = () => {
@@ -78,7 +109,7 @@ const ProductDetails = (props) => {
 
   const likedProduct = !isEqual ? (
     userExist !== -1 ? (
-      <div className="btn-heart btn-heart d-flex align-items-center">
+      <div className="btn-heart pt-2  ">
         <img
           onClick={(e) => removeWantSubmit(e)}
           alt="heart"
@@ -89,8 +120,18 @@ const ProductDetails = (props) => {
         
       </div>
     ) : (
-      <div className="swapit-absolute">
-        <div className="swapit-btn text-center">
+      <div className ="d-flex justify-content-between pt-2 pr-2 ">
+        
+        <div className="btn-heart">
+          <img
+            alt="heart"
+            onClick={(e) => addWantSubmit(e)}
+            type="submit"
+            src={heartOff}
+            className="heart"
+          ></img>
+        </div>
+        <div className="text-center">
           <button
             onClick={(e) => addWantSubmit(e)}
             className="btn btn-dark"
@@ -98,14 +139,6 @@ const ProductDetails = (props) => {
           >
             Swap it!
           </button>
-        </div>
-        <div className="btn-heart d-flex align-items-center">
-          <img
-            alt="heart"
-            onClick={(e) => addWantSubmit(e)}
-            type="submit"
-            src={heartOff}
-          ></img>
         </div>
       </div>
     )
@@ -134,18 +167,21 @@ const ProductDetails = (props) => {
 
   const showDetails = productInfo && (
     <div className="detailsCard">
-      <div
-        className="detailsContainer imgContainer position-relative"
-      >
-        <img src={productInfo.imgPath} className='detailsImgCard' alt=""/>
-        <div className="btn-back  d-flex align-items-center">
-         
+       <div className="btn-back  d-flex align-items-center">
           <Link className="" to="/private">
             <img className="backLogo" src={backLogo} alt="heart" />
           </Link>
         </div>
-        {likedProduct}
+     
+        {/* <div style = {{backgroundImage: `url(${productInfo.imgPath})`}} className='container' alt=""> */}
+<div className='ImgContainerCard'>
+    <img className="detailsImgCard" src={productInfo.imgPath} alt="logonnnn" />
+    
+       
+       {likedProduct}
+        
       </div>
+        
       <div className="detailsContainer text-left">
       <h3 className="text-center mt-3">{productInfo.title}</h3>
         <b>
@@ -161,7 +197,19 @@ const ProductDetails = (props) => {
     </div>
   );
 
-  return <div>{showDetails}</div>;
+  return <div>
+    <div className="cardDetails">{showDetails}</div>
+    <div className="cardDetails2">
+      <p>Similar products...</p>
+    <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >{filterRecomendations}
+    </Masonry>
+    </div>
+    
+  </div>;
 };
 
 export default withAuth(ProductDetails);

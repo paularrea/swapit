@@ -15,23 +15,37 @@
   margin: 1% 4% 1% 4% !important;
 }
   /* details */
+ 
 .detailsCard{
-  display: table;
+  margin: 30px;
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  
 }
-
 .detailsContainer{
-  display: table-cell;
-  width: 50%;
-  height: 800px;
-  object-fit: cover;
-  position: relative;
+  width: 40%;
+  height: 400px;
+  overflow: hidden;
   padding: 30px;
+ text-align: justify; 
+}
+.cardDetails{
+  margin: 30px;
+  border: 2px solid whitesmoke;
+  border-radius: 25px;
+  background-color: whitesmoke;
+}
+.cardDetails2{
+  margin: 30px;
+  border: 2px solid whitesmoke;
+  border-radius: 25px;
+  background-color: whitesmoke;
+ padding: 15px;
 }
 
-.detailsImgCard{
-  width: 80%;
-}
+
+
 
 /* discover */
 .searchBarDiv{
@@ -55,6 +69,7 @@
   }
 
 
+
 .my-masonry-grid {
   display: -webkit-box;
   display: -ms-flexbox; 
@@ -71,6 +86,14 @@
 .my-masonry-grid_column > div { 
   margin-bottom: 30px;
 }
+.ImgContainerCard{
+  width: 60%!important;
+}
+.detailsImgCard{
+width: 100% !important;
+border-radius: 15px;
+}
+
 }
 
 /* ipad */
@@ -86,6 +109,7 @@
 }
 
 /* mobile */
+.my-masonry-grid {padding: none;}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -96,6 +120,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 
 .App-header {
   background-color: #282c34;
@@ -220,9 +245,7 @@ width: 95%;
   height: 12px;
   bottom: 6px;
 }
-.creationsCard{
-  
-}
+
 
 .creationsCard img{
 object-fit: cover;
@@ -243,6 +266,19 @@ object-fit: cover;
     text-decoration: none;
   }
   /* details */
+  .cardDetails2{
+    margin: 30px;
+    border: 2px solid whitesmoke;
+    border-radius: 25px;
+    background-color: whitesmoke;
+   padding: 15px;
+  }
+  
+  .detailsImgCard{
+    background-size: contain;
+    background-repeat: no-repeat;
+   width: 500px;
+   }
 
   .detailsCard img{
     max-width: 100%;
@@ -258,32 +294,16 @@ object-fit: cover;
   }
 
   .btn-heart {
-    position: absolute;
-    right: 3%;
     width: 50px;
     height: 50px;
-    bottom: 3%;
     background-color: rgba(255,255,255,.2);
     border-radius: 50%;
-    padding: 10px;
   }
   .btn-back {
-    position: absolute;
-    left: 3%;
-    width: 50px;
-    height: 50px;
-    top: 3%;
-    background-color: rgba(255,255,255,.2);
-    border-radius: 50%;
-    padding: 10px;
+    width: 40px;
+    height: 40px;
   }
-.swapit-btn{
-  position: absolute;
-  bottom: 3%;
-  margin: 0 auto;
-  left: 3%;
 
-}
 .swapit-btn button{
   font-size: 25px;
   padding: 5px 30px;
@@ -360,6 +380,7 @@ object-fit: cover;
   border-radius: 15px !important;
   font-size: 20px !important;
   border: .5px solid black !important;
+  background-color: white;
 }
   .btnCategory2:after{
     content: "";
