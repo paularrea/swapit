@@ -6,46 +6,67 @@
   box-sizing: border-box;
 }
 
+/* TABLET CSS */
 
 @media (min-width: 600px) {
-
   /* navbar */
-
 .navbar{
   margin: 1% 4% 1% 4% !important;
 }
   /* details */
  
+.btn-swapit-desktop{
+background-color: cadetblue;
+color: whitesmoke;
+width: 90%;
+height: 60px;
+font-size: 25px;
+border-radius: 15px;
+}
+
+.edit-btn-desktop{
+  background-color: rgb(203, 145, 115);
+  color: whitesmoke;
+  width: 90%;
+  height: 60px;
+  font-size: 25px;
+  border-radius: 15px;
+  padding: 3% 15%;
+  }
+  
+
+
 .detailsCard{
-  margin: 30px;
+  
+  padding: 0px 30px 80px 30px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   
 }
+.detailsImgCard{
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40% !important;
+ }
 .detailsContainer{
-  width: 40%;
+  width: 30%;
   height: 400px;
-  overflow: hidden;
-  padding: 30px;
- text-align: justify; 
+  bottom: 1px;
 }
 .cardDetails{
   margin: 30px;
   border: 2px solid whitesmoke;
-  border-radius: 25px;
+  border-radius: 15px;
   background-color: whitesmoke;
 }
 .cardDetails2{
   margin: 30px;
   border: 2px solid whitesmoke;
-  border-radius: 25px;
+  border-radius: 15px;
   background-color: whitesmoke;
  padding: 15px;
 }
-
-
-
 
 /* discover */
 .searchBarDiv{
@@ -67,9 +88,6 @@
     max-height: 150px;
     object-fit: cover;
   }
-
-
-
 .my-masonry-grid {
   display: -webkit-box;
   display: -ms-flexbox; 
@@ -82,298 +100,23 @@
   background-clip: padding-box;
 }
  
-
 .my-masonry-grid_column > div { 
   margin-bottom: 30px;
 }
 .ImgContainerCard{
   width: 60%!important;
+  display: flex;
+  align-items: flex-end;
+ 
+
 }
 .detailsImgCard{
 width: 100% !important;
 border-radius: 15px;
 }
-
 }
 
-/* ipad */
-@media only screen and (max-width: 1000px) and (min-width: 600px){
-
-  .searchBarDiv{
-    position: absolute;
-    width: 50% !important;
-    top: 2%;
-    left: 26%;
-  
-  }
-}
-
-/* mobile */
-.my-masonry-grid {padding: none;}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-/* Navbar */
-.marginDiscover{
-  margin: 5%;
-}
-.navIcons{
-  width: 2rem;
-}
-.backIcons{
-width: 1rem;
-}
-.backLogo{
-  width: 20px;
- 
-  }
-.logandedit{
-  display: flex;
-  align-content: center;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-end;
-}
-.backBG{
-top: 50px;
-padding: 10px;
-width: 50px;
-border-radius: 50%;
-background-color: rgba(255,255,255,.2);
-}
-.navbar{
-  
- 
-  width: 100%;
-}
-.profileImg{
-  object-fit: cover;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-}
-.profileImgNav{
-  object-fit: cover;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid oldlace;
-  box-shadow: 0 0 10px 2px rgba(0,0,0,.3);
-}
-
-/* profile */
-
-.creatorDetails img{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-.haveListCard img{
-max-width: 10.5rem;
-max-height: 100%;
-object-fit: cover;
-border-radius: 5px;
-}
-
-.haveListCard{
-  padding: 0 !important;
-  font-size: .9rem;
-  
-}
-
-.haveListCard>img:hover {
-  box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
-  margin-bottom: 1px;
-}
-
-.heart{
-  
-  width: 30px;
-}
-
-/* .haveList{
-width: 95%;
-} */
-
-.addCreation-btn{
-    background-color: rgb(250, 230, 186) !important;
-    border: 2px solid #FACF72 !important;
-    color: rgb(54, 53, 53) !important;
-    border-radius: 10px !important;
-    font-size: 1.5rem !important;
-    padding: 0.5rem 1rem !important;
-    box-shadow: 0 0 10px 2px rgba(0,0,0,.1);
-}
-
-
-/* discover */
-
-.dropdown{
-  width: 20px;  
-  height: 12px;
-  bottom: 6px;
-}
-
-
-.creationsCard img{
-object-fit: cover;
-  width: 100%;
-  max-width:450px;
-  max-height: 350px;
-  object-fit: cover;
-  border-radius: 10px;
-  }
-
-  .creationsCard>img:hover {
-    box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
-    margin-bottom: 1px;
-  }
-
-  .creationsCard h5{
-    color: #282c34;
-    text-decoration: none;
-  }
-  /* details */
-  .cardDetails2{
-    margin: 30px;
-    border: 2px solid whitesmoke;
-    border-radius: 25px;
-    background-color: whitesmoke;
-   padding: 15px;
-  }
-  
-  .detailsImgCard{
-    background-size: contain;
-    background-repeat: no-repeat;
-   width: 500px;
-   }
-
-  .detailsCard img{
-    max-width: 100%;
-  }
-  
-  .imgContainer{
-    position: relative;
-    background-size: cover;
-    min-width: 95%;
-    min-height: 400px;
-    max-height: 500px;
-    border-radius: 5px;
-  }
-
-  .btn-heart {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255,255,255,.2);
-    border-radius: 50%;
-  }
-  .btn-back {
-    width: 40px;
-    height: 40px;
-  }
-
-.swapit-btn button{
-  font-size: 25px;
-  padding: 5px 30px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border: none !important;
-}
-
-.creatorImage{
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px 2px rgba(0,0,0,.2);
-}
-
-.creatorDetails{
-  font-size: 15px;
-  color: #282c34;
-
-}
-.creatorDetails p {
-  padding: 0 20px;
-}
-
-
-.creationsCard img:hover{
-  box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
-  margin-bottom: 1px;
-}
-
-.descriptionCard{
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.descriptionCard:hover{
-
-    text-overflow: unset;
-    overflow:show;
-    white-space: normal;
-
-
-}
-.imgCard{
-  object-fit: cover;
-  width: 100%;
-  max-height: 300px;
-  border-radius: none !important;
-  
-}
-
-/* discover */
-
-.discoverCard img{
-  border-radius: 15px;
-  object-fit: cover;
-  width: 100%;
-  max-width:550px;
-  max-height: 450px;
-  object-fit: cover;
-}
-.discoverCard img:hover{
-  box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
-  margin-bottom: 1px;
-}
-
-.discoverCard h5{
-  color: #282c34;
-}
 /* desktop categories */
-
 .btnCategory2{
   width: 20%;
   height: 70px;
@@ -391,10 +134,6 @@ object-fit: cover;
     background-color: transparent;
     background-position : center right;
     background-repeat:no-repeat;
-
-   
-    
-
 
   }
 
@@ -459,11 +198,293 @@ object-fit: cover;
   .btn-allProducts2:focus:after{
     background-image: url('./img/allProductsWhite.png');
   }
+  .searchBarDiv{
+    position: absolute;
+    width: 50% !important;
+    top: 2%;
+    left: 26%;
+  
+  }
+
+/* DESKTOP */
+  @media (min-width: 1100px) {
+
+
+
+}
 
 
 
 
 
+/* mobile */
+.my-masonry-grid {padding: none;}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Navbar */
+.marginDiscover{
+  margin: 5%;
+}
+.navIcons{
+  width: 2rem;
+}
+.backIcons{
+width: 1rem;
+}
+.backLogo{
+  width: 20px;
+ 
+  }
+.logandedit{
+  display: flex;
+  align-content: center;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+.backBG{
+top: 50px;
+padding: 10px;
+width: 50px;
+border-radius: 50%;
+background-color: rgba(255,255,255,.2);
+}
+.navbar{
+  width: 100%;
+}
+.profileImg{
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.profileImgNav{
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid oldlace;
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.3);
+}
+
+/* profile */
+.creatorDetails img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.haveListCard img{
+max-width: 10.5rem;
+max-height: 100%;
+object-fit: cover;
+border-radius: 5px;
+}
+
+.haveListCard{
+  padding: 0 !important;
+  font-size: .9rem;
+}
+
+.haveListCard>img:hover {
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
+  margin-bottom: 1px;
+}
+
+.heart{
+  
+  width: 30px;
+}
+
+/* .haveList{
+width: 95%;
+} */
+
+.addCreation-btn{
+    background-color: rgb(250, 230, 186) !important;
+    border: 2px solid #FACF72 !important;
+    color: rgb(54, 53, 53) !important;
+    border-radius: 15px !important;
+    font-size: 1.5rem !important;
+    padding: 0.5rem 1rem !important;
+    box-shadow: 0 0 10px 2px rgba(0,0,0,.1);
+}
+
+/* discover */
+.dropdown{
+  width: 20px;  
+  height: 12px;
+  bottom: 6px;
+}
+.creationsCard img{
+object-fit: cover;
+  width: 100%;
+  max-width:450px;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 15px;
+  }
+
+  .creationsCard>img:hover {
+    box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
+    margin-bottom: 1px;
+  }
+
+  .creationsCard h5{
+    color: #282c34;
+    text-decoration: none;
+  }
+  /* details */
+
+  .btn-swapit-mobile{
+    background-color: cadetblue;
+    color: whitesmoke;
+    width: 80%;
+    height: 60px;
+    font-size: 25px;
+    border-radius: 15px;
+    }
+
+    .edit-btn-mobile{
+      background-color: rgb(203, 145, 115);
+      color: whitesmoke;
+      width: 80%;
+      height: 60px;
+      font-size: 25px;
+      border-radius: 15px;
+      }
+
+  .cardDetails2{
+    margin: 30px;
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    background-color: whitesmoke;
+   padding: 15px;
+  }
+
+  .detailsCard img{
+    max-width: 100%;
+  }
+  
+  .imgContainer{
+    position: relative;
+    background-size: cover;
+    min-width: 95%;
+    min-height: 400px;
+    max-height: 500px;
+    border-radius: 15px;
+  }
+
+  .btn-heart {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255,255,255,.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-back {
+    width: 40px;
+    height: 40px;
+  }
+
+.swapit-btn button{
+  font-size: 25px;
+  padding: 5px 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none !important;
+}
+
+.creatorImage{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.2);
+}
+
+.creatorDetails{
+  font-size: 15px;
+  color: #282c34;
+
+}
+.creatorDetails p {
+  padding: 0 20px;
+}
+
+
+.creationsCard img:hover{
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
+  margin-bottom: 1px;
+}
+
+.descriptionCard{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.descriptionCard:hover{
+
+    text-overflow: unset;
+    overflow:show;
+    white-space: normal;
+
+}
+.imgCard{
+  object-fit: cover;
+  width: 100%;
+  max-height: 300px;
+  border-radius: none !important;
+  
+}
+
+/* discover */
+
+.discoverCard img{
+  border-radius: 15px;
+  object-fit: cover;
+  width: 100%;
+  max-width:550px;
+  max-height: 450px;
+  object-fit: cover;
+}
+.discoverCard img:hover{
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
+  margin-bottom: 1px;
+}
+
+.discoverCard h5{
+  color: #282c34;
+}
 
 /* mobile categories */
 
@@ -573,14 +594,12 @@ color: oldlace !important
     color: white !important
   }
   
-  
-
 #category-collapse button {
   width: 100%;
 }
 
 .category-group{
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .btn-searchCategory{
@@ -595,7 +614,7 @@ color: oldlace !important
 .searchBar{
   width: 100%;
   height: 45px;
-  border-radius: 5px;
+  border-radius: 15px;
   border: 1px solid gainsboro;
   background-color: rgba(255,255,255,.6);
   box-shadow: 0 0 10px 2px rgba(0,0,0,.1);

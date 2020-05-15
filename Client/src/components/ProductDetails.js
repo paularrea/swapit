@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import backLogo from "../img/back.png";
 import Masonry from "react-masonry-css";
 
-
 const ProductDetails = (props) => {
   const [productInfo, setProductInfo] = useState();
   const [allProducts, setAllProducts] = useState();
@@ -42,9 +41,17 @@ const ProductDetails = (props) => {
     };
     fetchData();
   }, []);
-  const filterRecomendations = allProducts !== undefined && allProducts.map(product => { if(product.category === productInfo.category && product.title !== productInfo.title){
-    return(
-      <Link
+
+  const filterRecomendations =
+    productInfo !== undefined &&
+    allProducts !== undefined &&
+    allProducts.map((product) => {
+      if (
+        product.category === productInfo.category &&
+        product.title !== productInfo.title
+      ) {
+        return (
+          <Link
             key={product._id}
             to={`/private/product-details/${product._id}`}
           >
@@ -52,10 +59,10 @@ const ProductDetails = (props) => {
               <img className="sizeMobile" src={product.imgPath} alt="" />
             </div>
           </Link>
-    )
-  }
-    
-  })
+        );
+      }
+      return <p></p>;
+    });
 
   useEffect(() => {
     let getLikeList = () => {
@@ -71,6 +78,7 @@ const ProductDetails = (props) => {
           }
         });
     };
+
     getLikeList();
   }, [productInfo, productId, props.user._id]);
 
@@ -107,9 +115,10 @@ const ProductDetails = (props) => {
   let isEqual =
     productInfo !== undefined && props.user._id === productInfo.creator._id;
 
-  const likedProduct = !isEqual ? (
-    userExist !== -1 ? (
-      <div className="btn-heart pt-2  ">
+  const heartBtn =
+    isEqual === false &&
+    (userExist !== -1 ? (
+      <div className="btn-heart">
         <img
           onClick={(e) => removeWantSubmit(e)}
           alt="heart"
@@ -117,35 +126,48 @@ const ProductDetails = (props) => {
           src={heartOn}
           className="heart"
         ></img>
-        
       </div>
     ) : (
-      <div className ="d-flex justify-content-between pt-2 pr-2 ">
-        
-        <div className="btn-heart">
-          <img
-            alt="heart"
-            onClick={(e) => addWantSubmit(e)}
-            type="submit"
-            src={heartOff}
-            className="heart"
-          ></img>
-        </div>
-        <div className="text-center">
-          <button
-            onClick={(e) => addWantSubmit(e)}
-            className="btn btn-dark"
-            type="submit"
-          >
-            Swap it!
-          </button>
-        </div>
+      <div className="btn-heart">
+        <img
+          alt="heart"
+          onClick={(e) => addWantSubmit(e)}
+          type="submit"
+          src={heartOff}
+          className="heart"
+        ></img>
       </div>
-    )
-  ) : (
-    <Link className="btn btn-primary" to={`/private/edit-product/${productId}`}>
-      Edit
-    </Link>
+    ));
+
+  const swapitBtnMobile = userExist === -1 && (
+    <div className="text-center">
+      <button
+        onClick={(e) => addWantSubmit(e)}
+        className="btn-swapit-mobile"
+        type="submit"
+      >
+        Swap it!
+      </button>
+    </div>
+  );
+
+  const swapitBtnDesktop = userExist === -1 && (
+    <div className="text-center mt-2">
+      <button className="btn-swapit-desktop" onClick={(e) => addWantSubmit(e)}>
+        Swap it!
+      </button>
+    </div>
+  );
+
+  const editBtn = isEqual && (
+    <div className="text-center mt-2">
+      <Link
+        className="edit-btn-desktop"
+        to={`/private/edit-product/${productId}`}
+      >
+        Edit
+      </Link>
+    </div>
   );
 
   const creatorDetails = productInfo && (
@@ -165,51 +187,86 @@ const ProductDetails = (props) => {
     </div>
   );
 
-  const showDetails = productInfo && (
-    <div className="detailsCard">
-       <div className="btn-back  d-flex align-items-center">
-          <Link className="" to="/private">
-            <img className="backLogo" src={backLogo} alt="heart" />
-          </Link>
-        </div>
-     
-        {/* <div style = {{backgroundImage: `url(${productInfo.imgPath})`}} className='container' alt=""> */}
-<div className='ImgContainerCard'>
-    <img className="detailsImgCard" src={productInfo.imgPath} alt="logonnnn" />
-    
-       
-       {likedProduct}
-        
-      </div>
-        
-      <div className="detailsContainer text-left">
-      <h3 className="text-center mt-3">{productInfo.title}</h3>
-        <b>
-          <p>Created by:</p>
-        </b>
-        <Link to={`/private/user-profile/${userId}`}>{creatorDetails}</Link>
+  
+  
+  const showDetails =
+  productInfo !== undefined ? (
+    <div style={{ position: "relative", bottom: "0px", right: "0px" }}>
+        <Link
+          className="btn-back d-flex justify-content-start m-2"
+          to="/private"
+        >
+          <img className="backLogo" src={backLogo} alt="heart" />
+        </Link>
+        <div className="detailsCard">
+          {productInfo.imgPath.height < 10 ? (
+            <p>Esta mierda funciona</p>
+          ):(<p>Esta no mierda funciona</p>)}
+          <div
+            className="ImgContainerCard"
+            style={{ position: "relative", bottom: "0px", right: "0px" }}
+          >
+            <img
+            id='imgDetail'
+              style={{ position: "relative", bottom: "0px", right: "0px" }}
+              className="detailsImgCard"
+              src={productInfo.imgPath}
+              alt="logo"
+            />
+            <div
+              className="d-flex justify-content-center"
+              style={{
+                position: "absolute",
+                bottom: "5%",
+                right: "5%",
+                paddingTop: "10px",
+              }}
+            >
+              {heartBtn}
+            </div>
+          </div>
 
-        <b>
-          <p>Description:</p>
-        </b>
-        {productInfo.description}
+          <div className="detailsContainer text-left">
+            <h3 className="text-center mb-3">{productInfo.title}</h3>
+            {!isEqual ? (
+              window.innerWidth <= 500 ? (
+                <div className="m-3">{swapitBtnMobile}</div>
+              ) : (
+                <div>{swapitBtnDesktop}</div>
+              )
+            ) : (
+              <div>{editBtn}</div>
+            )}
+            <b>
+              <p className="mt-2 mb-2">Created by:</p>
+            </b>
+            <Link to={`/private/user-profile/${userId}`}>{creatorDetails}</Link>
+
+            <b>
+              <p className="mt-3">Description:</p>
+            </b>
+            {productInfo.description}
+          </div>
+        </div>
+      </div>
+    ) : (
+      <p>Loading...</p>
+    );
+  return (
+    <div>
+      <div className="cardDetails">{showDetails}</div>
+      <div className="cardDetails2">
+        <h5>You may also like...</h5>
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {filterRecomendations}
+        </Masonry>
       </div>
     </div>
   );
-
-  return <div>
-    <div className="cardDetails">{showDetails}</div>
-    <div className="cardDetails2">
-      <p>Similar products...</p>
-    <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
-      >{filterRecomendations}
-    </Masonry>
-    </div>
-    
-  </div>;
 };
 
 export default withAuth(ProductDetails);

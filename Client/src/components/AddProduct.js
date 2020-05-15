@@ -72,6 +72,7 @@ const AddProduct = (props) => {
         <div className="form-group">
           <label>Description</label>
           <textarea
+            maxLength='170'
             type="text"
             name="description"
             className="form-control"
