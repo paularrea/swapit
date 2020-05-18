@@ -13,6 +13,7 @@ const ProductDetails = (props) => {
   const [allProducts, setAllProducts] = useState();
   const [likeListId, setLikeListId] = useState("");
   const [buttonOn, setButtonOn] = useState(false);
+
   const { params } = props.match;
   let productId = params.id;
   let userId = productInfo !== undefined && productInfo.creator._id;
@@ -187,11 +188,9 @@ const ProductDetails = (props) => {
     </div>
   );
 
-  
-  
   const showDetails =
-  productInfo !== undefined ? (
-    <div style={{ position: "relative", bottom: "0px", right: "0px" }}>
+    productInfo !== undefined ? (
+      <div style={{ position: "relative", bottom: "0px", left: "0px" }}>
         <Link
           className="btn-back d-flex justify-content-start m-2"
           to="/private"
@@ -199,16 +198,13 @@ const ProductDetails = (props) => {
           <img className="backLogo" src={backLogo} alt="heart" />
         </Link>
         <div className="detailsCard">
-          {productInfo.imgPath.height < 10 ? (
-            <p>Esta mierda funciona</p>
-          ):(<p>Esta no mierda funciona</p>)}
-          <div
-            className="ImgContainerCard"
-            style={{ position: "relative", bottom: "0px", right: "0px" }}
+          <span
+            className="ImgContainerCard d-flex"
+            style={{ position: "relative", bottom: "0px", left: "0px" }}
           >
             <img
-            id='imgDetail'
-              style={{ position: "relative", bottom: "0px", right: "0px" }}
+              id="imgDetail"
+              style={{ position: "relative", bottom: "0px", left: "0px" }}
               className="detailsImgCard"
               src={productInfo.imgPath}
               alt="logo"
@@ -217,14 +213,14 @@ const ProductDetails = (props) => {
               className="d-flex justify-content-center"
               style={{
                 position: "absolute",
-                bottom: "5%",
-                right: "5%",
+                bottom: "2%",
+                left: "2%",
                 paddingTop: "10px",
               }}
             >
               {heartBtn}
             </div>
-          </div>
+          </span>
 
           <div className="detailsContainer text-left">
             <h3 className="text-center mb-3">{productInfo.title}</h3>
@@ -252,6 +248,7 @@ const ProductDetails = (props) => {
     ) : (
       <p>Loading...</p>
     );
+
   return (
     <div>
       <div className="cardDetails">{showDetails}</div>

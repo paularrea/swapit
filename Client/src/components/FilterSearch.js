@@ -36,7 +36,7 @@ const FilterSearch = (props) => {
             key={product._id}
             to={`/private/product-details/${product._id}`}
           >
-            <div className="  discoverCard mt-3">
+            <div className="discoverCard mt-3">
               <img src={product.imgPath} alt="" />
               <h5>{product.title}</h5>
             </div>

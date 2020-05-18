@@ -2,11 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Masonry from "react-masonry-css";
 
 const UsersProfiles = (props) => {
   const [userProfile, setUserProfile] = useState();
   const { params } = props.match;
   let profileId = params.id;
+
+  let breakpointColumnsObj = {
+    default: 4,
+    1100: 4,
+    900: 3,
+    600: 2,
+    400: 1,
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +26,21 @@ const UsersProfiles = (props) => {
     };
     fetchData();
   }, [profileId]);
+
+  const getBackgroundColor = (category) => {
+    if (category === "photography") {
+      return {backgroundColor: "rgba(224, 214, 138, .8)"};
+    } if (category === "wood") { 
+      return {backgroundColor: "rgba(81, 23, 48, .8)", color:'white'};
+    } if (category === "decoration") {
+      return {backgroundColor: "rgba(203, 145, 115, .8)"};
+    } if (category === "textile") {
+      return {backgroundColor: "rgba(142, 68, 61, .8)", color:'white'};
+    } if (category === "drawings") {
+      return {backgroundColor: "rgba(66, 21, 55, .8)", color:'white'};
+    }
+    return "black";
+  };
 
   return (
     <div>
@@ -32,33 +56,43 @@ const UsersProfiles = (props) => {
         {userProfile !== undefined && userProfile.name}{" "}
         {userProfile !== undefined && userProfile.lastName}
       </h3>
-      <div className="row d-flex justify-content-center">
-        {userProfile !== undefined &&
-          userProfile.haveList.map((product) => {
-            return (
-              <div className="col-lg-2 col-sx-4 col-md-4 card creationsCard bg-light">
-                <Link
-                  key={product._id}
-                  to={`/private/product-details/${product._id}`}
+
+      <div className="containerUserProfile">
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {userProfile !== undefined &&
+            userProfile.haveList.map((product) => {
+              return (
+                <div
+                  className="usersProductCards mt-3"
+                  style={
+                    getBackgroundColor(product.category)
+                  }
                 >
-                  <img
-                    className="card-img-top imgCard"
-                    src={product.imgPath}
-                    alt="cardImg"
-                  />{" "}
-                </Link>
-                <div className="card-body">
-                  <h5 className="card-title">{product.title}</h5>
-                  <p className="card-text">
-                    <small className="text-muted">{product.category}</small>
-                  </p>
-                  <p className="card-text text-left descriptionCard">
-                    {product.description}
-                  </p>
+                  <Link
+                    key={product._id}
+                    to={`/private/product-details/${product._id}`}
+                  >
+                    <img
+                      className="usersProdImg"
+                      src={product.imgPath}
+                      alt="cardImg"
+                    />{" "}
+                  </Link>
+                  <div className="card-body">
+                    <p>{product.title}</p>
+                    <p className="card-text">
+                      <small className="">{product.category}</small>
+                    </p>
+                    <p className="descriptionCard">{product.description}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+        </Masonry>
       </div>
     </div>
   );

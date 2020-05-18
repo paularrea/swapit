@@ -4,12 +4,13 @@ import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 
 const AddProduct = (props) => {
+  const [maxLength, setMaxLength] = useState(0);
   const [creation, setCreation] = useState({
     title: "",
     description: "",
     category: "",
     imgPath: "",
-    creator: props.user._id
+    creator: props.user._id,
   });
 
   let fileUpload = async (e) => {
@@ -33,6 +34,9 @@ const AddProduct = (props) => {
     setCreation({
       ...creation,
       [name]: value,
+    });
+    setMaxLength({
+      description: value.length,
     });
   };
 
@@ -72,7 +76,7 @@ const AddProduct = (props) => {
         <div className="form-group">
           <label>Description</label>
           <textarea
-            maxLength='170'
+            maxLength="170"
             type="text"
             name="description"
             className="form-control"
@@ -81,19 +85,24 @@ const AddProduct = (props) => {
             onChange={(e) => onChange(e)}
           />
         </div>
+        {maxLength.description === 170 && (
+          <p style={{ color: "#931F1D" }}>
+            You have reached the maximum number of characters.
+          </p>
+        )}
         <div className="form-group">
           <label>Category</label>
           <select
-            
             name="category"
             type="text"
             className="form-control text-center"
             id="categoryInput"
             placeholder="Category"
             onChange={(e) => onChange(e)}
-            
-          >    
-            <option disabled selected >select category...</option>
+          >
+            <option disabled selected>
+              select category...
+            </option>
             <option value="drawings">Drawings</option>
             <option value="textile">Textile</option>
             <option value="decoration">Decoration</option>

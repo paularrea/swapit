@@ -6,218 +6,7 @@
   box-sizing: border-box;
 }
 
-/* TABLET CSS */
-
-@media (min-width: 600px) {
-  /* navbar */
-.navbar{
-  margin: 1% 4% 1% 4% !important;
-}
-  /* details */
- 
-.btn-swapit-desktop{
-background-color: cadetblue;
-color: whitesmoke;
-width: 90%;
-height: 60px;
-font-size: 25px;
-border-radius: 15px;
-}
-
-.edit-btn-desktop{
-  background-color: rgb(203, 145, 115);
-  color: whitesmoke;
-  width: 90%;
-  height: 60px;
-  font-size: 25px;
-  border-radius: 15px;
-  padding: 3% 15%;
-  }
-  
-
-
-.detailsCard{
-  
-  padding: 0px 30px 80px 30px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  
-}
-.detailsImgCard{
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 40% !important;
- }
-.detailsContainer{
-  width: 30%;
-  height: 400px;
-  bottom: 1px;
-}
-.cardDetails{
-  margin: 30px;
-  border: 2px solid whitesmoke;
-  border-radius: 15px;
-  background-color: whitesmoke;
-}
-.cardDetails2{
-  margin: 30px;
-  border: 2px solid whitesmoke;
-  border-radius: 15px;
-  background-color: whitesmoke;
- padding: 15px;
-}
-
-/* discover */
-.searchBarDiv{
-  position: absolute;
-  top: 3%;
-  left: 22%;
-  width: 60% !important;
-}
-.marginDiscover{
-  margin-top: -0.5% !important;
-  margin-left: 5%;
-  margin-right: 5%;
-}
-  .discoverCard img{
-    border-radius: 15px !important;
-    object-fit: cover;
-    width: 100%;
-    max-width:100% !important;
-    max-height: 150px;
-    object-fit: cover;
-  }
-.my-masonry-grid {
-  display: -webkit-box;
-  display: -ms-flexbox; 
-  display: flex;
-  margin-left: -30px; 
-  width: auto;
-}
-.my-masonry-grid_column {
-  padding-left: 30px; 
-  background-clip: padding-box;
-}
- 
-.my-masonry-grid_column > div { 
-  margin-bottom: 30px;
-}
-.ImgContainerCard{
-  width: 60%!important;
-  display: flex;
-  align-items: flex-end;
- 
-
-}
-.detailsImgCard{
-width: 100% !important;
-border-radius: 15px;
-}
-}
-
-/* desktop categories */
-.btnCategory2{
-  width: 20%;
-  height: 70px;
-  border-radius: 15px !important;
-  font-size: 20px !important;
-  border: .5px solid black !important;
-  background-color: white;
-}
-  .btnCategory2:after{
-    content: "";
-    width: 40%;
-    height: 100%;
-    display: inline-block;
-    vertical-align: middle;
-    background-color: transparent;
-    background-position : center right;
-    background-repeat:no-repeat;
-
-  }
-
-  .btn-drawings2:after{
-    background-image: url('./img/drawingsBlack.png');
-    background-size: 40%;
-  }
-  .btn-drawings2:hover:after{
-    background-image: url('./img/drawingsWhite.png');
-  }
-  .btn-drawings2:focus:after{
-    background-image: url('./img/drawingsWhite.png');
-  }
- 
-  .btn-wood2:after{
-    background-image: url('./img/woodBlack.png');
-    background-size: 50%;
-  }
-  .btn-wood2:hover:after{
-    background-image: url('./img/woodWhite.png');
-  }
-  .btn-wood2:focus:after{
-    background-image: url('./img/woodWhite.png');
-  }
-  .btn-textile2:after{
-    background-image: url('./img/textileBlack.png');
-    background-size: 45%;
-  }
-  .btn-textile2:hover:after{
-    background-image: url('./img/textileWhite.png');
-  }
-  .btn-textile2:focus:after{
-    background-image: url('./img/textileWhite.png');
-  }
-  .btn-decoration2:after{
-    background-image: url('./img/decorationBlack.png');
-    background-size: 35%;
-  }
-  .btn-decoration2:hover:after{
-    background-image: url('./img/decorationWhite.png');
-  }
-  .btn-decoration2:focus:after{
-    background-image: url('./img/decorationWhite.png');
-  }
-  .btn-photography2:after{
-    background-image: url('./img/photographyBlack.png');
-    background-size: 60%;
-  }
-  .btn-photography2:hover:after{
-    background-image: url('./img/photographyWhite.png');
-  }
-  .btn-photography2:focus:after{
-    background-image: url('./img/photographyWhite.png');
-  }
-  .btn-allProducts2:after{
-    background-image: url('./img/allProductsBlack.png');
-    background-size: 40%;
-  }
-  .btn-allProducts2:hover:after{
-    background-image: url('./img/allProductsWhite.png');
-  }
-  .btn-allProducts2:focus:after{
-    background-image: url('./img/allProductsWhite.png');
-  }
-  .searchBarDiv{
-    position: absolute;
-    width: 50% !important;
-    top: 2%;
-    left: 26%;
-  
-  }
-
-/* DESKTOP */
-  @media (min-width: 1100px) {
-
-
-
-}
-
-
-
-
-
-/* mobile */
+/* MOBILE */
 .my-masonry-grid {padding: none;}
 .App-logo {
   height: 40vmin;
@@ -486,6 +275,7 @@ object-fit: cover;
   color: #282c34;
 }
 
+
 /* mobile categories */
 
 .btnCategory{
@@ -620,3 +410,306 @@ color: oldlace !important
   box-shadow: 0 0 10px 2px rgba(0,0,0,.1);
 }
 
+/* user Profiles */
+
+.containerUserProfile{
+  margin: 5%;
+  border-radius: 15px;
+  background-color: whitesmoke;
+  padding: 3%;
+}
+.usersProductCards{
+  padding: 3%;
+  border-radius: 15px;
+
+}
+
+.usersProdImg{
+  border-radius: 15px 15px 0 0 !important;
+}
+
+.usersProductCards img{
+  object-fit: cover;
+    width: 100%;
+    max-width:450px;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+    }
+  
+    .usersProductCards:hover {
+      box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
+      margin-bottom: 1px;
+    }
+  
+    .usersProductCards h5{
+      color: #282c34;
+      text-decoration: none;
+    }
+
+
+
+/* BIG MOBILE */
+@media (min-width: 400px) {
+  #imgDetail{
+    width: auto !important;
+    height: 300px !important;
+  }
+}
+
+
+
+/* TABLET CSS */
+
+@media (min-width: 600px) {
+  /* navbar */
+.navbar{
+  margin: 1% 4% 1% 4% !important;
+}
+  /* details */
+ 
+.btn-swapit-desktop{
+background-color: cadetblue;
+color: whitesmoke;
+width: 90%;
+height: 60px;
+font-size: 25px;
+border-radius: 15px;
+}
+
+.edit-btn-desktop{
+  background-color: rgb(203, 145, 115);
+  color: whitesmoke;
+  width: 90%;
+  height: 60px;
+  font-size: 25px;
+  border-radius: 15px;
+  padding: 3% 15%;
+  }
+  
+
+
+.detailsCard{
+  
+  padding: 0px 30px 80px 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  
+}
+.detailsImgCard{
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40% !important;
+ }
+.detailsContainer{
+  width: 30%;
+  height: 400px;
+  padding: 2%;
+  bottom: 1px;
+}
+.cardDetails{
+  margin: 30px;
+  border: 2px solid whitesmoke;
+  border-radius: 15px;
+  background-color: whitesmoke;
+}
+.cardDetails2{
+  margin: 30px;
+  border: 2px solid whitesmoke;
+  border-radius: 15px;
+  background-color: whitesmoke;
+ padding: 15px;
+}
+
+/* discover */
+.searchBarDiv{
+  position: absolute;
+  top: 3%;
+  left: 22%;
+  width: 60% !important;
+}
+.marginDiscover{
+  margin-top: -0.5% !important;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+  .discoverCard img{
+    border-radius: 15px !important;
+    object-fit: cover;
+    width: 100%;
+    max-width:100% !important;
+    max-height: 150px;
+    object-fit: cover;
+  }
+.my-masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox; 
+  display: flex;
+  margin-left: -30px; 
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; 
+  background-clip: padding-box;
+}
+ 
+.my-masonry-grid_column > div { 
+  margin-bottom: 30px;
+}
+.ImgContainerCard{
+  width: auto !important;
+  display: flex;
+  align-items: flex-end;
+ 
+
+}
+.detailsImgCard{
+width: 100% !important;
+border-radius: 15px;
+}
+}
+
+/* desktop-tablet categories */
+.btnCategory2{
+  width: 20%;
+  height: 70px;
+  border-radius: 15px !important;
+  font-size: 20px !important;
+  border: .5px solid black !important;
+  background-color: white;
+}
+  .btnCategory2:after{
+    content: "";
+    width: 40%;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: transparent;
+    background-position : center right;
+    background-repeat:no-repeat;
+
+  }
+
+  .btn-drawings2:after{
+    background-image: url('./img/drawingsBlack.png');
+    background-size: 40%;
+  }
+  .btn-drawings2:hover:after{
+    background-image: url('./img/drawingsWhite.png');
+  }
+  .btn-drawings2:focus:after{
+    background-image: url('./img/drawingsWhite.png');
+  }
+ 
+  .btn-wood2:after{
+    background-image: url('./img/woodBlack.png');
+    background-size: 50%;
+  }
+  .btn-wood2:hover:after{
+    background-image: url('./img/woodWhite.png');
+  }
+  .btn-wood2:focus:after{
+    background-image: url('./img/woodWhite.png');
+  }
+  .btn-textile2:after{
+    background-image: url('./img/textileBlack.png');
+    background-size: 45%;
+  }
+  .btn-textile2:hover:after{
+    background-image: url('./img/textileWhite.png');
+  }
+  .btn-textile2:focus:after{
+    background-image: url('./img/textileWhite.png');
+  }
+  .btn-decoration2:after{
+    background-image: url('./img/decorationBlack.png');
+    background-size: 35%;
+  }
+  .btn-decoration2:hover:after{
+    background-image: url('./img/decorationWhite.png');
+  }
+  .btn-decoration2:focus:after{
+    background-image: url('./img/decorationWhite.png');
+  }
+  .btn-photography2:after{
+    background-image: url('./img/photographyBlack.png');
+    background-size: 60%;
+  }
+  .btn-photography2:hover:after{
+    background-image: url('./img/photographyWhite.png');
+  }
+  .btn-photography2:focus:after{
+    background-image: url('./img/photographyWhite.png');
+  }
+  .btn-allProducts2:after{
+    background-image: url('./img/allProductsBlack.png');
+    background-size: 40%;
+  }
+  .btn-allProducts2:hover:after{
+    background-image: url('./img/allProductsWhite.png');
+  }
+  .btn-allProducts2:focus:after{
+    background-image: url('./img/allProductsWhite.png');
+  }
+  .searchBarDiv{
+    position: absolute;
+    width: 50% !important;
+    top: 2%;
+    left: 26%;
+  
+  }
+
+  #imgDetail{
+    width: auto !important;
+    height: 400px !important;
+  }
+
+
+
+
+/* DESKTOP */
+  @media (min-width: 1100px) {
+
+#imgDetail{
+  width: auto !important;
+  height: 500px !important;
+}
+.ImgContainerCard{
+  float: left !important;
+}
+.my-masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox; 
+  display: flex;
+  margin-left: -30px; 
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; 
+  background-clip: padding-box;
+}
+ 
+.my-masonry-grid_column > div { 
+  margin-bottom: 30px;
+}
+}
+
+/* discover */
+
+.discoverCard img{
+  border-radius: 15px;
+  object-fit: cover;
+  width: 100%;
+  max-width:550px;
+  max-height: 450px;
+  object-fit: cover;
+}
+.discoverCard img:hover{
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
+  margin-bottom: 1px;
+}
+
+.discoverCard h5{
+  color: #282c34;
+}
