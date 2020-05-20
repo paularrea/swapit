@@ -37,10 +37,12 @@ const Profile = (props) => {
       const UserfromDB = await service.getUserInfo();
       const creations = await service.getMyProducts();
       const InfofromDB = await axios.post(
-        `http://localhost:4000/api/interestedUsers`, creations
+        creations.haveList.map(product => {
+          `http://localhost:4000/api/interestedUsers`, product._id
+          setInterestedUsers(InfofromDB.data);
+        })
       );
       console.log(InfofromDB, "infooooo")
-      setInterestedUsers(InfofromDB.data);
     
       setUserData(UserfromDB);
       setMyCreations(creations); 
