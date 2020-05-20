@@ -11,6 +11,7 @@ import AddProduct from "../components/AddProduct";
 import ProductDetails from "../components/ProductDetails";
 import ModalDelete from "../components/ModalDelete";
 import UsersProfiles from "../pages/UsersProfiles";
+import InterestedUsers from "../components/InterestedUsers";
 
 const Private = () => {
   return (
@@ -27,6 +28,7 @@ const Private = () => {
           <Route exact path="/private/profile" component={Profile} />
           <Route exact path="/private/edit-profile" component={EditProfile} />
           <Route exact path="/private/creation-form" component={AddProduct} />
+          <Route exact path="/private/interested-users/" component={InterestedUsers} />
           <Route exact path="/private/product-details/:id" component={ProductDetails} />
           <Route exact path="/private/product-delete/:id" component={ModalDelete} />
           <Route exact path="/private/edit-product/:id" component={EditProduct} />

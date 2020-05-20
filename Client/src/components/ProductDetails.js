@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withAuth } from "../lib/AuthProvider";
 import service from "../api/service";
-import heartOff from "../img/heart-regular.png";
-import heartOn from "../img/heart-solid.png";
 import { Link } from "react-router-dom";
 import backLogo from "../img/back.png";
 import Masonry from "react-masonry-css";
+import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 
 const ProductDetails = (props) => {
   const [productInfo, setProductInfo] = useState();
@@ -21,7 +21,7 @@ const ProductDetails = (props) => {
     default: 4,
     1100: 4,
     700: 2,
-    500: 2,
+    500: 1,
   };
 
   useEffect(() => {
@@ -120,23 +120,11 @@ const ProductDetails = (props) => {
     isEqual === false &&
     (userExist !== -1 ? (
       <div className="btn-heart">
-        <img
-          onClick={(e) => removeWantSubmit(e)}
-          alt="heart"
-          type="submit"
-          src={heartOn}
-          className="heart"
-        ></img>
+        <FavoriteRoundedIcon onClick={(e) => removeWantSubmit(e)} style = {{ fontSize: 35, color: '#931F1D'}}/>
       </div>
     ) : (
       <div className="btn-heart">
-        <img
-          alt="heart"
-          onClick={(e) => addWantSubmit(e)}
-          type="submit"
-          src={heartOff}
-          className="heart"
-        ></img>
+        <FavoriteBorderRoundedIcon onClick={(e) => addWantSubmit(e)} style = {{ fontSize: 35,  color: 'white'}}/>
       </div>
     ));
 

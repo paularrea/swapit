@@ -4,6 +4,8 @@
 }
 *{
   box-sizing: border-box;
+  outline: none !important;
+  text-decoration: none !important;
 }
 
 /* MOBILE */
@@ -82,8 +84,8 @@ background-color: rgba(255,255,255,.2);
 }
 
 .deleteProd{
-  top: 3%;
-  left: 13%;
+  bottom: 2%;
+  left: 5%;
 }
 .creationsImg{
   border-radius:15px 15px 0 0 !important;
@@ -270,7 +272,9 @@ object-fit: cover;
 }
 
 /* discover */
-
+.discoverCard{
+  margin-bottom: 15% !important;
+}
 .discoverCard img{
   border-radius: 15px;
   object-fit: cover;
@@ -285,6 +289,7 @@ object-fit: cover;
 }
 
 .discoverCard h5{
+  padding-top: 3%;
   color: #282c34;
 }
 
@@ -420,10 +425,33 @@ color: oldlace !important
   border-radius: 15px;
   border: 1px solid gainsboro;
   background-color: rgba(255,255,255,.6);
-  box-shadow: 0 0 10px 2px rgba(0,0,0,.1);
+  padding: 0 !important;
+ 
 }
 
 /* user Profiles */
+
+.modalUsers{
+  border-radius: 15px;
+  background-color: whitesmoke;
+}
+.modalUsers img{
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.3);
+}
+
+.modalUsers h5{
+  margin: 0 !important;
+  color: #282c34 !important;
+}
+
+.bgDeleteProduct{
+  border-color: rgba(40, 44, 52, 0.5) !important;
+  border-radius: 50% !important;
+}
 
 .containerUserProfile{
   margin: 5%;
@@ -492,11 +520,19 @@ height: 60px;
 font-size: 25px;
 border-radius: 15px;
 }
-.heartProfile{
 
-  
-  border-radius: none !important;
-  }
+.numUsers{
+  padding: 0 !important;
+  margin: 0 !important;
+
+}
+
+
+.btnHeartProfile{
+  background-color: transparent !important;
+  border: none !important;
+  object-fit: contain !important;
+}
 
 .edit-btn-desktop{
   background-color: rgb(203, 145, 115);
@@ -674,9 +710,10 @@ border-radius: 15px;
     background-image: url('./img/allProductsWhite.png');
   }
   .searchBarDiv{
+    padding: 0 !important;
     position: absolute;
     width: 50% !important;
-    top: 2%;
+    top: 2.5%;
     left: 26%;
   
   }

@@ -58,7 +58,7 @@ const FilterSearch = (props) => {
             key={product._id}
             to={`/private/product-details/${product._id}`}
           >
-            <div className="creationsCard mt-3">
+            <div className="discoverCard mt-3">
               <img src={product.imgPath} alt="" />
               <h5>{product.title}</h5>
             </div>
@@ -74,7 +74,7 @@ const FilterSearch = (props) => {
               key={product._id}
               to={`/private/product-details/${product._id}`}
             >
-              <div className="creationsCard mt-3">
+              <div className="discoverCard mt-3">
                 <img src={product.imgPath} alt="" />
                 <h5>{product.title}</h5>
               </div>
@@ -86,7 +86,7 @@ const FilterSearch = (props) => {
                 key={product._id}
                 to={`/private/product-details/${product._id}`}
               >
-                <div className="creationsCard mt-3">
+                <div className="discoverCard mt-3">
                   <img src={product.imgPath} alt="" />
                   <h5>{product.title}</h5>
                 </div>
@@ -248,7 +248,7 @@ const FilterSearch = (props) => {
 
       <Masonry
         breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid"
+        className="my-masonry-grid pt-3"
         columnClassName="my-masonry-grid_column"
       >
         {(searchQuery.length <= 0 && filteredCategory === undefined)

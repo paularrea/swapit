@@ -14,37 +14,40 @@ router.get("/profile", async (req, res, next) => {
   }
 });
 
-router.post("/interestedUsers",  (req, res, next) => {
-  let myCreations = req.body;
-  let resultado = [];
-  myCreations.haveList.map(async (product) => {
-    if (product.interestedUser.length > 0) {
-      resultado.push(
-        await Product.findById(product._id).populate("interestedUser")
-      );
-      try {
-        console.log(resultado)
-        await res.json(resultado);
-      } catch (err) {
-        res.json(err);
-      }
-    }
-  });
-});
+// router.post("/interestedUsers", async (req, res, next) => {
+//   let interestedUserIds = req.body;
+
+//   console.log(interestedUserIds, "idsssssssss");
+//   try {
+//     let interestedUserPopu = await Product.find("haveList").populate(
+//       "interestedUser"
+//     );
+//     console.log(interestedUserPopu, "populate");
+//     res.json(interestedUserPopu);
+//   } catch (err) {
+//     res.json(err);
+//   }
+// });
 
 router.get("/myProducts", async (req, res, next) => {
   try {
     let userId = req.session.currentUser._id;
-
-    let productList = await User.findById(userId)
-      // .populate(haveList,{path:"haveList.interestedUser"})
-      .populate("haveList")
-      .populate("wantList");
+    let productList = await User.find({ _id: userId })
+      .populate("wantList")
+      .populate({
+        path: "haveList",
+        model: 'Product',
+        populate: {
+          path: "interestedUser",
+          model: 'User',
+        },
+      });
     res.json(productList);
   } catch (err) {
     res.json(err);
   }
 });
+
 router.get("/user-profile/:id", async (req, res, next) => {
   try {
     const userProfileId = req.params.id;
