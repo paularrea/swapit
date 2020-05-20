@@ -27,6 +27,7 @@ const UsersProfiles = (props) => {
     fetchData();
   }, [profileId]);
 
+
   const getBackgroundColor = (category) => {
     if (category === "photography") {
       return {backgroundColor: "rgba(224, 214, 138, .8)"};
@@ -56,8 +57,10 @@ const UsersProfiles = (props) => {
         {userProfile !== undefined && userProfile.name}{" "}
         {userProfile !== undefined && userProfile.lastName}
       </h3>
-
+  
       <div className="containerUserProfile">
+      <p><b>See All {userProfile !== undefined && userProfile.name}'s Creations ({userProfile !== undefined &&
+            userProfile.haveList.length})</b></p>
         <Masonry
           breakpointCols={breakpointColumnsObj}
           className="my-masonry-grid"
@@ -66,6 +69,7 @@ const UsersProfiles = (props) => {
           {userProfile !== undefined &&
             userProfile.haveList.map((product) => {
               return (
+                
                 <div
                   className="usersProductCards mt-3"
                   style={

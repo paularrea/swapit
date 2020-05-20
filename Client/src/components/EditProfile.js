@@ -12,6 +12,7 @@ const EditProfile = (props) => {
     lastName: props.user.lastName,
     imgPath: props.user.imgPath,
   });
+  const [userUpdated, setUserUpdated] = useState({})
 
   let onChangeName = (e) => {
     finalUser.name = e.target.value;
@@ -33,6 +34,12 @@ const EditProfile = (props) => {
       console.log(err);
     }
   };
+  let updatedUser = async () => {
+   const userUpdated = await service.getUserInfo()
+   setUserUpdated(userUpdated)
+   
+  }
+  updatedUser()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,10 +88,10 @@ const EditProfile = (props) => {
             className="form-control"
             id="idName"
             aria-describedby="Name"
-            placeholder={finalUser.name}
+            placeholder={userUpdated.name}
             type="text"
             name="name"
-            defaultValue={finalUser.name || ""}
+            defaultValue={userUpdated.name || ""}
             onChange={onChangeName}
           />
         </div>
@@ -95,10 +102,10 @@ const EditProfile = (props) => {
             className="form-control"
             id="idLastName"
             aria-describedby="Lastname"
-            placeholder={finalUser.lastName}
+            placeholder={userUpdated.lastName}
             type="text"
             name="lastName"
-            defaultValue={finalUser.lastName || ""}
+            defaultValue={userUpdated.lastName || ""}
             onChange={onChangelastName}
           />
         </div>

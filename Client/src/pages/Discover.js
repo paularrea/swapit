@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 
 const Discover = (props) => {
   const [allProducts, setAllProducts] = useState();
-
+  
   useEffect(() => {
     const fetchData = async () => {
       const products = await service.getAllTheProducts();
@@ -14,7 +14,7 @@ const Discover = (props) => {
     };
     fetchData();
   }, []);
-
+  
   return (
     <div>
       <div className="d-flex justify-content-center">

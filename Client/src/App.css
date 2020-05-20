@@ -7,6 +7,9 @@
 }
 
 /* MOBILE */
+.creatorImage{
+
+}
 .my-masonry-grid {padding: none;}
 .App-logo {
   height: 40vmin;
@@ -76,6 +79,14 @@ background-color: rgba(255,255,255,.2);
   width: 80px;
   height: 80px;
   border-radius: 50%;
+}
+
+.deleteProd{
+  top: 3%;
+  left: 13%;
+}
+.creationsImg{
+  border-radius:15px 15px 0 0 !important;
 }
 .profileImgNav{
   object-fit: cover;
@@ -215,10 +226,12 @@ object-fit: cover;
 }
 
 .creatorImage{
-  height: 50px;
-  width: 50px;
+  object-fit: cover;
+  height: 120px;
+  width: 120px;
   border-radius: 50%;
   box-shadow: 0 0 10px 2px rgba(0,0,0,.2);
+  margin-bottom: 2%;
 }
 
 .creatorDetails{
@@ -436,6 +449,9 @@ color: oldlace !important
     object-fit: cover;
     border-radius: 15px;
     }
+    .heartProfile{
+     width: 20px !important;
+      }
   
     .usersProductCards:hover {
       box-shadow: 0 0 10px 2px rgba(0,0,0,.6);
@@ -476,6 +492,11 @@ height: 60px;
 font-size: 25px;
 border-radius: 15px;
 }
+.heartProfile{
+
+  
+  border-radius: none !important;
+  }
 
 .edit-btn-desktop{
   background-color: rgb(203, 145, 115);

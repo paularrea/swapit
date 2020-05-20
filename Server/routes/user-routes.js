@@ -14,10 +14,40 @@ router.get("/profile", async (req, res, next) => {
   }
 });
 
+router.post("/interestedUsers",  (req, res, next) => {
+  let myCreations = req.body;
+  let resultado = [];
+  myCreations.haveList.map(async (product) => {
+    if (product.interestedUser.length > 0) {
+      resultado.push(
+        await Product.findById(product._id).populate("interestedUser")
+      );
+      try {
+        console.log(resultado)
+        await res.json(resultado);
+      } catch (err) {
+        res.json(err);
+      }
+    }
+  });
+});
+
+router.get("/myProducts", async (req, res, next) => {
+  try {
+    let userId = req.session.currentUser._id;
+
+    let productList = await User.findById(userId)
+      // .populate(haveList,{path:"haveList.interestedUser"})
+      .populate("haveList")
+      .populate("wantList");
+    res.json(productList);
+  } catch (err) {
+    res.json(err);
+  }
+});
 router.get("/user-profile/:id", async (req, res, next) => {
   try {
-
-    const userProfileId = req.params.id
+    const userProfileId = req.params.id;
     const userInfo = await User.findById(userProfileId).populate("haveList");
     res.json(userInfo);
   } catch (err) {
@@ -82,15 +112,4 @@ router.put("/users/edit-profile", (req, res, next) => {
     });
 });
 
-router.get("/myProducts", async (req, res, next) => {
-  try {
-    let userId = req.session.currentUser._id;
-    productList = await User.findById(userId)
-      .populate("haveList")
-      .populate("wantList");
-    res.json(productList);
-  } catch (err) {
-    res.json(err);
-  }
-});
 module.exports = router;

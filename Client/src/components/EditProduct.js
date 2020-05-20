@@ -69,7 +69,7 @@ const EditProduct = (props) => {
 
           <input
             type="file"
-            required
+            
             className="form-control"
             id="idEditProductImg"
             name="imgPath"

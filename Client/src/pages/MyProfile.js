@@ -4,40 +4,84 @@ import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
 import logoutLogo from "../img/sign-out-alt-solid.svg";
 import backLogo from "../img/back.png";
-
+import heart from "../img/heart-regular-white.png";
+import Masonry from "react-masonry-css";
+import axios from 'axios'
 const Profile = (props) => {
   const [finalUser, setUserData] = useState({});
   const [myCreations, setMyCreations] = useState();
-  const [havesBtn, setBtnHaves] = useState(false);
-  const [wantsBtn, setBtnWants] = useState(true);
-  
+  const [interestedUsers, setInterestedUsers] = useState();
+  let breakpointColumnsObj = {
+    default: 5,
+    1100: 5,
+    700: 2,
+    500: 1,
+  };
+  const getBackgroundColor = (category) => {
+    if (category === "photography") {
+      return {backgroundColor: "rgba(224, 214, 138, .8)"};
+    } if (category === "wood") { 
+      return {backgroundColor: "rgba(81, 23, 48, .8)", color:'white'};
+    } if (category === "decoration") {
+      return {backgroundColor: "rgba(203, 145, 115, .8)"};
+    } if (category === "textile") {
+      return {backgroundColor: "rgba(142, 68, 61, .8)", color:'white'};
+    } if (category === "drawings") {
+      return {backgroundColor: "rgba(66, 21, 55, .8)", color:'white'};
+    }
+    return "black";
+  };
   
   useEffect(() => {
     const fetchData = async () => {
       const UserfromDB = await service.getUserInfo();
       const creations = await service.getMyProducts();
-
+      const InfofromDB = await axios.post(
+        `http://localhost:4000/api/interestedUsers`, creations
+      );
+      console.log(InfofromDB, "infooooo")
+      setInterestedUsers(InfofromDB.data);
+    
       setUserData(UserfromDB);
       setMyCreations(creations); 
     };
     fetchData();
   }, []);
   
+  console.log(interestedUsers, "interested")
+
   const { logout } = props;
  const displayHaveList = myCreations && (
     myCreations.haveList.map((creation) => {
       return (
        
        
-        <div key={creation._id}>
+        <div key={creation._id} className="usersProductCards mt-3"
+        style={
+          getBackgroundColor(creation.category)
+        }>
+
+     
+        <div  className="col haveListCard position-relative">
         <Link  to={`/private/product-details/${creation._id}`}>
-        <div  className="col haveListCard">
-          <img src={creation.imgPath} alt="" />
-          <p>{creation.title}</p>
-          <p className="text-danger">{creation.interestedUser.length && creation.interestedUser.length}</p>
+          <img className="position-relative creationsImg" src={creation.imgPath} alt="" />
+          </Link>
+          <Link className="position-absolute deleteProd" to={`/private/product-delete/${creation._id}`} ><span aria-label="jsx-a11y/accessible-emoji" role="img">❌</span></Link>
+          <div >
+          <p className="text-left">{creation.title}</p>
+          </div>
+          
+          <div className="d-flex align-content-center justify-content-end">
+          
+          <p className="text-white text-right pr-2">{creation.interestedUser.length && creation.interestedUser.length} </p>
+          <div className="heartProfile">
+          <img alt="heartImg"  src={heart}/>
+          </div>
+          
+          </div>
         </div>
-        </Link>
-        <Link to={`/private/product-delete/${creation._id}`} >🗑</Link>
+        
+        
         </div>
        
       );
@@ -48,12 +92,18 @@ const Profile = (props) => {
     myCreations.wantList.map((wantedCreations) => {
 
       return (
-        <Link key={wantedCreations._id} to={`/private/product-details/${wantedCreations._id}`}>
-        <div  className="col haveListCard">
-          <img src={wantedCreations.imgPath} alt="" />
+
+<div className="usersProductCards mt-3"
+                  style={
+                    getBackgroundColor(wantedCreations.category)
+                  }>
+        <div key={wantedCreations._id} className="col haveListCard">
+        <Link  to={`/private/product-details/${wantedCreations._id}`}>
+          <img className ="creationsImg" src={wantedCreations.imgPath} alt="" />
+        </Link>
           <p>{wantedCreations.title}</p>
         </div>
-        </Link>
+     </div>
         
       );
     })
@@ -90,49 +140,39 @@ const Profile = (props) => {
       <Link className="btn addCreation-btn m-4" to="/private/creation-form">
         Upload Creation
       </Link>
-      <div>
-      <div className="row btn-group">
-        <div className="col m-2"> 
-          <button
-            onClick={() => {
-              setBtnWants(false);
-              setBtnHaves(true);
-            }}
-            className={havesBtn === true ? "btn btn-primary" : "btn btn-dark"}
-          >
-           Creations 
-          </button>
-          <br/>
-          <span>{`(${displayHaveList && myCreations.haveList.length})`}</span>
-        </div><div className="col m-2">
-          <button
-            onClick={() => {
-              setBtnWants(true);
-              setBtnHaves(false);
-            }}
-            className={wantsBtn === true ? "btn btn-primary" : "btn btn-dark"}
-          >
-            Wishes  
-          </button>
-          <span>{`(${displayWantList && myCreations.wantList.length})`}</span>
-        </div>
-      </div>
-
-      </div>
-      <div>
+      <div className="containerUserProfile ">
         <div
           id="haveList"
-          className="row haveList d-flex justify-content-center"
+          className="px-3"
         >
-          {havesBtn && displayHaveList}
+<p>My Wishes... ({myCreations !== undefined && myCreations.wantList.length})</p>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+        {displayWantList}
+          
+          </Masonry>
         </div>
+        </div>
+        <div className="containerUserProfile">
         <div
           id="wantList"
-          className="row wantList d-flex justify-content-center"
+          className="px-3"
         >
-          {wantsBtn && displayWantList}
+<p>Own Creations... ({myCreations !== undefined && myCreations.haveList.length})</p>
+          
+          
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+          {displayHaveList}
+          </Masonry>
         </div>
-      </div>
+        </div>
     </div>
   );
 };
