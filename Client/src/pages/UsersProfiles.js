@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Masonry from "react-masonry-css";
+import { Spinner } from "react-bootstrap";
 
 const UsersProfiles = (props) => {
   const [userProfile, setUserProfile] = useState();
@@ -50,7 +51,7 @@ const UsersProfiles = (props) => {
       </div>
       <img
         className="creatorImage"
-        src={userProfile !== undefined && userProfile.imgPath}
+        src={userProfile === undefined ? <Spinner animation="border" variant="info" /> :  userProfile.imgPath}
         alt=""
       />
       <h3>
@@ -71,13 +72,14 @@ const UsersProfiles = (props) => {
               return (
                 
                 <div
+                key={product._id}
                   className="usersProductCards mt-3"
                   style={
                     getBackgroundColor(product.category)
                   }
                 >
                   <Link
-                    key={product._id}
+                    
                     to={`/private/product-details/${product._id}`}
                   >
                     <img

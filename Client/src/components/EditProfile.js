@@ -39,13 +39,14 @@ const EditProfile = (props) => {
    setUserUpdated(userUpdated)
    
   }
-  updatedUser()
+  
 
   useEffect(() => {
     const fetchData = async () => {
       const finalUser = await service.getUserInfo();
       setUserInput(finalUser);
     };
+    updatedUser()
     fetchData();
   }, []);
 

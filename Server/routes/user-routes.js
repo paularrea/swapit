@@ -5,41 +5,49 @@ const User = require("../models/User");
 const Product = require("../models/Product");
 
 router.get("/profile", async (req, res, next) => {
+  const userId = req.session.currentUser._id;
   try {
-    const userId = req.session.currentUser._id;
     const userInfo = await User.findById(userId);
     res.json(userInfo);
   } catch (err) {
     console.log(err);
   }
 });
-
-// router.post("/interestedUsers", async (req, res, next) => {
-//   let interestedUserIds = req.body;
-
-//   console.log(interestedUserIds, "idsssssssss");
-//   try {
-//     let interestedUserPopu = await Product.find("haveList").populate(
-//       "interestedUser"
-//     );
-//     console.log(interestedUserPopu, "populate");
-//     res.json(interestedUserPopu);
-//   } catch (err) {
-//     res.json(err);
-//   }
-// });
+router.post("/notifications", async (req, res, next) => {
+      let userId = req.body;
+      try{
+        let notiInfo = await User.find({ _id: userId._id }).populate("likeList.userWhoLikes").populate("likeList.productLiked") 
+        res.json(notiInfo);
+      }catch(err){
+        res.json(err)
+      }
+  });
+  router.put("/notifications", async (req, res, next) => {
+    let userId = req.body._id
+    let notiUpdate = req.body.notifications
+    console.log(userId)
+    notiUpdate.map(async noti => {
+      noti.viewed
+      let notiInfo = await User.findByIdAndUpdate( userId, {$filter: { viewed: noti.viewed}}) 
+      res.json({ message: `users notifications with ${_id} are updated successfully.` });
+    })
+    try{
+    }catch(err){
+      res.json(err)
+    }
+});
 
 router.get("/myProducts", async (req, res, next) => {
+  let userId = req.session.currentUser._id;
   try {
-    let userId = req.session.currentUser._id;
     let productList = await User.find({ _id: userId })
       .populate("wantList")
       .populate({
         path: "haveList",
-        model: 'Product',
+        model: "Product",
         populate: {
           path: "interestedUser",
-          model: 'User',
+          model: "User",
         },
       });
     res.json(productList);
@@ -48,25 +56,17 @@ router.get("/myProducts", async (req, res, next) => {
   }
 });
 
+
 router.get("/user-profile/:id", async (req, res, next) => {
+  const userProfileId = req.params.id;
   try {
-    const userProfileId = req.params.id;
     const userInfo = await User.findById(userProfileId).populate("haveList");
     res.json(userInfo);
   } catch (err) {
     console.log(err);
   }
 });
-// router.get("/my-events/:id", async (req, res, next) => {
-//   try{
-//   const userId = req.params.id
-//   myAccions = await User.findById(userId).populate("myAccions");
-//   // console.log(myAccions)
-//   res.json(myAccions)
-//   }catch(err){
-//   res.json(err)
-//   }
-// });
+
 
 router.get("/users", async (req, res, next) => {
   try {
@@ -77,29 +77,6 @@ router.get("/users", async (req, res, next) => {
   }
 });
 
-// router.get("/allprofiles", (req, res, next) => {
-//   User.find()
-//     .then((allTheUsers) => {
-//       res.json(allTheUsers);
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
-
-// router.get('/profile/:id', (req, res, next)=>{
-//     if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-//       res.status(400).json({ message: 'Specified id is not valid' });
-//       return;
-//     }
-//     User.findById(req.params.id)
-//       .then(response => {
-//         res.status(200).json(response);
-//       })
-//       .catch(err => {
-//         res.json(err);
-//       })
-//   })
 router.put("/users/edit-profile", (req, res, next) => {
   const { name, _id, lastName, imgPath } = req.body;
   if (!mongoose.Types.ObjectId.isValid(_id)) {

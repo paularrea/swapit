@@ -5,6 +5,7 @@ import { Collapse, Button } from "react-bootstrap";
 import dropAbajo from "../img/dropAbajo.png";
 import dropArriba from "../img/dropArriba.png";
 import Masonry from "react-masonry-css";
+import { Spinner } from "react-bootstrap";
 
 const FilterSearch = (props) => {
   const [filteredCategory, setFilteredCategory] = useState();
@@ -17,6 +18,7 @@ const FilterSearch = (props) => {
     700: 2,
     500: 1,
   };
+  
 
   let filterChange = (e) => {
     setFilteredCategory(e.target.value);
@@ -252,8 +254,8 @@ const FilterSearch = (props) => {
         columnClassName="my-masonry-grid_column"
       >
         {(searchQuery.length <= 0 && filteredCategory === undefined)
-          ? displayAllProducts
-          : displayFilteredProducts}
+          ?( displayAllProducts === undefined ? <Spinner  animation="grow" variant="info" /> : displayAllProducts)
+          : (displayFilteredProducts === undefined ? <Spinner  animation="grow" variant="info" /> : displayFilteredProducts)}
       </Masonry>
     </div>
   );

@@ -4,6 +4,7 @@ import { withAuth } from "../lib/AuthProvider";
 import FilterSearch from "../components/FilterSearch";
 import Navbar from "../components/Navbar";
 
+
 const Discover = (props) => {
   const [allProducts, setAllProducts] = useState();
   

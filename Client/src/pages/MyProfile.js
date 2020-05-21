@@ -7,12 +7,13 @@ import backLogo from "../img/back.png";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Masonry from "react-masonry-css";
 import InterestedUsers from "../components/InterestedUsers";
-
+import { Spinner } from "react-bootstrap";
 
 const Profile = (props) => {
   const [finalUser, setUserData] = useState({});
   const [myCreations, setMyCreations] = useState();
   const { logout } = props;
+ 
 
   let breakpointColumnsObj = {
     default: 5,
@@ -49,7 +50,7 @@ const Profile = (props) => {
     fetchData();
   }, []);
 
-  console.log(myCreations, 'mycre')
+  
 
   const displayHaveList =
     myCreations !== undefined &&
@@ -97,11 +98,11 @@ const Profile = (props) => {
     myCreations !== undefined &&
     myCreations.wantList.map((wantedCreations) => {
       return (
-        <div
+        <div key={wantedCreations._id}
           className="usersProductCards mt-3"
           style={getBackgroundColor(wantedCreations.category)}
         >
-          <div key={wantedCreations._id} className="col haveListCard">
+          <div  className="col haveListCard">
             <Link to={`/private/product-details/${wantedCreations._id}`}>
               <img
                 className="creationsImg"
@@ -116,8 +117,8 @@ const Profile = (props) => {
     });
 
   return (
-    
     <div className="container">
+    
       <div className="d-flex">
         <Link className=" justify-content-start mt-3 ml-2 " to="/private">
           <img className="backIcons" src={backLogo} alt="backlogo" />
@@ -132,9 +133,9 @@ const Profile = (props) => {
           </Link>
         </div>
       </div>
-      <div className=" d-flex text-left align-items-center justify-content-center mt-3">
+      {finalUser.imgPath === undefined ? <Spinner animation="border" variant="info" /> : <div className=" d-flex text-left align-items-center justify-content-center mt-3">
         <div className="">
-          <img className="profileImg" src={finalUser.imgPath} alt="perfil" />
+          <img className="profileImg" alt="perfilImg" src={finalUser.imgPath} />
         </div>
         <div className="ml-2">
           <h5>
@@ -143,7 +144,7 @@ const Profile = (props) => {
             </b>
           </h5>
         </div>
-      </div>
+      </div>}
       <Link className="btn addCreation-btn m-4" to="/private/creation-form">
         Upload Creation
       </Link>
@@ -158,7 +159,7 @@ const Profile = (props) => {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {displayWantList}
+            {myCreations === undefined ? <Spinner animation="border" variant="info" /> : displayWantList}
           </Masonry>
         </div>
       </div>
@@ -174,7 +175,7 @@ const Profile = (props) => {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {displayHaveList}
+            {myCreations === undefined ? <Spinner animation="border" variant="info" /> : displayHaveList}
           </Masonry>
         </div>
       </div>

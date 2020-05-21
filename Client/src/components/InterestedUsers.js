@@ -10,7 +10,7 @@ const InterestedUsers = (props) => {
 
   const usersList = props.creation.interestedUser.map((user) => {
     return (
-      <Link
+      <Link key = {user._id}
         className="modalUsers d-flex align-items-center my-2 p-2"
         to={`/private/user-profile/${user._id}`}
       >

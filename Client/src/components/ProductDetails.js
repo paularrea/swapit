@@ -47,22 +47,15 @@ const ProductDetails = (props) => {
     productInfo !== undefined &&
     allProducts !== undefined &&
     allProducts.map((product) => {
-      if (
-        product.category === productInfo.category &&
-        product.title !== productInfo.title
-      ) {
-        return (
-          <Link
-            key={product._id}
-            to={`/private/product-details/${product._id}`}
-          >
-            <div className="creationsCard mt-3">
-              <img className="sizeMobile" src={product.imgPath} alt="" />
-            </div>
-          </Link>
-        );
-      }
-      return <p></p>;
+      return (product.category === productInfo.category &&
+        product.title !== productInfo.title) &&  <Link
+       key={product._id}
+       to={`/private/product-details/${product._id}`}
+     >
+       <div className="creationsCard mt-3">
+         <img className="sizeMobile" src={product.imgPath} alt="" />
+       </div>
+     </Link> 
     });
 
   useEffect(() => {

@@ -32,7 +32,7 @@ router.post("/products/remove-want", async (req, res, next) => {
   const likeListId = req.body.likeListId;
   const creatorId = req.body.creatorId;
   const userId = req.session.currentUser._id;
-  console.log(likeListId);
+  
   try {
     await Product.updateOne(
       { _id: productId },
@@ -70,8 +70,9 @@ router.post("/product/want", async (req, res, next) => {
     });
     let productSelected = await Product.findById(id);
     const likeList = await User.findByIdAndUpdate(productSelected.creator, {
-      $push: { likeList: { userWhoLikes: userId, productLiked: id } },
+      $push: { likeList: { userWhoLikes: userId, productLiked: id }},
     });
+    
     res.status(200).json(newWantProduct, interested, likeList);
   } catch (err) {
     console.log(err);
@@ -79,14 +80,11 @@ router.post("/product/want", async (req, res, next) => {
 });
 
 router.post("/remove-product-link", async (req, res, next) => {
-  // if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-  //   res.status(400).json({ message: "Specified id is not valid" });
-  //   return;
-  // }
+
+  const userId = req.body.userId;
+  const productId = req.body.productId;
+  const likeListToRemove = req.body.filteredLikeList;
   try {
-    const userId = req.body.userId;
-    const productId = req.body.productId;
-    const likeListToRemove = req.body.filteredLikeList;
     likeListToRemove.map(async (listToRemove) => {
      await User.updateOne(
         { _id: userId },
@@ -126,71 +124,7 @@ router.get("/product/:id", (req, res, next) => {
     });
 });
 
-// //JOIN
-// router.post("/events", async (req, res, next) => {
-//   //  console.log(req.body, "object")
-//   console.log("responseeeeee currentUser", req.session.currentUser);
-//   const eventId = req.body.eventId; //evento id
-//   const userId = req.body.userId;
-//   console.log(userId);
-//   try {
-//     await Event.updateOne({ _id: eventId }, { $push: { members: userId } });
 
-//     await User.updateOne({ _id: userId }, { $push: { joinAccions: eventId } });
-//     res.status(200).json("joined to joinAccions");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
-// router.post("/events/remove-member", async (req, res, next) => {
-//   //console.log('responseeeeee currentUser', req.session.currentUser)
-//   const eventId = req.body.eventId; //evento id
-//   const userId = req.body.userId;
-//   console.log(userId);
-//   try {
-//     await Event.updateOne({ _id: eventId }, { $pull: { members: userId } });
-
-//     await User.updateOne({ _id: userId }, { $pull: { joinAccions: eventId } });
-//     res.status(200).json("deleted from joinAccions");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
-// router.put("/events/message", async (req, res, next) => {
-//   const message = req.body.notifications;
-//   const members = req.body.members;
-//   const eventId = req.body.eventId;
-//   const creatorId = req.body.creator;
-//   const notificationsId = { message, eventId, creatorId };
-
-//   //   console.log(message)
-//   // console.log(members, "holaaaa");
-//   console.log(notificationsId, "el Member");
-//   try {
-//     await members.map(async (member) => {
-//       const oneMember = member._id;
-//       console.log(message);
-//       await User.findByIdAndUpdate(oneMember, {
-//         $push: { notifications: notificationsId },
-//       });
-//     });
-//     res.status(200).json("sended to members");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
-// router.get("/events/message", async (req, res, next) => {
-//   try {
-//     let userId = req.session.currentUser._id;
-//     eventInfo = await User.findById(userId)
-//       .populate("notifications.eventId")
-//       .populate("notifications.creatorId");
-//     console.log(eventInfo);
-//     res.json(eventInfo);
-//   } catch (err) {
-//     res.json(err);
-//   }
-// });
 
 router.put("/edit-product/:id", (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -209,29 +143,13 @@ router.put("/edit-product/:id", (req, res, next) => {
     });
 });
 
-// router.delete("/events/:id", (req, res, next) => {
-//   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-//     res.status(400).json({ message: "Specified id is not valid" });
-//     return;
-//   }
-
-//   Event.findByIdAndRemove(req.params.id)
-//     .then(() => {
-//       res.json({
-//         message: `events with ${req.params.id} is removed successfully.`,
-//       });
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
 router.delete("/product/:id", async (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
+  const removeProductId = req.params.id;
   try {
-    const removeProductId = req.params.id;
     await Product.findByIdAndRemove(removeProductId);
 
     res.json(`the product ${removeProductId} is been removed`);

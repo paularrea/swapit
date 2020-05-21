@@ -442,10 +442,33 @@ color: oldlace !important
   border-radius: 50%;
   box-shadow: 0 0 10px 2px rgba(0,0,0,.3);
 }
-
+.modalUsers .productImg{
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.3);
+}
+.modalUsers .userImg{
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.3);
+}
 .modalUsers h5{
   margin: 0 !important;
   color: #282c34 !important;
+}
+.borderNotis{
+  background-color: rgba(255, 0, 0, .7);
+  border-radius: 50%;
+  top: 0px;
+  left: 20px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  align-items: center;
 }
 
 .bgDeleteProduct{
@@ -479,6 +502,7 @@ color: oldlace !important
     }
     .heartProfile{
      width: 20px !important;
+     position: relative;
       }
   
     .usersProductCards:hover {
