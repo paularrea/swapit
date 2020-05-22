@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Notifications = (props) => {
  
   const [show, setShow] = useState(false);
-  const viewed = false;
+  
   const handleClose = () => setShow(false);
   
   const [notifications, setNotifications] = useState();

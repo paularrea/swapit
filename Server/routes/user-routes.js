@@ -14,27 +14,27 @@ router.get("/profile", async (req, res, next) => {
   }
 });
 router.post("/notifications", async (req, res, next) => {
-      let userId = req.body;
-      try{
-        let notiInfo = await User.find({ _id: userId._id }).populate("likeList.userWhoLikes").populate("likeList.productLiked") 
-        res.json(notiInfo);
-      }catch(err){
-        res.json(err)
-      }
-  });
-  router.put("/notifications", async (req, res, next) => {
-    let userId = req.body._id
-    let notiUpdate = req.body.notifications
-    console.log(userId)
-    notiUpdate.map(async noti => {
-      noti.viewed
-      let notiInfo = await User.findByIdAndUpdate( userId, {$filter: { viewed: noti.viewed}}) 
-      res.json({ message: `users notifications with ${_id} are updated successfully.` });
-    })
-    try{
-    }catch(err){
-      res.json(err)
-    }
+  let userId = req.body;
+  try {
+    let notiInfo = await User.find({ _id: userId._id })
+      .populate("likeList.userWhoLikes")
+      .populate("likeList.productLiked");
+    res.json(notiInfo);
+  } catch (err) {
+    res.json(err);
+  }
+});
+router.put("/notifications", async (req, res, next) => {
+  let userId = req.body._id;
+  let notiUpdate = req.body.notifications;
+
+  await User.updateMany({ likeList: notiUpdate });
+  res.json({ message: `users notifications are updated successfully.` });
+  // });
+  try {
+  } catch (err) {
+    res.json(err);
+  }
 });
 
 router.get("/myProducts", async (req, res, next) => {
@@ -56,7 +56,6 @@ router.get("/myProducts", async (req, res, next) => {
   }
 });
 
-
 router.get("/user-profile/:id", async (req, res, next) => {
   const userProfileId = req.params.id;
   try {
@@ -66,7 +65,6 @@ router.get("/user-profile/:id", async (req, res, next) => {
     console.log(err);
   }
 });
-
 
 router.get("/users", async (req, res, next) => {
   try {

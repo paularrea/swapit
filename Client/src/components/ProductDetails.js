@@ -48,7 +48,7 @@ const ProductDetails = (props) => {
     allProducts !== undefined &&
     allProducts.map((product) => {
       return (product.category === productInfo.category &&
-        product.title !== productInfo.title) &&  <Link
+        product.creator !== props.user._id) &&  <Link
        key={product._id}
        to={`/private/product-details/${product._id}`}
      >
