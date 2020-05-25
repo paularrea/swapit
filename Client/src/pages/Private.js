@@ -11,6 +11,7 @@ import AddProduct from "../components/AddProduct";
 import ProductDetails from "../components/ProductDetails";
 import ModalDelete from "../components/ModalDelete";
 import UsersProfiles from "../pages/UsersProfiles";
+import Chat from "../pages/Chat";
 import InterestedUsers from "../components/InterestedUsers";
 
 const Private = () => {
@@ -24,6 +25,11 @@ const Private = () => {
             exact
             path="/private/notifications"
             component={Notifications}
+          />
+          <Route
+            exact
+            path="/private/chat"
+            component={Chat}
           />
           <Route exact path="/private/profile" component={Profile} />
           <Route exact path="/private/edit-profile" component={EditProfile} />

@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withAuth } from "../lib/AuthProvider";
 import { Modal } from "react-bootstrap";
-import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
 import { Link } from "react-router-dom";
+import NotiCounter from '../components/NotiCounter'
+import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
 
 const Notifications = (props) => {
- 
   const [show, setShow] = useState(false);
-  
-  const handleClose = () => setShow(false);
-  
   const [notifications, setNotifications] = useState();
+  const handleClose = () => setShow(false);
+
   useEffect(() => {
     const fetchData = async () => {
       let notiInfo = await axios.post(
@@ -22,6 +21,18 @@ const Notifications = (props) => {
     };
     fetchData();
   }, [props.user]);
+
+  const handleShow = () => {
+    setShow(true);
+    notifications !== undefined &&
+      notifications.map((notification) => {
+        return (notification.viewed = true);
+      });
+    axios.put("http://localhost:4000/api/notifications", {
+      notifications,
+      _id: props.user._id,
+    });
+  };
 
   const notis =
     notifications !== undefined &&
@@ -53,33 +64,18 @@ const Notifications = (props) => {
         </Link>
       );
     });
-    const handleShow = () => {
-      setShow(true);
-      notifications !== undefined &&
-      notifications.map((notification) => {
-      return notification.viewed = true;
-      })
-      axios.put("http://localhost:4000/api/notifications", {notifications, _id: props.user._id})
-  };
-  console.log(notifications)
-  
 
-  
+  console.log(notifications)
   return (
     <>
-      <button className="btnHeartProfile" onClick={handleShow}>
-        <div className="heartProfile ">
-          <FavoriteBorderRoundedIcon style={{ fontSize: 35, color: "black" }} />
-          {notifications !== undefined &&
-      notifications.map((notification) => {
-        return(notification.viewed === false && <span className="borderNotis">
-       <p className="text-light ">
-         { notifications.length}
-       </p>
-     </span>)
-      })}
-        </div>
-      </button>
+    <button className="btnHeartProfile" onClick={handleShow}>
+      <div className="heartProfile ">
+        <FavoriteBorderRoundedIcon style={{ fontSize: 35, color: "black" }} />
+        {notifications !== undefined && (
+          <NotiCounter notifications={notifications}/>
+        )}
+      </div>
+    </button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
