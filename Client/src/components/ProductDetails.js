@@ -108,7 +108,7 @@ const ProductDetails = (props) => {
 
   let isEqual =
     productInfo !== undefined && props.user._id === productInfo.creator._id;
-
+console.log(userExist,"equaaaal")
   const heartBtn =
     isEqual === false &&
     (userExist !== -1 ? (
@@ -121,7 +121,8 @@ const ProductDetails = (props) => {
       </div>
     ));
 
-  const swapitBtnMobile = userExist === -1 && (
+  const swapitBtnMobile = 
+  userExist === -1 && (
     <div className="text-center">
       <button
         onClick={(e) => addWantSubmit(e)}

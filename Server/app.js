@@ -25,28 +25,44 @@ mongoose
   })
   .then(() => console.log(`Connected to database`))
   .catch((err) => console.error(err));
-  
-  // EXPRESS SERVER INSTANCE
-  const app = express();
-      app.use(
-        session({
-          store: new MongoStore({
-            autoRemove:"interval",
-            autoRemoveInterval: 10,
-            mongooseConnection: mongoose.connection,
-            ttl: 24 * 60 * 60, // 1 day
-          }),
-          secret: process.env.SECRET_SESSION,
-          resave: false,
-          saveUninitialized: false,
-          unset: "destroy",
-          name:"userCookie",
-          cookie: {
-            maxAge: 24 * 60 * 60 * 1000,
-            sameSite: "none"
-          },
-        })
-      );
+
+// EXPRESS SERVER INSTANCE
+
+const app = express();
+
+var http = require('http').createServer(app);
+var io = require("socket.io")(http);
+
+io.on("connection", function(socket) {
+  console.log("a user connected");
+  socket.on("chat message", function(msg){
+    console.log("message:" + JSON.stringify(msg));
+    io.emit("chat message", msg)
+  })
+});
+
+http.listen(3001, function(){
+  console.log('listening on port 3001')
+})
+app.use(
+  session({
+    store: new MongoStore({
+      autoRemove: "interval",
+      autoRemoveInterval: 10,
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60, // 1 day
+    }),
+    secret: process.env.SECRET_SESSION,
+    resave: false,
+    saveUninitialized: false,
+    unset: "destroy",
+    name: "userCookie",
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "none",
+    },
+  })
+);
 
 // CORS MIDDLEWARE SETUP
 app.use(
@@ -69,7 +85,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/auth", auth);
 app.use("/api", productRouter);
 app.use("/api", userRouter);
-app.use("/api", profileImage)
+app.use("/api", profileImage);
+
 
 // ERROR HANDLING
 // catch 404 and forward to error handler
@@ -89,4 +106,3 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
-

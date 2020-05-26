@@ -25,29 +25,29 @@ router.post("/notifications", async (req, res, next) => {
   }
 });
 
-// router.put("/notifications", async (req, res, next) => {
-//   let userId = req.body._id;
-//   let notiUpdate = req.body.notifications;
-//   await User.update({ _id: userId}, {likeList: notiUpdate});
-//   res.json({ message: `users notifications are updated successfully.` });
-//   try {
-//   } catch (err) {
-//     res.json(err);
-//   }
-// });
-
 router.put("/notifications", async (req, res, next) => {
   let userId = req.body._id;
   let notiUpdate = req.body.notifications;
-
-  await User.updateMany({ likeList: notiUpdate });
+  await User.update({ _id: userId}, {likeList: notiUpdate});
   res.json({ message: `users notifications are updated successfully.` });
-  // });
   try {
   } catch (err) {
     res.json(err);
   }
 });
+
+// router.put("/notifications", async (req, res, next) => {
+//   let userId = req.body._id;
+//   let notiUpdate = req.body.notifications;
+
+//   await User.updateMany({ likeList: notiUpdate });
+//   res.json({ message: `users notifications are updated successfully.` });
+//   // });
+//   try {
+//   } catch (err) {
+//     res.json(err);
+//   }
+// });
 
 router.get("/myProducts", async (req, res, next) => {
   let userId = req.session.currentUser._id;
