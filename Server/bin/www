@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('codealong-m2:server');
 var http = require('http');
+const Chat = require("../models/Chat");
 
 /**
  * Get port from environment and store in Express.
@@ -18,6 +19,17 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+var io = require("socket.io")("https://swap-it-app.herokuapp.com");
+
+io.on("connection", function (socket) {
+  console.log("a user connected");
+  socket.on("chat message", function (msg) {
+    console.log("message:" + JSON.stringify(msg));
+    io.emit("chat message", msg);
+    let chatMessage = new Chat({ message: msg.msg, sender: msg.sender });
+    chatMessage.save();
+  });
+});
 
 server.listen(port);
 server.on('error', onError);

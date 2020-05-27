@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ef1fb97c.chunk.css",
+    "main.js": "/static/js/main.11ec594a.chunk.js",
+    "main.js.map": "/static/js/main.11ec594a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a630afc6.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a630afc6.js.map",
+    "static/css/2.89f067aa.chunk.css": "/static/css/2.89f067aa.chunk.css",
+    "static/js/2.e7df0851.chunk.js": "/static/js/2.e7df0851.chunk.js",
+    "static/js/2.e7df0851.chunk.js.map": "/static/js/2.e7df0851.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.6bb215aa8b473f8578360e5f0fc7b2ec.js": "/precache-manifest.6bb215aa8b473f8578360e5f0fc7b2ec.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.89f067aa.chunk.css.map": "/static/css/2.89f067aa.chunk.css.map",
+    "static/css/main.ef1fb97c.chunk.css.map": "/static/css/main.ef1fb97c.chunk.css.map",
+    "static/js/2.e7df0851.chunk.js.LICENSE.txt": "/static/js/2.e7df0851.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/woodBlack.87642428.png",
+    "static/media/sign-out-alt-solid.svg": "/static/media/sign-out-alt-solid.144ff030.svg",
+    "static/media/telegram-plane-brands.svg": "/static/media/telegram-plane-brands.bdc0fc45.svg",
+    "static/media/user-solid.svg": "/static/media/user-solid.a617dfb6.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a630afc6.js",
+    "static/css/2.89f067aa.chunk.css",
+    "static/js/2.e7df0851.chunk.js",
+    "static/css/main.ef1fb97c.chunk.css",
+    "static/js/main.11ec594a.chunk.js"
+  ]
+}

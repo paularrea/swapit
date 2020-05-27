@@ -14,7 +14,7 @@ const auth = require("./routes/auth");
 var productRouter = require("./routes/product-routes");
 var userRouter = require("./routes/user-routes");
 var profileImage = require("./routes/file-upload-routes");
-const Chat = require("./models/Chat");
+
 
 // MONGOOSE CONNECTION
 mongoose
@@ -30,22 +30,13 @@ mongoose
 
 const app = express();
 
-var http = require('http').createServer(app);
-var io = require("socket.io")(http);
+// var http = require("http").createServer(app);
 
-io.on("connection", function(socket) {
-  console.log("a user connected");
-  socket.on("chat message", function(msg){
-    console.log("message:" + JSON.stringify(msg));
-    io.emit("chat message", msg)
-    let  chatMessage  =  new Chat({ message: msg.msg,  sender:msg.sender});
-    chatMessage.save();
-  })
-});
 
-http.listen(3001, function(){
-  console.log('listening on port 3001')
-})
+// http.listen(3001, function(){
+//   console.log('listening on port 3001')
+// })
+
 app.use(
   session({
     store: new MongoStore({
@@ -88,7 +79,6 @@ app.use("/auth", auth);
 app.use("/api", productRouter);
 app.use("/api", userRouter);
 app.use("/api", profileImage);
-
 
 // ERROR HANDLING
 // catch 404 and forward to error handler
