@@ -29,7 +29,7 @@ function sendChatAction(value) {
  function Store(props) {
     const [allChats, dispatch] = React.useReducer(reducer, initState);
   if (!socket) {
-    socket = io(process.env.REACT_APP_API_URI);
+    socket = io(":4001");
     socket.on("chat message", function(msg){
      dispatch({type:"RECEIVE_MESSAGE", payload:msg})
     })
