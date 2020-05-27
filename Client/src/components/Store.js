@@ -35,9 +35,10 @@ function sendChatAction(value) {
     })
   }
   const userName = props.user.name + " " + props.user.lastName
+  const userId = props.user._id
   
   return (
-    <CTX.Provider value={{ allChats, sendChatAction , userName }}>
+    <CTX.Provider value={{ allChats, sendChatAction , userName , userId }}>
       {props.children}
     </CTX.Provider>
   );

@@ -14,7 +14,7 @@ const auth = require("./routes/auth");
 var productRouter = require("./routes/product-routes");
 var userRouter = require("./routes/user-routes");
 var profileImage = require("./routes/file-upload-routes");
-
+const Chat = require("./models/Chat");
 
 // MONGOOSE CONNECTION
 mongoose
@@ -38,6 +38,8 @@ io.on("connection", function(socket) {
   socket.on("chat message", function(msg){
     console.log("message:" + JSON.stringify(msg));
     io.emit("chat message", msg)
+    let  chatMessage  =  new Chat({ message: msg.msg,  sender:msg.sender});
+    chatMessage.save();
   })
 });
 

@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard(props) {
   const classes = useStyles();
-  const { allChats, sendChatAction, userName } = React.useContext(CTX);
+  const { allChats, sendChatAction, userName, userId } = React.useContext(CTX);
   console.log({ allChats });
   const topics = Object.keys(allChats);
 
@@ -96,7 +96,7 @@ function Dashboard(props) {
           color="primary"
           className={classes.button}
           onClick={() => {
-            sendChatAction({from:userName, img:props.user.imgPath, msg: textValue, topic: activeTopic});
+            sendChatAction({from:userName, sender: userId, msg: textValue, topic: activeTopic});
             changeTextValue("");
           }}
         >
