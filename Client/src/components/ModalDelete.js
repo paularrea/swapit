@@ -19,8 +19,8 @@ const ModalDelete = (props) => {
           }
       });
       
-      axios.post(`http://localhost:4000/api/remove-product-link`, {userId, productId, filteredLikeList});
-        axios.delete(`http://localhost:4000/api/product/${productId}`);
+      axios.post( process.env.REACT_APP_API_URI + `/api/remove-product-link`, {userId, productId, filteredLikeList});
+        axios.delete( process.env.REACT_APP_API_URI + `/api/product/${productId}`);
       props.history.push("/private/profile")    
   }
   return <div>

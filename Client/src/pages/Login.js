@@ -15,7 +15,7 @@ function Login(props) {
   
   useEffect(() => {
     const fetchData = async () => {
-    const result = await axios.get("http://localhost:4000/api/users");
+    const result = await axios.get( process.env.REACT_APP_API_URI + "/api/users");
 
     setListOfUsers(result.data);
     }

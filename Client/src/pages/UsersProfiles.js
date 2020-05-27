@@ -21,7 +21,7 @@ const UsersProfiles = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const InfofromDB = await axios.get(
-        `http://localhost:4000/api/user-profile/${profileId}`
+        process.env.REACT_APP_API_URI + `/api/user-profile/${profileId}`
       );
       setUserProfile(InfofromDB.data);
     };

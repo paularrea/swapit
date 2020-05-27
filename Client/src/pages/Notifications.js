@@ -14,7 +14,7 @@ const Notifications = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       let notiInfo = await axios.post(
-        "http://localhost:4000/api/notifications",
+        process.env.REACT_APP_API_URI + "/api/notifications",
         props.user
       );
       setNotifications(notiInfo.data[0].likeList.reverse());
@@ -28,7 +28,7 @@ const Notifications = (props) => {
       notifications.map((notification) => {
         return (notification.viewed = true);
       });
-    axios.put("http://localhost:4000/api/notifications", {
+    axios.put( process.env.REACT_APP_API_URI + "/api/notifications", {
       notifications,
       _id: props.user._id,
     });

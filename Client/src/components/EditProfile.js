@@ -26,7 +26,7 @@ const EditProfile = (props) => {
     formData.append("imgPath", e.target.files[0]);
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/upload",
+        process.env.REACT_APP_API_URI + "/api/upload",
         formData
       );
       finalUser.imgPath = res.data.secure_url;

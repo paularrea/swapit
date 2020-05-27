@@ -27,7 +27,7 @@ const ProductDetails = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const InfofromDB = await axios.get(
-        `http://localhost:4000/api/product/${productId}`
+        process.env.REACT_APP_API_URI + `/api/product/${productId}`
       );
       setProductInfo(InfofromDB.data);
     };
@@ -36,7 +36,7 @@ const ProductDetails = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const InfofromDB = await axios.get(
-        `http://localhost:4000/api//allproducts`
+        process.env.REACT_APP_API_URI + `/api//allproducts`
       );
       setAllProducts(InfofromDB.data);
     };

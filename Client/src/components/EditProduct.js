@@ -26,7 +26,7 @@ const EditProduct = (props) => {
     formData.append("imgPath", e.target.files[0]);
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/upload",
+        process.env.REACT_APP_API_URI + "/api/upload",
         formData
       );
       productEdited.imgPath = res.data.secure_url;
@@ -38,7 +38,7 @@ const EditProduct = (props) => {
   useEffect(() => {
     const fetchData = async () => {
         const productInfo = await axios.get(
-            `http://localhost:4000/api/product/${productId}`
+          process.env.REACT_APP_API_URI + `/api/product/${productId}`
           );
           setProductEdited(productInfo.data);
     };
@@ -49,7 +49,7 @@ const EditProduct = (props) => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:4000/api/edit-product/${productId}`, productEdited)
+    await axios.put( process.env.REACT_APP_API_URI + `/api/edit-product/${productId}`, productEdited)
     props.history.push("/private/profile");
     console.log("Edited!");
   };

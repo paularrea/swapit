@@ -1,6 +1,6 @@
 import axios from "axios";
 const service = axios.create({
-  baseURL: "http://localhost:4000/api",
+  baseURL:  process.env.REACT_APP_API_URI + "/api",
   withCredentials: true,
 });
 const errorHandler = (err) => {
