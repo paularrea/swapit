@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a40099239f00f8ae177cf51b033ff44e",
+    "revision": "a07a27a8056e6a0e08f06bb25ac341f8",
     "url": "/index.html"
   },
   {
-    "revision": "73f3efcc0fa0cbf85a9f",
+    "revision": "f38da6f894bfdaaf2715",
     "url": "/static/css/2.89f067aa.chunk.css"
   },
   {
-    "revision": "bdaa86b76e4c454a5d40",
-    "url": "/static/css/main.ef1fb97c.chunk.css"
+    "revision": "0b2ba8e86611edfab85f",
+    "url": "/static/css/main.2e4805f7.chunk.css"
   },
   {
-    "revision": "73f3efcc0fa0cbf85a9f",
-    "url": "/static/js/2.e7df0851.chunk.js"
+    "revision": "f38da6f894bfdaaf2715",
+    "url": "/static/js/2.d4049d0d.chunk.js"
   },
   {
     "revision": "df958f16b07871c3679510165e97a61a",
-    "url": "/static/js/2.e7df0851.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.d4049d0d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bdaa86b76e4c454a5d40",
-    "url": "/static/js/main.11ec594a.chunk.js"
+    "revision": "0b2ba8e86611edfab85f",
+    "url": "/static/js/main.3e56e0d6.chunk.js"
   },
   {
     "revision": "66ccd47474fa6503fda0",
@@ -46,10 +46,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "144ff03084284c8876293946a229fd8e",
     "url": "/static/media/sign-out-alt-solid.144ff030.svg"
-  },
-  {
-    "revision": "bdc0fc45ab7bc8f910b9714e7b8f8bc0",
-    "url": "/static/media/telegram-plane-brands.bdc0fc45.svg"
   },
   {
     "revision": "cd4b82e27c12967e213ee44ea8ba7e44",

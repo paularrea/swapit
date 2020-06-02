@@ -12,6 +12,20 @@
 .creatorImage{
 
 }
+.searchBarDiv{
+  padding: 0 !important;
+ position: initial !important;
+  width: 100% ;
+  
+
+}
+.formLog{
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+  
 .my-masonry-grid {padding: none;}
 .App-logo {
   height: 40vmin;
@@ -533,6 +547,12 @@ color: oldlace !important
     width: auto !important;
     height: 300px !important;
   }
+  .searchBarDiv{
+    padding: 0 !important;
+   position: initial !important;
+    width: 100% ;
+  }
+
 }
 
 
@@ -615,10 +635,10 @@ border-radius: 15px;
 
 /* discover */
 .searchBarDiv{
-  position: absolute;
+  position: absolute !important;
   top: 3%;
   left: 22%;
-  width: 60% !important;
+  width: 60% ;
 }
 .marginDiscover{
   margin-top: -0.5% !important;
@@ -746,7 +766,7 @@ border-radius: 15px;
   .searchBarDiv{
     padding: 0 !important;
     position: absolute;
-    width: 50% !important;
+    width: 50% ;
     top: 2.5%;
     left: 26%;
   

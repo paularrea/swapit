@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Chip from "@material-ui/core/Chip";
+
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   topicsWindow: {
-    width: "30%",
+    width: "15%",
     height: "300px",
     borderRight: "1px solid gray",
   },
   chatWindow: {
-    width: "70%",
+    width: "85%",
     height: "300px",
     padding: "20px",
   },
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard(props) {
   const classes = useStyles();
-  const { allChats, sendChatAction, userName, userId } = React.useContext(CTX);
+  const { allChats, sendChatAction, userName, userId, userImg } = React.useContext(CTX);
   console.log({ allChats });
   const topics = Object.keys(allChats);
 
@@ -57,11 +57,13 @@ function Dashboard(props) {
       <div className={classes.flex}>
         <div className={classes.topicsWindow}>
           <List>
+        
             {topics.map((topic) => (
               <ListItem
                 onClick={(e) => changeActiveTopic(e.target.innerText)}
                 key={topic}
                 button
+                name="Albert"
               >
                 <ListItemText primary={topic} />
               </ListItem>
@@ -96,7 +98,7 @@ function Dashboard(props) {
           color="primary"
           className={classes.button}
           onClick={() => {
-            sendChatAction({from:userName, sender: userId, msg: textValue, topic: activeTopic});
+            sendChatAction({from:userName, sender: userId, msg: textValue, topic: activeTopic, img:userImg});
             changeTextValue("");
           }}
         >

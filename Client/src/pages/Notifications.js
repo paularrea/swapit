@@ -65,7 +65,7 @@ const Notifications = (props) => {
       );
     });
 
-  console.log(notifications)
+  
   return (
     <>
     <button className="btnHeartProfile" onClick={handleShow}>

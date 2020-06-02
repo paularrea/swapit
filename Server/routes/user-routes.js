@@ -79,7 +79,7 @@ router.get("/user-profile/:id", async (req, res, next) => {
 });
 
 router.get("/users", async (req, res, next) => {
-  try {
+  try { 
     const allUsers = await User.find();
     res.json(allUsers);
   } catch (err) {

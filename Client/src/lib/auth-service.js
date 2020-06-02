@@ -2,6 +2,7 @@ import axios from "axios";
 
 class Auth {
   constructor() {
+    this.state = {errMessage:""}
     this.auth = axios.create({
       baseURL: process.env.REACT_APP_API_URI,
       withCredentials: true,
@@ -17,7 +18,8 @@ class Auth {
   login({ username, password }) {
     return this.auth
       .post("/auth/login", { username, password })
-      .then(({ data }) => data);
+      .then(({ data }) =>  data ) 
+         
   }
 
   logout() {

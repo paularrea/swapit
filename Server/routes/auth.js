@@ -48,24 +48,25 @@ router.post(
   isNotLoggedIn(),
   validationLoggin(),
   async (req, res, next) => {
+    
     const { username, password } = req.body;
-    try {
+    
       const user = await User.findOne({ username });
 
       if (!user) {
-        next(createError(404));
+       
+        
+        res.status(404)
       } else if (bcrypt.compareSync(password, user.password)) {
         req.session.currentUser = user;
         req.session.save();
-        console.log(req.session.id);
+       
         res.status(200).json(user);
         return;
       } else {
-        next(createError(401));
+        res.status(404).json('Wrong Password')
       }
-    } catch (error) {
-      next(error);
-    }
+    
   }
 );
 

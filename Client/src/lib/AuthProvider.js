@@ -11,7 +11,7 @@ const withAuth = (WrappedComponent) => {
         return (
           <Consumer> 
           { 
-            ({login, signup, user, logout, isLoggedin}) => {
+            ({login, signup, user, logout, isLoggedin, errMessage}) => {
             return (
               <WrappedComponent 
                 login={login} 
@@ -19,6 +19,7 @@ const withAuth = (WrappedComponent) => {
                 user={user}
                 logout={logout}
                 isLoggedin={isLoggedin}
+                errMessage={errMessage}
                 {...this.props} />
             );
           }}
@@ -30,7 +31,7 @@ const withAuth = (WrappedComponent) => {
 
 // Provider
 class AuthProvider extends React.Component {
-  state = { isLoggedin: false, user: null, isLoading: true };
+  state = { isLoggedin: false, user: null, isLoading: true, errMessage:"" };
 
 	componentDidMount() {
     auth.me()
@@ -52,7 +53,10 @@ class AuthProvider extends React.Component {
 
     auth.login({ username, password })
       .then((user) => this.setState({ isLoggedin: true, user }))
-      .catch((err) => console.log(err));
+      
+      .catch(({response}) => this.setState({ errMessage: JSON.stringify(response.data) }))
+      this.setState({errMessage:""})
+      
   };
 
 
@@ -64,14 +68,14 @@ class AuthProvider extends React.Component {
 
 	
   render() {
-    const { isLoading, isLoggedin, user } = this.state;
+    const { isLoading, isLoggedin, user, errMessage } = this.state;
     const { login, logout, signup , getProfile} = this;
-    
+    console.log(errMessage)
     return (
       isLoading ? 
       <div>Loading</div> 
       :
-      (<Provider value={{ isLoggedin, user, login, logout, signup, getProfile}} >
+      (<Provider value={{ isLoggedin, user, login, logout, signup, getProfile, errMessage}} >
          {this.props.children}
       </Provider>)
     )	/*<Provider> "value={}" datos que estarán disponibles para todos los componentes <Consumer> */

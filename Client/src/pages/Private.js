@@ -28,7 +28,7 @@ const Private = () => {
           />
           <Route
             exact
-            path="/private/chat"
+            path="/private/chat/:id"
             component={Chat}
           />
           <Route exact path="/private/profile" component={Profile} />
