@@ -50,7 +50,6 @@ const Profile = (props) => {
     fetchData();
   }, []);
 
-  
 
   const displayHaveList =
     myCreations !== undefined &&

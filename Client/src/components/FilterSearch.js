@@ -46,6 +46,7 @@ const FilterSearch = (props) => {
         )
       );
     });
+    
 
   const searchBarProducts =
     searchQuery &&

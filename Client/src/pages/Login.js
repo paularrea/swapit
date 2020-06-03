@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import logoSwapit from "../img/logo_swapit.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
@@ -12,8 +12,20 @@ import {
   OutlinedInput,
   InputLabel,
   FormControl,
+  Avatar,
+  ThemeProvider,
+  createMuiTheme,
 } from "@material-ui/core";
 import { withAuth } from "../lib/AuthProvider";
+
+const blueSwapit = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#006f9b",
+    },
+  },
+});
+
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +39,6 @@ const Login = (props) => {
       const result = await axios.get(
         process.env.REACT_APP_API_URI + "/api/users"
       );
-
       setListOfUsers(result.data);
     };
     fetchData();
@@ -41,8 +52,9 @@ const Login = (props) => {
     event.preventDefault();
     props.login({ username, password });
   };
+
   let spanValidateUser = (
-    <p className="text-danger text-center mt-2">This User not exist</p>
+    'This user does not exist'
   );
 
   const handleClickShowPassword = () => {
@@ -54,57 +66,66 @@ const Login = (props) => {
   };
 
   return (
-    <div>
+    <div className="wrapper-registration">
+      <Avatar
+        style={{ margin: "0 auto", width: "60px", height: "70px" }}
+        src={logoSwapit}
+      />
+      <h2 className="text-center">Log in</h2>
       <form onSubmit={handleFormSubmit} className="text-center">
+        <ThemeProvider theme={blueSwapit}>
         <div>
-        <TextField
-          className="input-form"
-          id="username"
-          name="usernameEdit"
-          placeholder="username"
-          type="text"
-          variant="outlined"
-          label="username"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        ></TextField>
-        </div>
-        <div>
-        <FormControl className="input-form" variant="outlined">
-          {validate === -1 && username.length > 0 && spanValidateUser}
-          <InputLabel htmlFor="outlined-adornment-password">
-            Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={values.showPassword ? "text" : "password"}
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
+          <TextField
+            className="input-form"
+            id="username"
+            name="usernameEdit"
+            placeholder="username"
+            type="text"
+            variant="outlined"
+            label="username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            helperText={
+              validate === -1 && username.length > 0 && spanValidateUser
             }
-            labelWidth={70}
-          />
-          <FormHelperText>{props.errMessage}</FormHelperText>
-        </FormControl>
+          ></TextField>
         </div>
-        <div className ="text-center">
-        <button className="btn btn-primary">Login</button>
+        <div>
+          <FormControl className="input-form" variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={values.showPassword ? "text" : "password"}
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              labelWidth={70}
+            />
+            <FormHelperText error >{props.errMessage}</FormHelperText>
+          </FormControl>
         </div>
+        <div className="text-center mt-4">
+          <button className="btn-blueSwapit">Login</button>
+        </div>
+          </ThemeProvider>
       </form>
       <div className="logRedirect text-center pb-3">
-        <h5 className="mt-3">You don't have an account?</h5>
+        <p className="mt-3">You don't have an account yet?</p>
         <div className="mt-3">
-          <Link to={"/signup"} className="btnBlue2 ">
+          <Link to={"/signup"} className="btnBlue2">
             Sign Up
           </Link>
         </div>
