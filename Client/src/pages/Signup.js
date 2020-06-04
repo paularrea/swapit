@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import logoSwapit from "../img/logo_swapit.png";
 import { withAuth } from "../lib/AuthProvider";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -205,9 +204,7 @@ function Signup(props) {
       <div className="logRedirect text-center pb-3">
         <p className="mt-3">Already have an account?</p>
         <div className="mt-3">
-          <Link to={"/login"} className="btnBlue2">
-            Log in
-          </Link>
+          <div onClick={props.openL}>Log in</div>
         </div>
       </div>
     </div>

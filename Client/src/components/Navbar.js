@@ -37,15 +37,16 @@ const Navbar = (props) => {
       <div className="d-flex justify-content-end">
         <ChatButton />
         <Notifications />
-        <Link to={"/private/profile"} id="profile-btn">
+        <Link to={"/private/profile"} id="profile-btn" >
           {userUpdated.imgPath === undefined ? (
             <Spinner animation="border" variant="info" />
           ) : (
+            <div className="hoverNavbarIcons">
             <img
-              className="profileImgNav mx-3"
+              className="profileImgNav "
               src={userUpdated.imgPath}
               alt="Profile"
-            />
+            /></div>
           )}
         </Link>
       </div>

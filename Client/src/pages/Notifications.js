@@ -69,7 +69,7 @@ const Notifications = (props) => {
   return (
     <>
     <button className="btnHeartProfile" onClick={handleShow}>
-      <div className="heartProfile ">
+      <div className="hoverNavbarIcons ">
         <FavoriteBorderRoundedIcon style={{ fontSize: 35, color: "black" }} />
         {notifications !== undefined && (
           <NotiCounter notifications={notifications}/>

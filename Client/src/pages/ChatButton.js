@@ -3,8 +3,8 @@ import axios from "axios";
 import { withAuth } from "../lib/AuthProvider";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ChatBubbleOutlineRoundedIcon from "@material-ui/icons/ChatBubbleOutlineRounded";
 
-import ModeCommentIcon from "@material-ui/icons/ModeComment";
 import { Avatar } from "@material-ui/core";
 
 const ChatButton = (props) => {
@@ -32,7 +32,7 @@ const ChatButton = (props) => {
         return props.user.haveList.map((haveProduct) => {
           return client.haveList.map((haveClientProduct) => {
             return props.user.wantList.map((wantProduct) => {
-             if (chats.length > 0) {
+              if (chats.length > 0) {
                 chats.map((user) => user._id === client._id);
               } else if (
                 haveProduct === wantClientProduct &&
@@ -40,13 +40,13 @@ const ChatButton = (props) => {
               ) {
                 return chats.push(client);
               }
-              return chats
+              return chats;
             });
           });
         });
       });
     });
-  
+
   let showChats =
     chats.length > 0 &&
     chats.map((client) => {
@@ -70,8 +70,11 @@ const ChatButton = (props) => {
   return (
     <>
       <button className="btnHeartProfile" onClick={handleShow}>
-        <div className="heartProfile ">
-          <ModeCommentIcon style={{ fontSize: 35, color: "black" }} />
+        <div className="hoverNavbarIcons">
+          <ChatBubbleOutlineRoundedIcon
+            
+            style={{ fontSize: 35, color: "black" }}
+          />
         </div>
       </button>
 

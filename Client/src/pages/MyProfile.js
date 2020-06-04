@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
-import logoutLogo from "../img/sign-out-alt-solid.svg";
-import backLogo from "../img/back.png";
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Masonry from "react-masonry-css";
 import InterestedUsers from "../components/InterestedUsers";
 import { Spinner } from "react-bootstrap";
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const Profile = (props) => {
   const [finalUser, setUserData] = useState({});
   const [myCreations, setMyCreations] = useState();
@@ -118,17 +117,19 @@ const Profile = (props) => {
   return (
     <div className="container">
     
-      <div className="d-flex">
+      <div className="d-flex mt-3">
         <Link className=" justify-content-start mt-3 ml-2 " to="/private">
-          <img className="backIcons" src={backLogo} alt="backlogo" />
+          <ArrowBackIosRoundedIcon className="logOutIcon text-dark" alt="backlogo"/>
+          
         </Link>
 
         <div className="logandedit">
-          <Link className="m-3" to="/private/edit-profile">
+          <Link className="m-3 sizeEdit" to="/private/edit-profile">
             Edit
           </Link>
           <Link to={"/"} onClick={logout} id="home-btn">
-            <img className="navIcons mr-3" src={logoutLogo} alt="Logout" />
+            <ExitToAppIcon  className="logOutIcon mr-3 text-dark" />
+           
           </Link>
         </div>
       </div>
@@ -136,15 +137,15 @@ const Profile = (props) => {
         <div className="">
           <img className="profileImg" alt="perfilImg" src={finalUser.imgPath} />
         </div>
-        <div className="ml-2">
-          <h5>
+      </div>}
+        <div className="mt-3 ">
+          <p className="styleNameAndLastname">
             <b>
               {finalUser.name} {finalUser.lastName}
             </b>
-          </h5>
+          </p>
         </div>
-      </div>}
-      <Link className="btn addCreation-btn m-4" to="/private/creation-form">
+      <Link className="btn addCreation-btn m-3" to="/private/creation-form">
         Upload Creation
       </Link>
       <div className="containerUserProfile ">
