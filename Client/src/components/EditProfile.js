@@ -3,8 +3,22 @@ import { withAuth } from "../lib/AuthProvider";
 import logo from "../img/user-solid.svg";
 import axios from "axios";
 import service from "../api/service";
-import { Link } from "react-router-dom";
-import backLogo from "../img/back.png";
+import CreateRoundedIcon from "@material-ui/icons/CreateRounded";
+import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import {
+  TextField,
+  ThemeProvider,
+  createMuiTheme,
+  Button,
+} from "@material-ui/core";
+
+const blueSwapit = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#006f9b",
+    },
+  },
+});
 
 const EditProfile = (props) => {
   const [finalUser, setUserInput] = useState({
@@ -12,7 +26,7 @@ const EditProfile = (props) => {
     lastName: props.user.lastName,
     imgPath: props.user.imgPath,
   });
-  const [userUpdated, setUserUpdated] = useState({})
+  const [userUpdated, setUserUpdated] = useState({});
 
   let onChangeName = (e) => {
     finalUser.name = e.target.value;
@@ -35,87 +49,95 @@ const EditProfile = (props) => {
     }
   };
   let updatedUser = async () => {
-   const userUpdated = await service.getUserInfo()
-   setUserUpdated(userUpdated)
-   
-  }
-  
+    const userUpdated = await service.getUserInfo();
+    setUserUpdated(userUpdated);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       const finalUser = await service.getUserInfo();
       setUserInput(finalUser);
     };
-    updatedUser()
+    updatedUser();
     fetchData();
   }, []);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
     await service.profileUpdate(finalUser);
-    props.history.push("/private/profile");
     console.log("Edited!");
   };
 
   return (
-    <div className="container">
-      <Link className="d-flex justify-content-start mt-3 ml-2" to = "/private/profile"><img className ="backIcons" src={backLogo} alt="backlogo"/></Link>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-group">
-          <div className="col text-center pb-3">
-            <p htmlFor="idProfileImg">Edit profile image</p>
-            <img
-              className="navIcons"
-              src={finalUser.imgPath ? finalUser.imgPath : logo}
-              alt=""
-            />
-          </div>
-
+    <div className="wrapper-registration" style={{ position: "relative" }}>
+      <CloseRoundedIcon
+        onClick={props.closeEd}
+        style={{ position: "absolute", left: 10, top: 10 }}
+      />
+      <form className="text-center" onSubmit={(e) => handleSubmit(e)}>
+        <h2 className="mb-4">Edit profile</h2>
+        <div style={{ position: "relative" }}>
+          <img
+            className="editImg"
+            src={finalUser.imgPath ? finalUser.imgPath : logo}
+            alt=""
+            onChange={props.changeEd}
+          />
           <input
-            type="file"
-            required
-            className="form-control"
-            id="idProfileImg"
+            accept="image/*"
             name="imgPath"
-            aria-describedby="image"
-            placeholder={finalUser.imgPath}
+            style={{ display: "none" }}
+            id="idProfileImg"
+            multiple
+            required
+            className="edit-photo-button"
+            // placeholder={finalUser.imgPath}
             onChange={(e) => fileUpload(e)}
+            type="file"
           />
+          <label htmlFor="idProfileImg">
+            <Button
+              variant="raised"
+              className="absolute-edit-photo"
+              component={CreateRoundedIcon}
+            />
+          </label>
         </div>
-        <div className="form-group">
-          <label htmlFor="idName">Name</label>
-          <input
-            required
-            className="form-control"
-            id="idName"
-            aria-describedby="Name"
-            placeholder={userUpdated.name}
-            type="text"
-            name="name"
-            defaultValue={userUpdated.name || ""}
-            onChange={onChangeName}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="idName">Lastname</label>
-          <input
-            required
-            className="form-control"
-            id="idLastName"
-            aria-describedby="Lastname"
-            placeholder={userUpdated.lastName}
-            type="text"
-            name="lastName"
-            defaultValue={userUpdated.lastName || ""}
-            onChange={onChangelastName}
-          />
-        </div>
-
-        <div className="text-center">
-          <button className="btn btn-outline-primary" type="submit">
-            Save Profile
+        <ThemeProvider theme={blueSwapit}>
+          <div>
+            <TextField
+              className="input-form"
+              id="idName"
+              name="name"
+              type="text"
+              variant="outlined"
+              label="Name"
+              placeholder={userUpdated.name}
+              defaultValue={userUpdated.name || ""}
+              onChange={onChangeName}
+            ></TextField>
+          </div>
+          <div>
+            <TextField
+              className="input-form"
+              id="idLastName"
+              name="lastName"
+              type="text"
+              variant="outlined"
+              label="Lastname"
+              placeholder={userUpdated.lastName}
+              defaultValue={userUpdated.lastName || ""}
+              onChange={onChangelastName}
+            ></TextField>
+          </div>
+          <button
+            className="btn-blueSwapit mt-4"
+            type="submit"
+            onClick={props.changeEd}
+          >
+            {props.changeEd === true ? "Close" : "Save"}
           </button>
-        </div>
+        </ThemeProvider>
       </form>
     </div>
   );

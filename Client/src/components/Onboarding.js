@@ -39,7 +39,7 @@ const Onboarding = () => {
           <Carousel.Caption>
             <h3 className="caption-label">Explore</h3>
             <p className="caption-text">
-              Discover creations from other artists
+              Discover amazing creations from others
             </p>
           </Carousel.Caption>
           <img

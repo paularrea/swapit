@@ -53,7 +53,7 @@ const Layout = () => {
         </div>
 
         <div className="d-flex justify-content-around">
-          <button className="btn-signup-header mr-2" onClick={openA}>
+          <button className="btn-about mr-2" onClick={openA}>
             <b>About</b>
           </button>
           <Modal

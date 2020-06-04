@@ -118,6 +118,25 @@ color:#f44336
   color: #006f9b;
 }
 
+.editImg{
+  border-radius: 50%;
+  width: 40%;
+}
+
+.absolute-edit-photo{
+  background-color: white !important;
+  position:absolute !important;
+  bottom:10px !important;
+  right:90px !important;
+  border: 1px solid rgb(226, 226, 226) !important;
+  width: 30px !important;
+  height: 60px !important; 
+  border-radius: 50% !important;
+}
+.absolute-edit-photo:hover{
+  background-color: whitesmoke !important;
+}
+
 .wrapper-registration{
   background-color: white;
   border: grey;
@@ -682,7 +701,7 @@ color: oldlace !important
     border-radius: 15px;
     }
     .hoverNavbarIcons{
-     padding: 5px;
+     padding: 10px;
      border-radius: 50%;
       }
       .hoverNavbarIcons:hover{
@@ -797,7 +816,7 @@ border: none;
 /* discover */
 .searchBarDiv{
   position: absolute !important;
-  top: 3%;
+  top: 30px !important;
   left: 22%;
   width: 60% ;
 }
@@ -993,8 +1012,24 @@ border-radius: 15px;
 .sizeEdit{
   font-size: 30px !important;
   font-weight: 300 !important;
+  border:none !important;
+  background-color: white;
   color:#006f9b;
 }
+.sizeEdit:hover{
+  color:#005272;
+}
+
+.blueSwapitP{
+  font-weight: 300 !important;
+  border:none !important;
+  background-color: white;
+  color:#006f9b;
+}
+.blueSwapitP:hover{
+  color:#005272;
+}
+
 .styleNameAndLastname{
   font-size: 35px !important;
   font-weight: 100 !important;

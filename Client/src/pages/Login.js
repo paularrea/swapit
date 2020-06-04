@@ -120,7 +120,7 @@ const Login = (props) => {
       </form>
       <div className="logRedirect text-center pb-3">
         <p className="mt-3">You don't have an account yet?</p>
-        <div type="submit" className="mt-3" onClick={props.openS}>
+        <div type="submit" className="mt-3 blueSwapitP" onClick={props.openS}>
           Sign Up
         </div>
       </div>

@@ -2,23 +2,34 @@ import React, { useState, useEffect } from "react";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
-import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
-import DeleteIcon from '@material-ui/icons/Delete';
+import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
+import DeleteIcon from "@material-ui/icons/Delete";
 import Masonry from "react-masonry-css";
 import InterestedUsers from "../components/InterestedUsers";
+import EditProfile from '../components/EditProfile'
+import Modal from "@material-ui/core/Modal";
 import { Spinner } from "react-bootstrap";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+
+
 const Profile = (props) => {
+  const [openEdit, setOpenEdit] = useState(false);
   const [finalUser, setUserData] = useState({});
   const [myCreations, setMyCreations] = useState();
   const { logout } = props;
- 
+
+  const openEd = () => {
+    setOpenEdit(!openEdit);
+  };
+  const closeEd = () => {
+    setOpenEdit(!openEdit);
+  };
 
   let breakpointColumnsObj = {
     default: 5,
     1100: 5,
     750: 3,
-    500:1,
+    500: 1,
   };
   const getBackgroundColor = (category) => {
     if (category === "photography") {
@@ -47,8 +58,7 @@ const Profile = (props) => {
       setMyCreations(creations[0]);
     };
     fetchData();
-  }, []);
-
+  }, [openEdit]);
 
   const displayHaveList =
     myCreations !== undefined &&
@@ -71,21 +81,20 @@ const Profile = (props) => {
               className="position-absolute deleteProd"
               to={`/private/product-delete/${creation._id}`}
             >
-              <div className='bgDeleteProduct'>
-              <DeleteIcon style={{ color: 'white' }}/>
+              <div className="bgDeleteProduct">
+                <DeleteIcon style={{ color: "white" }} />
               </div>
             </Link>
             <div>
               <p className="text-left">{creation.title}</p>
             </div>
-       
+
             <div className="d-flex align-items-center justify-content-end">
               <p className="numUsers text-white text-right ">
                 {creation.interestedUser.length &&
                   creation.interestedUser.length}{" "}
               </p>
-              <InterestedUsers creation = {creation}/>
-             
+              <InterestedUsers creation={creation} />
             </div>
           </div>
         </div>
@@ -96,11 +105,12 @@ const Profile = (props) => {
     myCreations !== undefined &&
     myCreations.wantList.map((wantedCreations) => {
       return (
-        <div key={wantedCreations._id}
+        <div
+          key={wantedCreations._id}
           className="usersProductCards mt-3"
           style={getBackgroundColor(wantedCreations.category)}
         >
-          <div  className="col haveListCard">
+          <div className="col haveListCard">
             <Link to={`/private/product-details/${wantedCreations._id}`}>
               <img
                 className="creationsImg"
@@ -116,35 +126,56 @@ const Profile = (props) => {
 
   return (
     <div className="container">
-    
       <div className="d-flex mt-3">
-        <Link className=" justify-content-start mt-3 ml-2 " to="/private">
-          <ArrowBackIosRoundedIcon className="logOutIcon text-dark" alt="backlogo"/>
-          
+        <Link to="/private">
+          <div className="hoverNavbarIcons d-flex justify-content-center align-items-center">
+            <ArrowBackIosRoundedIcon
+              className="logOutIcon text-dark"
+              alt="backlogo"
+            />
+          </div>
         </Link>
-
         <div className="logandedit">
-          <Link className="m-3 sizeEdit" to="/private/edit-profile">
-            Edit
-          </Link>
+
+        <button className="m-3 sizeEdit" onClick={openEd}>
+            <b>Edit</b>
+          </button>
+        <Modal
+            open={openEdit}
+            onClose={closeEd}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            <EditProfile changeEd={setOpenEdit} closeEd={closeEd}/>
+          </Modal>
+
           <Link to={"/"} onClick={logout} id="home-btn">
-            <ExitToAppIcon  className="logOutIcon mr-3 text-dark" />
-           
+            <div className="hoverNavbarIcons d-flex justify-content-center align-items-center">
+              <ExitToAppIcon className="logOutIcon text-dark" />
+            </div>
           </Link>
         </div>
       </div>
-      {finalUser.imgPath === undefined ? <Spinner animation="border" variant="info" /> : <div className=" d-flex text-left align-items-center justify-content-center mt-3">
-        <div className="">
-          <img className="profileImg" alt="perfilImg" src={finalUser.imgPath} />
+      {finalUser.imgPath === undefined ? (
+        <Spinner animation="border" variant="info" />
+      ) : (
+        <div className=" d-flex text-left align-items-center justify-content-center mt-3">
+          <div className="">
+            <img
+              className="profileImg"
+              alt="perfilImg"
+              src={finalUser.imgPath}
+            />
+          </div>
         </div>
-      </div>}
-        <div className="mt-3 ">
-          <p className="styleNameAndLastname">
-            <b>
-              {finalUser.name} {finalUser.lastName}
-            </b>
-          </p>
-        </div>
+      )}
+      <div className="mt-3 ">
+        <p className="styleNameAndLastname">
+          <b>
+            {finalUser.name} {finalUser.lastName}
+          </b>
+        </p>
+      </div>
       <Link className="btn addCreation-btn m-3" to="/private/creation-form">
         Upload Creation
       </Link>
@@ -159,7 +190,11 @@ const Profile = (props) => {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {myCreations === undefined ? <Spinner animation="border" variant="info" /> : displayWantList}
+            {myCreations === undefined ? (
+              <Spinner animation="border" variant="info" />
+            ) : (
+              displayWantList
+            )}
           </Masonry>
         </div>
       </div>
@@ -175,7 +210,11 @@ const Profile = (props) => {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {myCreations === undefined ? <Spinner animation="border" variant="info" /> : displayHaveList}
+            {myCreations === undefined ? (
+              <Spinner animation="border" variant="info" />
+            ) : (
+              displayHaveList
+            )}
           </Masonry>
         </div>
       </div>

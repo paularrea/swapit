@@ -203,8 +203,8 @@ function Signup(props) {
       </form>
       <div className="logRedirect text-center pb-3">
         <p className="mt-3">Already have an account?</p>
-        <div className="mt-3">
-          <div onClick={props.openL}>Log in</div>
+        <div type="submit" className=" mt-3 blueSwapitP" onClick={props.openL}>
+          Log in
         </div>
       </div>
     </div>
