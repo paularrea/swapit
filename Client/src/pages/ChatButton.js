@@ -69,14 +69,11 @@ const ChatButton = (props) => {
     });
   return (
     <>
-      <button className="btnHeartProfile" onClick={handleShow}>
-        <div className="hoverNavbarIcons">
-          <ChatBubbleOutlineRoundedIcon
-            
-            style={{ fontSize: 35, color: "black" }}
-          />
-        </div>
-      </button>
+      <div className="hoverNavbarIcons" onClick={handleShow}>
+        <ChatBubbleOutlineRoundedIcon
+          style={{ fontSize: 35, color: "black" }}
+        />
+      </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -84,7 +81,7 @@ const ChatButton = (props) => {
         </Modal.Header>
         <Modal.Body>{showChats}</Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-secondary" onClick={handleClose}>
+          <button className="btn-blueSwapit" onClick={handleClose}>
             Close
           </button>
         </Modal.Footer>

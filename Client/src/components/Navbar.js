@@ -62,7 +62,7 @@ const Navbar = (props) => {
         </Link>
       </div>
      
-      {window.innerWidth <= 500 ? desktopNav : <BurgerNav/>}
+      {window.innerWidth >= 500 ? desktopNav : <BurgerNav/>}
 
 
     </div>

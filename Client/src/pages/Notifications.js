@@ -3,7 +3,7 @@ import axios from "axios";
 import { withAuth } from "../lib/AuthProvider";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import NotiCounter from '../components/NotiCounter'
+import NotiCounter from "../components/NotiCounter";
 import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
 
 const Notifications = (props) => {
@@ -28,7 +28,7 @@ const Notifications = (props) => {
       notifications.map((notification) => {
         return (notification.viewed = true);
       });
-    axios.put( process.env.REACT_APP_API_URI + "/api/notifications", {
+    axios.put(process.env.REACT_APP_API_URI + "/api/notifications", {
       notifications,
       _id: props.user._id,
     });
@@ -65,25 +65,21 @@ const Notifications = (props) => {
       );
     });
 
-  
   return (
     <>
-    <button className="btnHeartProfile" onClick={handleShow}>
-      <div className="hoverNavbarIcons ">
+      <div className="hoverNavbarIcons " onClick={handleShow}>
         <FavoriteBorderRoundedIcon style={{ fontSize: 35, color: "black" }} />
         {notifications !== undefined && (
-          <NotiCounter notifications={notifications}/>
+          <NotiCounter notifications={notifications} />
         )}
       </div>
-    </button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title className="text-center">Your likes</Modal.Title>
         </Modal.Header>
         <Modal.Body>{notis}</Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-secondary" onClick={handleClose}>
+          <button className="btn-blueSwapit" onClick={handleClose}>
             Close
           </button>
         </Modal.Footer>

@@ -7,6 +7,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Masonry from "react-masonry-css";
 import InterestedUsers from "../components/InterestedUsers";
 import EditProfile from '../components/EditProfile'
+import AddProduct from '../components/AddProduct'
 import Modal from "@material-ui/core/Modal";
 import { Spinner } from "react-bootstrap";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -14,6 +15,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const Profile = (props) => {
   const [openEdit, setOpenEdit] = useState(false);
+  const [openUploadProduct, setOpenUploadProduct] = useState(false);
   const [finalUser, setUserData] = useState({});
   const [myCreations, setMyCreations] = useState();
   const { logout } = props;
@@ -23,6 +25,13 @@ const Profile = (props) => {
   };
   const closeEd = () => {
     setOpenEdit(!openEdit);
+  };
+
+  const openUP = () => {
+    setOpenUploadProduct(!openUploadProduct);
+  };
+  const closeUP = () => {
+    setOpenUploadProduct(!openUploadProduct);
   };
 
   let breakpointColumnsObj = {
@@ -176,9 +185,19 @@ const Profile = (props) => {
           </b>
         </p>
       </div>
-      <Link className="btn addCreation-btn m-3" to="/private/creation-form">
-        Upload Creation
-      </Link>
+
+      <button className="btn-blueSwapit" onClick={openUP}>
+            <b>Upload Creation</b>
+          </button>
+      <Modal
+            open={openUploadProduct}
+            onClose={closeUP}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            <AddProduct changeUP={setOpenUploadProduct} closeEd={closeUP}/>
+          </Modal>
+     
       <div className="containerUserProfile ">
         <div id="haveList" className="px-3">
           <p>

@@ -10,11 +10,16 @@ import { CTX } from "../components/Store";
 import { withAuth } from "../lib/AuthProvider";
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "50px",
+    margin:'0 auto',
     padding: theme.spacing(3, 2),
     backgroundColor: "whitesmoke",
     borderRadius:15,
+    height:'80vh',
+    width:"90%",
+    maxWidth: "500px",
+    boxShadow: '0 0 10px 2px rgba(0,0,0,.3)',
   },
+
   flex: {
     display: "flex",
     alignItems: "center",
@@ -22,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   chatWindow: {
-    width: "100%",
-    height: "300px",
+    height: "60vh",
     padding: "20px",
     backgroundColor: "whitesmoke",
   },
+
   chatBox: {
-    width: "85%",
+    width: "80%",
   },
   button: {
     width: "15%",
@@ -51,9 +56,6 @@ function Dashboard(props) {
   const [textValue, changeTextValue] = useState("");
   return (
     <Paper className={classes.root}>
-      <Typography variant="h4" component="h3">
-        Chat
-      </Typography>
       <Typography component="h5" variant="h5">
         {activeTopic}
       </Typography>

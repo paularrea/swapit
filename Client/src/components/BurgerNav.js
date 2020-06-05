@@ -7,7 +7,8 @@ import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
 import service from "../api/service";
 import Avatar from "@material-ui/core/Avatar";
 import { withAuth } from "../lib/AuthProvider";
-import ExitToApp from "@material-ui/icons/ExitToApp"
+import ExitToApp from "@material-ui/icons/ExitToApp";
+
 const BurgerNav = (props) => {
   const [userUpdated, setUserUpdated] = useState({});
   const { logout } = props;
@@ -30,7 +31,8 @@ const BurgerNav = (props) => {
               width: 250,
               height: "auto",
               backgroundColor: "white",
-              borderRadius: 15,
+              borderRadius: 9,
+              boxShadow: "0 0 10px 2px rgba(0,0,0,.6)",
             }}
           >
             <div className="p-2 m-2">
@@ -47,29 +49,34 @@ const BurgerNav = (props) => {
 
               <hr className="horizontal-line mt-4 " />
 
-              <div className=" d-flex align-items-center justify-content-between mx-2">
-               <p className=" noneMargin">Notifications</p>
+              <div className="hoverItemsBurger d-flex align-items-center justify-content-between mx-2">
+                <p className=" noneMargin">Notifications</p>
                 <Notifications />{" "}
-                
               </div>
-              <div className=" d-flex align-items-center justify-content-between mx-2 ">
-               <p className=" noneMargin">Chats</p> 
-               <ChatButton />
-                
+              <div className="hoverItemsBurger d-flex align-items-center justify-content-between mx-2 ">
+                <p className=" noneMargin">Chats</p>
+                <ChatButton />
               </div>
-              <Link className="row d-flex align-items-center  text-dark justify-content-between mx-2 my-2" to={"/"} onClick={logout}>
-                <p className=" noneMargin">Log out</p>  
-                <ExitToApp  style={{ fontSize: 35, color: "black" }} className="mr-3" fill="grey"/>
-                  
-                  
-              </Link>
+              <div>
+                <Link
+                  className="hoverItemsBurger d-flex align-items-center  text-dark justify-content-between mx-2 my-2"
+                  to={"/"}
+                  onClick={logout}
+                >
+                  <p className=" noneMargin">Log out</p>
+                  <ExitToApp
+                    style={{ fontSize: 35, color: "black" }}
+                    className="mr-3"
+                    fill="grey"
+                  />
+                </Link>
+              </div>
             </div>
             <Arrow
               style={arrowStyle}
               layerSide={layerSide}
-              backgroundColor="#f5f5f5"
-              borderWidth={1}
-              borderColor="#d8d6d9"
+              backgroundColor="white"
+              borderColor="black"
               size={10}
               roundness={0.7}
             />
@@ -89,7 +96,7 @@ const BurgerNav = (props) => {
           ref={triggerRef}
           className="toggle-btn"
           onClick={toggle}
-          style ={{fontSize: 35, color: "black"}}
+          style={{ fontSize: 35, color: "black" }}
         />
       )}
     </ToggleLayer>

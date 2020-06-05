@@ -2,8 +2,49 @@ import React, { useState } from "react";
 import axios from "axios";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
+import CreateRoundedIcon from "@material-ui/icons/CreateRounded";
+import {
+  TextField,
+  ThemeProvider,
+  createMuiTheme,
+  Button,
+  TextareaAutosize,
+  MenuItem,
+} from "@material-ui/core";
+
+const blueSwapit = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#006f9b",
+    },
+  },
+});
+
+const categories = [
+  {
+    value: "drawings",
+    label: "Drawings",
+  },
+  {
+    value: "textile",
+    label: "Textile",
+  },
+  {
+    value: "decoration",
+    label: "Decoration",
+  },
+  {
+    value: "wood",
+    label: "Wood",
+  },
+  {
+    value: "photography",
+    label: "Photography",
+  },
+];
 
 const AddProduct = (props) => {
+  const [category, setCategory] = useState();
   const [maxLength, setMaxLength] = useState(0);
   const [creation, setCreation] = useState({
     title: "",
@@ -38,6 +79,7 @@ const AddProduct = (props) => {
     setMaxLength({
       description: value.length,
     });
+    setCategory(e.target.value);
   };
 
   let handleSubmit = async (e) => {
@@ -48,75 +90,90 @@ const AddProduct = (props) => {
   };
 
   return (
-    <div onSubmit={(e) => handleSubmit(e)}>
-      <h1 className="text-center">Create a new Product:</h1>
-      <form>
-        <div className="form-group">
-          <label>Image</label>
+    <div
+      className="wrapper-registration text-center"
+      onSubmit={(e) => handleSubmit(e)}
+    >
+      <h3>Create a new Product</h3>
+      <ThemeProvider theme={blueSwapit}>
+        <form className="mt-3">
+          <div className='uploadProduct-input' style={{ position: "relative" }}>
           <input
-            type="file"
+          
+            accept="image/*"
             name="imgPath"
-            className="form-control"
-            id="imageInput"
-            placeholder="Upload Img"
+            style={{ display: "none" }}
+            id="idProductInput"
+            multiple
+            required
             onChange={(e) => fileUpload(e)}
+            type="file"
           />
+          <label htmlFor="idProductInput">
+            <Button
+              variant="raised"
+            >Upload Image</Button>
+          </label>
         </div>
-        <div className="form-group">
-          <label>Title</label>
-          <input
-            type="text"
-            name="title"
-            className="form-control"
-            id="titleInput"
-            placeholder="title"
-            onChange={(e) => onChange(e)}
-          />
-        </div>
-        <div className="form-group">
-          <label>Description</label>
-          <textarea
-            maxLength="170"
-            type="text"
-            name="description"
-            className="form-control"
-            id="descriptionInput"
-            placeholder="Description..."
-            onChange={(e) => onChange(e)}
-          />
-        </div>
-        {maxLength.description === 170 && (
-          <p style={{ color: "#931F1D" }}>
-            You have reached the maximum number of characters.
-          </p>
-        )}
-        <div className="form-group">
-          <label>Category</label>
-          <select
-            name="category"
-            type="text"
-            className="form-control text-center"
-            id="categoryInput"
-            placeholder="Category"
-            onChange={(e) => onChange(e)}
-          >
-            <option disabled selected>
-              select category...
-            </option>
-            <option value="drawings">Drawings</option>
-            <option value="textile">Textile</option>
-            <option value="decoration">Decoration</option>
-            <option value="wood">Wood</option>
-            <option value="photography">Photography</option>
-          </select>
-        </div>
-        <div>
-          <button className="btn btn-primary" type="submit">
-            {" "}
-            Create!{" "}
-          </button>
-        </div>
-      </form>
+
+          <div>
+            <TextField
+              className="input-form"
+              id="titleInput"
+              name="title"
+              type="text"
+              variant="outlined"
+              label="Title"
+              onChange={(e) => onChange(e)}
+            ></TextField>
+          </div>
+
+          <div>
+            <TextField
+              maxLength="170"
+              type="text"
+              name="description"
+              className="input-form"
+              id="titleInput"
+              variant="outlined"
+              label="Description"
+              multiline
+              onChange={(e) => onChange(e)}
+              helperText={
+                maxLength.description === 170 && (
+                  <p style={{ color: "#931F1D" }}>
+                    You have reached the maximum number of characters.
+                  </p>
+                )
+              }
+            ></TextField>
+          </div>
+          <div>
+            <TextField
+              className="input-form"
+              id="categoryInput"
+              select
+              value={category}
+              onChange={(e) => onChange(e)}
+              helperText="Please select item category"
+              variant="outlined"
+              label='Select category'
+            >
+              {categories.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          </div>
+          <div>
+            <button className="mt-4 btn-blueSwapit" type="submit">
+              {" "}
+              Create!{" "}
+            </button>
+          </div>
+        </form>
+      </ThemeProvider>
     </div>
   );
 };

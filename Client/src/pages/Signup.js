@@ -25,6 +25,8 @@ const blueSwapit = createMuiTheme({
   },
 });
 
+const strongRegex =  /^[A-Za-z]\w{7,14}$/;
+
 function Signup(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -55,7 +57,7 @@ function Signup(props) {
   let validatePassword =
     password !== repeatPassword && "Passwords doesn't match";
   let validatePasswordLength =
-    password.length < 6 && "The password is too short";
+    !password.match(strongRegex) && "The password needs at least a capital letter and a number";
 
   let handleFormSubmit = (event) => {
     event.preventDefault();
@@ -65,7 +67,7 @@ function Signup(props) {
     if (password !== repeatPassword) {
       console.log("Passwords don't match");
     }
-    if (password.length < 6) {
+    if (!password.match(strongRegex)) {
       console.log("Passwords is too short");
     }
     if (validateUsername === 0) {
@@ -76,7 +78,6 @@ function Signup(props) {
   };
 
   let errorUsername = "This user already exists!";
-
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
