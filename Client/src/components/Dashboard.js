@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 
 import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
+
 import TextField from "@material-ui/core/TextField";
 import { CTX } from "../components/Store";
 import { withAuth } from "../lib/AuthProvider";
@@ -15,20 +12,20 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: "50px",
     padding: theme.spacing(3, 2),
+    backgroundColor: "whitesmoke",
+    borderRadius:15,
   },
   flex: {
     display: "flex",
     alignItems: "center",
+    backgroundColor: "whitesmoke",
   },
-  topicsWindow: {
-    width: "15%",
-    height: "300px",
-    borderRight: "1px solid gray",
-  },
+
   chatWindow: {
-    width: "85%",
+    width: "100%",
     height: "300px",
     padding: "20px",
+    backgroundColor: "whitesmoke",
   },
   chatBox: {
     width: "85%",
@@ -40,7 +37,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard(props) {
   const classes = useStyles();
-  const { allChats, sendChatAction, userName, userId, userImg } = React.useContext(CTX);
+  const {
+    allChats,
+    sendChatAction,
+    userName,
+    userId,
+    userImg,
+  } = React.useContext(CTX);
   console.log({ allChats });
   const topics = Object.keys(allChats);
 
@@ -55,28 +58,14 @@ function Dashboard(props) {
         {activeTopic}
       </Typography>
       <div className={classes.flex}>
-        <div className={classes.topicsWindow}>
-          <List>
-        
-            {topics.map((topic) => (
-              <ListItem
-                onClick={(e) => changeActiveTopic(e.target.innerText)}
-                key={topic}
-                button
-                name="Albert"
-              >
-                <ListItemText primary={topic} />
-              </ListItem>
-            ))}
-          </List>
-        </div>
         <div className={classes.chatWindow}>
           {allChats[activeTopic].map((chat, i) => (
             <div className="cardChat card" key={i}>
-                <div className="d-flex  justify-content-between">  <Avatar alt="Remy Sharp" src={chat.img} />
-              <p className="text-dark text-muted"  >{chat.from} </p>
-                    
-              </div> 
+              <div className="d-flex  justify-content-between">
+                {" "}
+                <Avatar alt="Remy Sharp" src={chat.img} />
+                <p className="text-dark text-muted">{chat.from} </p>
+              </div>
               <Typography variant="body1" gutterBottom>
                 {chat.msg}
               </Typography>
@@ -85,7 +74,6 @@ function Dashboard(props) {
         </div>
       </div>
       <div className={classes.flex}>
-         
         <TextField
           label="Send a Chat"
           className={classes.chatBox}
@@ -93,19 +81,25 @@ function Dashboard(props) {
           onChange={(e) => changeTextValue(e.target.value)}
           margin="normal"
         />
-        <Button
+        <button
           variant="contained"
           color="primary"
-          className={classes.button}
+          className="btn-blueSwapit"
           onClick={() => {
-            sendChatAction({from:userName, sender: userId, msg: textValue, topic: activeTopic, img:userImg});
+            sendChatAction({
+              from: userName,
+              sender: userId,
+              msg: textValue,
+              topic: activeTopic,
+              img: userImg,
+            });
             changeTextValue("");
           }}
         >
           Send
-        </Button>
+        </button>
       </div>
     </Paper>
   );
 }
-export default withAuth(Dashboard)
+export default withAuth(Dashboard);

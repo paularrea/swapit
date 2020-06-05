@@ -7,18 +7,45 @@ import Notifications from "../pages/Notifications";
 import ChatButton from "../pages/ChatButton";
 import { Avatar } from "@material-ui/core";
 import logoSwapit from "../img/logo_swapit.png";
+import BurgerNav from "./BurgerNav";
 
 const Navbar = (props) => {
   const [userUpdated, setUserUpdated] = useState({});
+  
 
   useEffect(() => {
     const fetchData = async () => {
       const finalUser = await service.getUserInfo();
       setUserUpdated(finalUser);
     };
-
     fetchData();
   }, []);
+
+
+
+
+  let desktopNav = 
+  <div className="d-flex justify-content-end">
+     <ChatButton />
+     <Notifications />
+     <Link to={"/private/profile"} id="profile-btn" >
+       {userUpdated.imgPath === undefined ? (
+         <Spinner animation="border" variant="info" />
+       ) : (
+         <div className="hoverNavbarIcons">
+         <img
+           className="profileImgNav "
+           src={userUpdated.imgPath}
+           alt="Profile"
+         /></div>
+       )}
+     </Link>
+   </div>
+
+
+
+
+
   return (
     <div className="row d-flex justify-content-between align-items-center navbar">
       <div className="">
@@ -34,22 +61,10 @@ const Navbar = (props) => {
           </div>
         </Link>
       </div>
-      <div className="d-flex justify-content-end">
-        <ChatButton />
-        <Notifications />
-        <Link to={"/private/profile"} id="profile-btn" >
-          {userUpdated.imgPath === undefined ? (
-            <Spinner animation="border" variant="info" />
-          ) : (
-            <div className="hoverNavbarIcons">
-            <img
-              className="profileImgNav "
-              src={userUpdated.imgPath}
-              alt="Profile"
-            /></div>
-          )}
-        </Link>
-      </div>
+     
+      {window.innerWidth <= 500 ? desktopNav : <BurgerNav/>}
+
+
     </div>
   );
 };

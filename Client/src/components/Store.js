@@ -27,8 +27,7 @@ function Store(props) {
 
 
   let initState = {
-    general:[],
-    topic2:[]
+    general:[]
   };
 
   const [allChats, dispatch] = React.useReducer(reducer, initState);
