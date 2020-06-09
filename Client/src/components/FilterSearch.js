@@ -155,7 +155,7 @@ const FilterSearch = (props) => {
         aria-expanded={openCategory}
       >
         <div className="d-flex justify-content-between align-items-center">
-          <p className="">Filter by category...</p>
+          <p className="noneMarginFilter">Filter by category...</p>
           <img
             className="dropdown"
             src={openCategory !== false ? dropArriba : dropAbajo}

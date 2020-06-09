@@ -1,18 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef  } from "react";
 import axios from "axios";
 import { withAuth } from "../lib/AuthProvider";
 import service from "../api/service";
 import { Link } from "react-router-dom";
-import backLogo from "../img/back.png";
 import Masonry from "react-masonry-css";
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
+import { Modal } from "@material-ui/core";
+import EditProduct from "./EditProduct";
 
 const ProductDetails = (props) => {
   const [productInfo, setProductInfo] = useState();
   const [allProducts, setAllProducts] = useState();
   const [likeListId, setLikeListId] = useState("");
   const [buttonOn, setButtonOn] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
+  const openE = () => {
+    setOpenEdit(!openEdit);
+  };
+  const closeE = () => {
+    setOpenEdit(!openEdit);
+  };
+
+   const myRef = useRef(null)
+   const executeScroll = () => scrollToRef(myRef)
+   
 
   const { params } = props.match;
   let productId = params.id;
@@ -53,7 +67,7 @@ const ProductDetails = (props) => {
        to={`/private/product-details/${product._id}`}
      >
        <div className="creationsCard mt-3">
-         <img className="sizeMobile" src={product.imgPath} alt="" />
+         <img onClick={executeScroll} className="sizeMobile" src={product.imgPath} alt=""  />
        </div>
      </Link> 
     });
@@ -144,12 +158,13 @@ console.log(userExist,"equaaaal")
 
   const editBtn = isEqual && (
     <div className="text-center mt-2">
-      <Link
-        className="edit-btn-desktop"
-        to={`/private/edit-product/${productId}`}
-      >
-        Edit
-      </Link>
+      <Modal open={openEdit}
+            onClose={closeE}>
+        <EditProduct  productId = {productId}/>
+      </Modal>
+      <button className="btn-blueSwapit mr-2 btnMobile" onClick={openE}>
+            <b>Edit</b>
+          </button>
     </div>
   );
 
@@ -177,8 +192,12 @@ console.log(userExist,"equaaaal")
           className="btn-back d-flex justify-content-start m-2"
           to="/private"
         >
-          <img className="backLogo" src={backLogo} alt="heart" />
+          <ArrowBackIosRoundedIcon
+              className="logOutIcon text-dark"
+              alt="backlogo"
+            />
         </Link>
+        
         <div className="detailsCard">
           <span
             className="ImgContainerCard d-flex"
@@ -190,6 +209,7 @@ console.log(userExist,"equaaaal")
               className="detailsImgCard"
               src={productInfo.imgPath}
               alt="logo"
+
             />
             <div
               className="d-flex justify-content-center"
@@ -232,7 +252,7 @@ console.log(userExist,"equaaaal")
     );
 
   return (
-    <div>
+    <div ref={myRef} className="container">
       <div className="cardDetails">{showDetails}</div>
       <div className="cardDetails2">
         <h5>You may also like...</h5>

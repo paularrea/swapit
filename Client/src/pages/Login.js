@@ -63,7 +63,8 @@ const Login = (props) => {
   };
 
   return (
-    <div className="wrapper-registration">
+   
+    <div className="wrapper-registration ">
       <Avatar
         style={{ margin: "0 auto", width: "60px", height: "70px" }}
         src={logoSwapit}
@@ -125,6 +126,7 @@ const Login = (props) => {
         </div>
       </div>
     </div>
+   
   );
 };
 export default withAuth(Login);

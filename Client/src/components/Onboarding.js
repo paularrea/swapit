@@ -17,7 +17,7 @@ const Onboarding = () => {
             </p>
           </Carousel.Caption>
           <img
-            className="d-block w-100 onboarding-img"
+            className="d-block  onboarding-img"
             src={img1}
             alt="First slide"
           />
@@ -30,7 +30,7 @@ const Onboarding = () => {
             </p>
           </Carousel.Caption>
           <img
-            className="d-block w-100 onboarding-img"
+            className="d-block  onboarding-img"
             src={img2}
             alt="Second slide"
           />
@@ -43,7 +43,7 @@ const Onboarding = () => {
             </p>
           </Carousel.Caption>
           <img
-            className="d-block w-100 onboarding-img"
+            className="d-block  onboarding-img"
             src={img3}
             alt="Third slide"
           />
@@ -56,7 +56,7 @@ const Onboarding = () => {
             </p>
           </Carousel.Caption>
           <img
-            className="d-block w-100 onboarding-img"
+            className="d-block  onboarding-img2"
             src={img4}
             alt="Third slide"
           />

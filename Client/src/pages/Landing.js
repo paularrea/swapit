@@ -43,9 +43,9 @@ const Layout = () => {
     setOpenSignup(!openSignup);
   };
   return (
-    <div>
-      <div className="header-layout mx-5 my-2">
-        <div className="d-flex align-items-center">
+    <div className="container">
+      <div className="header-layout">
+        <div className="d-flex align-items-center mobileLogo">
           <Avatar style={{ width: "60px", height: "70px" }} src={logoSwapit} />
           <h2 className="ml-2" style={{ color: "#006f9b" }}>
             swap it!
@@ -53,7 +53,7 @@ const Layout = () => {
         </div>
 
         <div className="d-flex justify-content-around">
-          <button className="btn-about mr-2" onClick={openA}>
+          <button className="btn-about mr-2 btnMobile" onClick={openA}>
             <b>About</b>
           </button>
           <Modal
@@ -65,7 +65,7 @@ const Layout = () => {
             <About closeA={closeA} />
           </Modal>
 
-          <button className="btn-blueSwapit mr-2" onClick={openL}>
+          <button className="btn-blueSwapit mr-2 btnMobile" onClick={openL}>
             <b>Log in</b>
           </button>
           <Modal
@@ -77,7 +77,7 @@ const Layout = () => {
             <Login openS={openSignLink} />
           </Modal>
 
-          <button className="btn-signup-header mr-2" onClick={openS}>
+          <button className="btn-signup-header mr-2 btnMobile" onClick={openS}>
             <b>Sign up</b>
           </button>
           <Modal

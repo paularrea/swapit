@@ -23,11 +23,11 @@ const InterestedUsers = (props) => {
   });
   return (
     <>
-      <button className="btnHeartProfile" onClick={handleShow}>
+      
         <div className="heartProfile">
-          <FavoriteBorderRoundedIcon  style={{ color: 'white' }} />
+          <FavoriteBorderRoundedIcon onClick={handleShow} style={{ color: 'white' }} />
         </div>
-      </button>
+      
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

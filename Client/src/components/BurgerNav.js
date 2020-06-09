@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ToggleLayer, Arrow } from "react-laag";
 import Notifications from "../pages/Notifications";
 import ChatButton from "../pages/ChatButton";
 import { Link } from "react-router-dom";
 import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
-import service from "../api/service";
 import Avatar from "@material-ui/core/Avatar";
 import { withAuth } from "../lib/AuthProvider";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 
 const BurgerNav = (props) => {
-  const [userUpdated, setUserUpdated] = useState({});
+ 
   const { logout } = props;
-  useEffect(() => {
-    const fetchData = async () => {
-      const finalUser = await service.getUserInfo();
-      setUserUpdated(finalUser);
-    };
-    fetchData();
-  }, []);
+ 
   return (
     <ToggleLayer
       renderLayer={({ isOpen, layerProps, arrowStyle, layerSide }) =>

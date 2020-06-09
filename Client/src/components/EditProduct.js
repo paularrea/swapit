@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import logo from "../img/user-solid.svg";
 import axios from "axios";
+import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
+import { Link } from "react-router-dom";
+
 
 const EditProduct = (props) => {
   const [productEdited, setProductEdited] = useState({
-      imgPath:''
+    imgPath: "",
   });
-  const { params } = props.match;
-  let productId = params.id;
+  
+  let productId = props.productId;
 
   let onChangeTitle = (e) => {
     productEdited.title = e.target.value;
@@ -37,25 +40,35 @@ const EditProduct = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-        const productInfo = await axios.get(
-          process.env.REACT_APP_API_URI + `/api/product/${productId}`
-          );
-          setProductEdited(productInfo.data);
+      const productInfo = await axios.get(
+        process.env.REACT_APP_API_URI + `/api/product/${productId}`
+      );
+      setProductEdited(productInfo.data);
     };
     fetchData();
   }, [productId]);
 
-
-
   let handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.put( process.env.REACT_APP_API_URI + `/api/edit-product/${productId}`, productEdited)
+    await axios.put(
+      process.env.REACT_APP_API_URI + `/api/edit-product/${productId}`,
+      productEdited
+    );
     props.history.push("/private/profile");
     console.log("Edited!");
   };
 
   return (
-    <div>
+    <div className="wrapper-registration">
+      <Link
+        className="btn-back d-flex justify-content-start m-2"
+        to="/private/profile"
+      >
+        <ArrowBackIosRoundedIcon
+          className="logOutIcon text-dark"
+          alt="backlogo"
+        />
+      </Link>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
           <div className="col text-center pb-3">
@@ -69,7 +82,6 @@ const EditProduct = (props) => {
 
           <input
             type="file"
-            
             className="form-control"
             id="idEditProductImg"
             name="imgPath"
@@ -117,10 +129,12 @@ const EditProduct = (props) => {
             placeholder={productEdited.category}
             onChange={onChangeCategory}
           >
-            <option disabled selected>select category...</option>
+            <option disabled selected>
+              select category...
+            </option>
             <option value="drawings">Drawings</option>
-            <option value="handmade">Textile</option>
-            <option value="handmade">Decoration</option>
+            <option value="textile">Textile</option>
+            <option value="decoration">Decoration</option>
             <option value="wood">Wood</option>
             <option value="photography">Photography</option>
           </select>
@@ -128,7 +142,7 @@ const EditProduct = (props) => {
         <div></div>
 
         <div className="text-center">
-          <button className="btn btn-primary" type="submit">
+          <button className="btn-blueSwapit" type="submit">
             Save Edit Product
           </button>
         </div>

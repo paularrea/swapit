@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
-import CreateRoundedIcon from "@material-ui/icons/CreateRounded";
+
 import {
   TextField,
   ThemeProvider,
   createMuiTheme,
   Button,
-  TextareaAutosize,
   MenuItem,
+  Avatar,
 } from "@material-ui/core";
 
 const blueSwapit = createMuiTheme({
@@ -85,18 +85,18 @@ const AddProduct = (props) => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     await service.uploadCreation(creation);
-    props.history.push("/private/profile");
     console.log("Creation Added!");
   };
 
   return (
     <div
       className="wrapper-registration text-center"
-      onSubmit={(e) => handleSubmit(e)}
+      
     >
       <h3>Create a new Product</h3>
+      <Avatar/>
       <ThemeProvider theme={blueSwapit}>
-        <form className="mt-3">
+        <form className="mt-3" onSubmit={(e) => handleSubmit(e)}>
           <div className='uploadProduct-input' style={{ position: "relative" }}>
           <input
           
@@ -111,8 +111,9 @@ const AddProduct = (props) => {
           />
           <label htmlFor="idProductInput">
             <Button
-              variant="raised"
+              variant="raised" component="span"
             >Upload Image</Button>
+
           </label>
         </div>
 
@@ -130,10 +131,10 @@ const AddProduct = (props) => {
 
           <div>
             <TextField
-              maxLength="170"
+              inputProps={{ maxLength: 170 }}
               type="text"
               name="description"
-              className="input-form"
+              className="inputDescription"
               id="titleInput"
               variant="outlined"
               label="Description"
@@ -150,6 +151,7 @@ const AddProduct = (props) => {
           </div>
           <div>
             <TextField
+            name="category"
               className="input-form"
               id="categoryInput"
               select
