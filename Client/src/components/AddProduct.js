@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 import {
   TextField,
   ThemeProvider,
@@ -45,6 +45,7 @@ const categories = [
 
 const AddProduct = (props) => {
   const [category, setCategory] = useState();
+  const [error, setError] = useState();
   const [maxLength, setMaxLength] = useState(0);
   const [creation, setCreation] = useState({
     title: "",
@@ -53,7 +54,7 @@ const AddProduct = (props) => {
     imgPath: "",
     creator: props.user._id,
   });
-
+  
   let fileUpload = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -63,11 +64,16 @@ const AddProduct = (props) => {
         process.env.REACT_APP_API_URI + "/api/upload",
         formData
       );
+
       creation.imgPath = res.data.secure_url;
+     
     } catch (err) {
       console.log(err);
     }
   };
+  useEffect(() => {
+    
+  }, [creation, error])
 
   let onChange = (e) => {
     e.preventDefault();
@@ -84,38 +90,41 @@ const AddProduct = (props) => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    await service.uploadCreation(creation);
-    console.log("Creation Added!");
+    if(creation.imgPath.length === 0){
+      setError("The image is not uploaded yet")
+    
+    }else{
+      setError(undefined)
+      await service.uploadCreation(creation);
+      console.log("Creation Added!");
+    }
   };
-
+console.log(error)
   return (
-    <div
-      className="wrapper-registration text-center"
-      
-    >
+    <div className="wrapper-registration text-center">
       <h3>Create a new Product</h3>
-      <Avatar/>
+      {creation.imgPath === 0 ? <Avatar/>   : <Avatar className="text-center" src={creation.imgPath} />}
+      {(error !== undefined && creation.imgPath.length === 0)&& <p className="text-danger">{error}</p>}
+
       <ThemeProvider theme={blueSwapit}>
         <form className="mt-3" onSubmit={(e) => handleSubmit(e)}>
-          <div className='uploadProduct-input' style={{ position: "relative" }}>
-          <input
-          
-            accept="image/*"
-            name="imgPath"
-            style={{ display: "none" }}
-            id="idProductInput"
-            multiple
-            required
-            onChange={(e) => fileUpload(e)}
-            type="file"
-          />
-          <label htmlFor="idProductInput">
-            <Button
-              variant="raised" component="span"
-            >Upload Image</Button>
-
-          </label>
-        </div>
+          <div className="uploadProduct-input" style={{ position: "relative" }}>
+            <input
+              accept="image/*"
+              name="imgPath"
+              style={{ display: "none" }}
+              id="idProductInput"
+              multiple
+              
+              onChange={(e) => fileUpload(e)}
+              type="file"
+            />
+            <label htmlFor="idProductInput">
+              <Button variant="raised" component="span">
+                Upload Image
+              </Button>
+            </label>
+          </div>
 
           <div>
             <TextField
@@ -151,7 +160,7 @@ const AddProduct = (props) => {
           </div>
           <div>
             <TextField
-            name="category"
+              name="category"
               className="input-form"
               id="categoryInput"
               select
@@ -159,7 +168,7 @@ const AddProduct = (props) => {
               onChange={(e) => onChange(e)}
               helperText="Please select item category"
               variant="outlined"
-              label='Select category'
+              label="Select category"
             >
               {categories.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
