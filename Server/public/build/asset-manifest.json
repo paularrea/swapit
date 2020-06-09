@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4a3fb11c.chunk.css",
+    "main.js": "/static/js/main.85da1fc0.chunk.js",
+    "main.js.map": "/static/js/main.85da1fc0.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a630afc6.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a630afc6.js.map",
+    "static/css/2.89f067aa.chunk.css": "/static/css/2.89f067aa.chunk.css",
+    "static/js/2.1c308424.chunk.js": "/static/js/2.1c308424.chunk.js",
+    "static/js/2.1c308424.chunk.js.map": "/static/js/2.1c308424.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.7153bba78730cc088555503605dd6b4c.js": "/precache-manifest.7153bba78730cc088555503605dd6b4c.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.89f067aa.chunk.css.map": "/static/css/2.89f067aa.chunk.css.map",
+    "static/css/main.4a3fb11c.chunk.css.map": "/static/css/main.4a3fb11c.chunk.css.map",
+    "static/js/2.1c308424.chunk.js.LICENSE.txt": "/static/js/2.1c308424.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/woodBlack.87642428.png",
+    "static/media/img1.svg": "/static/media/img1.4128cc98.svg",
+    "static/media/img2.svg": "/static/media/img2.f14f668c.svg",
+    "static/media/img3.svg": "/static/media/img3.2654bc1c.svg",
+    "static/media/img4.png": "/static/media/img4.3b9b4e3b.png",
+    "static/media/logo_swapit.png": "/static/media/logo_swapit.004034a9.png",
+    "static/media/user-solid.svg": "/static/media/user-solid.a617dfb6.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a630afc6.js",
+    "static/css/2.89f067aa.chunk.css",
+    "static/js/2.1c308424.chunk.js",
+    "static/css/main.4a3fb11c.chunk.css",
+    "static/js/main.85da1fc0.chunk.js"
+  ]
+}

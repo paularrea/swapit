@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a07a27a8056e6a0e08f06bb25ac341f8",
+    "revision": "038fd397290321e7dedbce6173dd9004",
     "url": "/index.html"
   },
   {
-    "revision": "f38da6f894bfdaaf2715",
+    "revision": "d3c32468467558ee3690",
     "url": "/static/css/2.89f067aa.chunk.css"
   },
   {
-    "revision": "0b2ba8e86611edfab85f",
-    "url": "/static/css/main.2e4805f7.chunk.css"
+    "revision": "f68e9d83ae4a7401a0af",
+    "url": "/static/css/main.4a3fb11c.chunk.css"
   },
   {
-    "revision": "f38da6f894bfdaaf2715",
-    "url": "/static/js/2.d4049d0d.chunk.js"
+    "revision": "d3c32468467558ee3690",
+    "url": "/static/js/2.1c308424.chunk.js"
   },
   {
     "revision": "df958f16b07871c3679510165e97a61a",
-    "url": "/static/js/2.d4049d0d.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.1c308424.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0b2ba8e86611edfab85f",
-    "url": "/static/js/main.3e56e0d6.chunk.js"
+    "revision": "f68e9d83ae4a7401a0af",
+    "url": "/static/js/main.85da1fc0.chunk.js"
   },
   {
     "revision": "66ccd47474fa6503fda0",
@@ -40,12 +40,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/drawingsBlack.9cad0013.png"
   },
   {
-    "revision": "4b2edcdfccf69a512bb19528e17a2b6c",
-    "url": "/static/media/photographyBlack.4b2edcdf.png"
+    "revision": "4128cc98e71a727134c895d73018c309",
+    "url": "/static/media/img1.4128cc98.svg"
   },
   {
-    "revision": "144ff03084284c8876293946a229fd8e",
-    "url": "/static/media/sign-out-alt-solid.144ff030.svg"
+    "revision": "f14f668c4c1a79fc42fbf850ed74f9b1",
+    "url": "/static/media/img2.f14f668c.svg"
+  },
+  {
+    "revision": "2654bc1c73297388cb58bef89cf1eac5",
+    "url": "/static/media/img3.2654bc1c.svg"
+  },
+  {
+    "revision": "3b9b4e3bc0450407b32120e8ae8b374e",
+    "url": "/static/media/img4.3b9b4e3b.png"
+  },
+  {
+    "revision": "004034a9837a5caf3e9068483c094443",
+    "url": "/static/media/logo_swapit.004034a9.png"
+  },
+  {
+    "revision": "4b2edcdfccf69a512bb19528e17a2b6c",
+    "url": "/static/media/photographyBlack.4b2edcdf.png"
   },
   {
     "revision": "cd4b82e27c12967e213ee44ea8ba7e44",
