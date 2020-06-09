@@ -54,7 +54,7 @@ const AddProduct = (props) => {
     imgPath: "",
     creator: props.user._id,
   });
-  
+
   let fileUpload = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -66,14 +66,11 @@ const AddProduct = (props) => {
       );
 
       creation.imgPath = res.data.secure_url;
-     
     } catch (err) {
       console.log(err);
     }
   };
-  useEffect(() => {
-    
-  }, [creation, error])
+  useEffect(() => {}, [creation, error]);
 
   let onChange = (e) => {
     e.preventDefault();
@@ -90,21 +87,27 @@ const AddProduct = (props) => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    if(creation.imgPath.length === 0){
-      setError("The image is not uploaded yet")
-    
-    }else{
-      setError(undefined)
+    if (creation.imgPath.length === 0) {
+      setError("The image is not uploaded yet");
+    } else {
+      setError(undefined);
       await service.uploadCreation(creation);
       console.log("Creation Added!");
     }
+    props.closeUP()
   };
-console.log(error)
+
   return (
     <div className="wrapper-registration text-center">
       <h3>Create a new Product</h3>
-      {creation.imgPath === 0 ? <Avatar/>   : <Avatar className="text-center" src={creation.imgPath} />}
-      {(error !== undefined && creation.imgPath.length === 0)&& <p className="text-danger">{error}</p>}
+      {creation.imgPath === 0 ? (
+        <Avatar className="uploadImgAvatar" />
+      ) : (
+        <Avatar className="text-center" src={creation.imgPath} />
+      )}
+      {error !== undefined && creation.imgPath.length === 0 && (
+        <p className="text-danger">{error}</p>
+      )}
 
       <ThemeProvider theme={blueSwapit}>
         <form className="mt-3" onSubmit={(e) => handleSubmit(e)}>
@@ -115,7 +118,6 @@ console.log(error)
               style={{ display: "none" }}
               id="idProductInput"
               multiple
-              
               onChange={(e) => fileUpload(e)}
               type="file"
             />
@@ -178,9 +180,11 @@ console.log(error)
             </TextField>
           </div>
           <div>
-            <button className="mt-4 btn-blueSwapit" type="submit">
-              {" "}
-              Create!{" "}
+            <button
+              className="mt-4 btn-blueSwapit"
+              type="submit"
+            >
+              Create!
             </button>
           </div>
         </form>

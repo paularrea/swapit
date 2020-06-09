@@ -13,7 +13,7 @@ const Onboarding = () => {
           <Carousel.Caption>
             <h3 className="caption-label">Are you a Swaper?</h3>
             <p className="caption-text">
-              Welcome to the home for creatives
+              Welcome to the home of creative minds
             </p>
           </Carousel.Caption>
           <img
@@ -52,7 +52,7 @@ const Onboarding = () => {
           <Carousel.Caption>
             <h3 className="caption-label">Chat & swap!</h3>
             <p className="caption-text">
-             Meet people and exchange the creations
+             Meet people and exchange creations
             </p>
           </Carousel.Caption>
           <img

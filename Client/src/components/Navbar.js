@@ -11,7 +11,6 @@ import BurgerNav from "./BurgerNav";
 
 const Navbar = (props) => {
   const [userUpdated, setUserUpdated] = useState({});
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,30 +20,25 @@ const Navbar = (props) => {
     fetchData();
   }, []);
 
-
-
-
-  let desktopNav = 
-  <div className="d-flex justify-content-end">
-     <ChatButton />
-     <Notifications />
-     <Link to={"/private/profile"} id="profile-btn" >
-       {userUpdated.imgPath === undefined ? (
-         <Spinner animation="border" variant="info" />
-       ) : (
-         <div className="hoverNavbarIcons">
-         <img
-           className="profileImgNav "
-           src={userUpdated.imgPath}
-           alt="Profile"
-         /></div>
-       )}
-     </Link>
-   </div>
-
-
-
-
+  let desktopNav = (
+    <div className="d-flex justify-content-around align-items-center">
+      <ChatButton />
+      <Notifications />
+      <Link to={"/private/profile"} id="profile-btn">
+        {userUpdated.imgPath === undefined ? (
+          <Spinner animation="border" variant="info" />
+        ) : (
+          <div className="hoverNavbarIcons">
+            <img
+              className="profileImgNav "
+              src={userUpdated.imgPath}
+              alt="Profile"
+            />
+          </div>
+        )}
+      </Link>
+    </div>
+  );
 
   return (
     <div className="row d-flex justify-content-between align-items-center navbar">
@@ -61,10 +55,7 @@ const Navbar = (props) => {
           </div>
         </Link>
       </div>
-     
-      {window.innerWidth >= 500 ? desktopNav : <BurgerNav/>}
-
-
+      {window.innerWidth >= 500 ? desktopNav : <BurgerNav />}
     </div>
   );
 };

@@ -11,6 +11,10 @@
   width: 300px;
   margin-top: 18px  !important;
 }
+
+.wrapper-registration .MuiAvatar-root{
+  margin:  0 auto !important;
+}
 .uploadProduct-input{
   border: 1px dashed grey;
   border-radius: 5px;
@@ -64,6 +68,17 @@ color:#f44336
 }
 .btn-blueSwapit:hover{
   background-color: #005272;
+}
+
+.btn-deleteSwapit{
+  background-color: rgb(238, 177, 80);
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 25px;
+}
+.btn-deleteSwapit:hover{
+  background-color: rgb(194, 142, 60);
 }
 
 .btnBlue2{
@@ -305,6 +320,7 @@ object-fit: cover;
 
   .btn-swapit-mobile{
     background-color: #006f9b;
+    border: none;
     color: whitesmoke;
     width: 80%;
     height: 60px;

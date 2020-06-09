@@ -5,17 +5,20 @@ import { Link } from "react-router-dom";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Masonry from "react-masonry-css";
+import ModalDelete from "../components/ModalDelete";
 import InterestedUsers from "../components/InterestedUsers";
-import EditProfile from '../components/EditProfile'
-import AddProduct from '../components/AddProduct'
+import EditProfile from "../components/EditProfile";
+import AddProduct from "../components/AddProduct";
 import Modal from "@material-ui/core/Modal";
 import { Spinner } from "react-bootstrap";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
-
 const Profile = (props) => {
   const [openEdit, setOpenEdit] = useState(false);
-  const [openUploadProduct, setOpenUploadProduct] = useState(false);
+  const [openUpload, setOpenUpload] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+
+  const [productId, setProductId] = useState();
   const [finalUser, setUserData] = useState({});
   const [myCreations, setMyCreations] = useState();
   const { logout } = props;
@@ -26,12 +29,21 @@ const Profile = (props) => {
   const closeEd = () => {
     setOpenEdit(!openEdit);
   };
-
   const openUP = () => {
-    setOpenUploadProduct(!openUploadProduct);
+    setOpenUpload(!openUpload);
   };
   const closeUP = () => {
-    setOpenUploadProduct(!openUploadProduct);
+    setOpenUpload(!openUpload);
+  };
+
+  const openDelete = (creation) => {
+    setOpenModalDelete(!openModalDelete);
+    setProductId(creation._id)
+    console.log(creation !== undefined && creation._id, 'productID')
+
+  };
+  const closeDelete = () => {
+    setOpenModalDelete(!openModalDelete);
   };
 
   let breakpointColumnsObj = {
@@ -67,7 +79,7 @@ const Profile = (props) => {
       setMyCreations(creations[0]);
     };
     fetchData();
-  }, [openEdit]);
+  }, [openEdit, myCreations]);
 
   const displayHaveList =
     myCreations !== undefined &&
@@ -86,14 +98,24 @@ const Profile = (props) => {
                 alt=""
               />
             </Link>
-            <Link
-              className="position-absolute deleteProd"
-              to={`/private/product-delete/${creation._id}`}
-            >
-              <div className="bgDeleteProduct">
-                <DeleteIcon style={{ color: "white" }} />
-              </div>
-            </Link>
+
+            <div>
+              <DeleteIcon
+                className="position-absolute deleteProd"
+                onClick={() => openDelete(creation)}
+                style={{ color: "white" }}
+              />
+              <Modal
+                id={productId}
+                open={openModalDelete}
+                onClose={closeDelete}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+              >
+                <ModalDelete closeDelete={closeDelete} productId={productId}/>
+              </Modal>
+            </div>
+
             <div>
               <p className="text-left">{creation.title}</p>
             </div>
@@ -145,17 +167,16 @@ const Profile = (props) => {
           </div>
         </Link>
         <div className="logandedit">
-
-        <button className="m-3 sizeEdit" onClick={openEd}>
+          <button className="m-3 sizeEdit" onClick={openEd}>
             <b>Edit</b>
           </button>
-        <Modal
+          <Modal
             open={openEdit}
             onClose={closeEd}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
           >
-            <EditProfile changeEd={setOpenEdit} closeEd={closeEd}/>
+            <EditProfile changeEd={setOpenEdit} closeEd={closeEd} />
           </Modal>
 
           <Link to={"/"} onClick={logout} id="home-btn">
@@ -186,18 +207,18 @@ const Profile = (props) => {
         </p>
       </div>
 
-      <button className="btn-blueSwapit" onClick={openUP}>
-            <b>Upload Creation</b>
-          </button>
+      <button className="btn-blueSwapit mt-3" onClick={openUP}>
+        <b>Upload Creation</b>
+      </button>
       <Modal
-            open={openUploadProduct}
-            onClose={closeUP}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-          >
-            <AddProduct changeUP={setOpenUploadProduct} closeEd={closeUP}/>
-          </Modal>
-     
+        open={openUpload}
+        onClose={closeUP}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <AddProduct changeUP={setOpenUpload} closeUP={closeUP} />
+      </Modal>
+
       <div className="containerUserProfile ">
         <div id="haveList" className="px-3">
           <p>
@@ -209,11 +230,7 @@ const Profile = (props) => {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {myCreations === undefined ? (
-              <Spinner animation="border" variant="info" />
-            ) : (
-              displayWantList
-            )}
+            {myCreations !== undefined && displayWantList}
           </Masonry>
         </div>
       </div>
@@ -229,11 +246,7 @@ const Profile = (props) => {
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >
-            {myCreations === undefined ? (
-              <Spinner animation="border" variant="info" />
-            ) : (
-              displayHaveList
-            )}
+            {myCreations !== undefined && displayHaveList}
           </Masonry>
         </div>
       </div>
