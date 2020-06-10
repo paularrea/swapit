@@ -6,6 +6,7 @@ import dropAbajo from "../img/dropAbajo.png";
 import dropArriba from "../img/dropArriba.png";
 import Masonry from "react-masonry-css";
 import { Spinner } from "react-bootstrap";
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 const FilterSearch = (props) => {
   const [filteredCategory, setFilteredCategory] = useState();
@@ -242,12 +243,13 @@ const FilterSearch = (props) => {
     <div className="centerDiscover ">
       <div className="d-flex justify-content-center searchBarDiv">
         <input
-          className="searchBar mb-2 pl-3"
+          className="searchBar"
           placeholder="Search..."
           type="text"
           name="search"
           onChange={(e) => searchHandler(e)}
         />
+        <SearchRoundedIcon color="disabled" className='lupa'/>
       </div>
 
       {window.innerWidth <= 500 ? categoryFilterMobile : categoryFilterDesktop}

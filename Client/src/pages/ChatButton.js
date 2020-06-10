@@ -79,7 +79,7 @@ const ChatButton = (props) => {
         <Modal.Header closeButton>
           <Modal.Title className="text-center">Chats</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{showChats}</Modal.Body>
+        <Modal.Body>{chats.length === 0 ? <p>You still don't have any chat conversation available. <br/><br/> A conversation will appear if someone likes a product you have and you have one of its products in your whish list.</p> : showChats}</Modal.Body>
         <Modal.Footer>
           <button className="btn-blueSwapit" onClick={handleClose}>
             Close

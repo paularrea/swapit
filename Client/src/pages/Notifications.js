@@ -73,11 +73,11 @@ const Notifications = (props) => {
           <NotiCounter className='notiAbsolute'  notifications={notifications} />
         )}
       </div>
-      <Modal show={show} onHide={handleClose}>
+      <Modal className='modal-style' show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title className="text-center">Your likes</Modal.Title>
+          <Modal.Title className="text-center">Your creation's likes</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{notis}</Modal.Body>
+        <Modal.Body>{notis.length === 0 ? <p>Still no likes at any of your creations. <br/><br/> Users will start appearing if they like one of your products. By clicking them you will have access to their profiles</p> : notis}</Modal.Body>
         <Modal.Footer>
           <button className="btn-blueSwapit" onClick={handleClose}>
             Close
