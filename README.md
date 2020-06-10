@@ -1,7 +1,7 @@
 # Swap it!
 
 <b>Description</b><br/>
-Swap it es una plataforma social pensada para realizar intercambios de productos entre personas utilizando las fotografías, cosas echas a mano, dibujos, articulos de decoración, etc, como moneda de cambio.
+Swap it es una plataforma social pensada para realizar intercambios de productos entre personas utilizando las fotografías, cosas hechas a mano, dibujos, artículos de decoración, etc, como moneda de cambio.
 
 Consiste en una MERN stack responsive web app realizada para poner en práctica conocimientos adquiridos como React Hooks, implementando librerías como Bootstrap, socket.io y componentes de material UI para el frontend.
 Hemos utilizado NodeJS y Express para el server side utilizando Cloudinary para el almacenamiento y gestión de imágenes y 
@@ -22,7 +22,7 @@ Una vez registrado el usuario puede:
     en su lista de deseos.
     Para facilitar su búsqueda el usuario puede filtrar según la categoría del producto o mediante 
     palabras clave.
-    Al hacer click en una de las imágenes nos redirige a la pagina detalle del producto donde podemos 
+    Al hacer click en una de las imágenes nos redirige a la página detalle del producto donde podemos 
     ver sus características, otros productos relacionados y acceder al perfil del creador.
 
    <b>2.1. Notifications</b><br/>
