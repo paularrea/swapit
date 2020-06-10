@@ -9,9 +9,8 @@ import { withAuth } from "../lib/AuthProvider";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 
 const BurgerNav = (props) => {
- 
   const { logout } = props;
- 
+
   return (
     <ToggleLayer
       renderLayer={({ isOpen, layerProps, arrowStyle, layerSide }) =>

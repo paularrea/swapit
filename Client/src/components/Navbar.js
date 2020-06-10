@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import service from "../api/service";
-import { Spinner } from "react-bootstrap";
 import Notifications from "../pages/Notifications";
 import ChatButton from "../pages/ChatButton";
 import { Avatar } from "@material-ui/core";
@@ -26,7 +25,7 @@ const Navbar = (props) => {
       <Notifications />
       <Link to={"/private/profile"} id="profile-btn">
         {userUpdated.imgPath === undefined ? (
-          <Spinner animation="border" variant="info" />
+          <Avatar/>
         ) : (
           <div className="hoverNavbarIcons">
             <img

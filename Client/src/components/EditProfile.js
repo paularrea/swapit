@@ -66,13 +66,11 @@ const EditProfile = (props) => {
     e.preventDefault();
     await service.profileUpdate(finalUser);
     console.log("Edited!");
-  };
-
-  let closeModal = () => {
     props.changeEd();
     props.closeEd();
-  }
+  };
 
+  
   return (
     <div className="wrapper-registration" style={{ position: "relative" }}>
       <CloseRoundedIcon
@@ -138,7 +136,6 @@ const EditProfile = (props) => {
           <button
             className="btn-blueSwapit mt-4"
             type="submit"
-            onClick={closeModal}
           >
             {props.changeEd === true ? "Close" : "Save"}
           </button>

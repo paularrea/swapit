@@ -10,14 +10,14 @@ import { CTX } from "../components/Store";
 import { withAuth } from "../lib/AuthProvider";
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin:'0 auto',
+    margin: "0 auto",
     padding: theme.spacing(3, 2),
     backgroundColor: "whitesmoke",
-    borderRadius:15,
-    height:'80vh',
-    width:"90%",
+    borderRadius: 15,
+    height: "80vh",
+    width: "90%",
     maxWidth: "500px",
-    boxShadow: '0 0 10px 2px rgba(0,0,0,.3)',
+    boxShadow: "0 0 10px 2px rgba(0,0,0,.3)",
   },
 
   flex: {

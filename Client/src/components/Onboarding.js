@@ -26,7 +26,8 @@ const Onboarding = () => {
           <Carousel.Caption>
             <h3 className="caption-label">Get known</h3>
             <p className="caption-text">
-              Upload your creations and show the world what you're capable to make
+              Upload your creations and show the world what you're capable to
+              make
             </p>
           </Carousel.Caption>
           <img
@@ -51,9 +52,7 @@ const Onboarding = () => {
         <Carousel.Item>
           <Carousel.Caption>
             <h3 className="caption-label">Chat & swap!</h3>
-            <p className="caption-text">
-             Meet people and exchange creations
-            </p>
+            <p className="caption-text">Meet people and exchange creations</p>
           </Carousel.Caption>
           <img
             className="d-block  onboarding-img2"

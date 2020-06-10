@@ -25,7 +25,7 @@ const blueSwapit = createMuiTheme({
   },
 });
 
-const strongRegex =  /^[A-Za-z]\w{7,14}$/;
+const strongRegex = /^[A-Za-z]\w{7,14}$/;
 
 function Signup(props) {
   const [username, setUsername] = useState("");
@@ -57,7 +57,8 @@ function Signup(props) {
   let validatePassword =
     password !== repeatPassword && "Passwords doesn't match";
   let validatePasswordLength =
-    !password.match(strongRegex) && "The password needs at least a capital letter and a number";
+    !password.match(strongRegex) &&
+    "The password needs at least a capital letter and a number";
 
   let handleFormSubmit = (event) => {
     event.preventDefault();

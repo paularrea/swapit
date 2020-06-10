@@ -67,10 +67,10 @@ const Notifications = (props) => {
 
   return (
     <>
-      <div className="hoverNavbarIcons " onClick={handleShow}>
-        <FavoriteBorderRoundedIcon style={{ fontSize: 35, color: "black" }} />
+      <div className="hoverNavbarIcons position-relative " onClick={handleShow}>
+        <FavoriteBorderRoundedIcon className='position-relative' style={{ fontSize: 35, color: "black" }} />
         {notifications !== undefined && (
-          <NotiCounter notifications={notifications} />
+          <NotiCounter className='notiAbsolute'  notifications={notifications} />
         )}
       </div>
       <Modal show={show} onHide={handleClose}>

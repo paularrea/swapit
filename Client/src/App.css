@@ -11,7 +11,10 @@
   width: 300px;
   margin-top: 18px  !important;
 }
-
+.wrapper-registration{
+  max-height: 95vh;
+  overflow-y: scroll !important;
+}
 .wrapper-registration .MuiAvatar-root{
   margin:  0 auto !important;
 }
@@ -21,6 +24,24 @@
   height: 50px;
   width: 80%;
   margin: 0 auto;
+}
+.avatar-profile{
+  width: 140px !important;
+  height: 140px !important;
+  margin: 0 auto;
+  
+}
+
+.notiAbsolute{
+position: absolute;
+right: -3px !important;
+top: 2px !important;
+}
+
+.borderNotis{
+  position: absolute;
+left: 30px !important;
+top: 3px !important;
 }
 
 .uploadProduct-input:hover{
@@ -674,7 +695,7 @@ color: oldlace !important
 
 
 /* BIG MOBILE */
-@media (min-width: 370px) {
+@media (min-width: 300px) {
   .onboarding-img{
     margin-top: 300px;
   }
@@ -882,6 +903,7 @@ color: oldlace !important
     margin: 0 auto;
     width: 400px;
     margin-top: 30px;
+    
     height: auto;
     padding: 30px 20px;
     display: flex;

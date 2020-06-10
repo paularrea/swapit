@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
+import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
 
 const InterestedUsers = (props) => {
   const [show, setShow] = useState(false);
@@ -10,7 +10,8 @@ const InterestedUsers = (props) => {
 
   const usersList = props.creation.interestedUser.map((user) => {
     return (
-      <Link key = {user._id}
+      <Link
+        key={user._id}
         className="modalUsers d-flex align-items-center my-2 p-2"
         to={`/private/user-profile/${user._id}`}
       >
@@ -23,11 +24,12 @@ const InterestedUsers = (props) => {
   });
   return (
     <>
-      
-        <div className="heartProfile">
-          <FavoriteBorderRoundedIcon onClick={handleShow} style={{ color: 'white' }} />
-        </div>
-      
+      <div className="heartProfile">
+        <FavoriteBorderRoundedIcon
+          onClick={handleShow}
+          style={{ color: "white" }}
+        />
+      </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

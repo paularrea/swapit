@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { withAuth } from "../lib/AuthProvider";
 import service from "../api/service";
 import { Link } from "react-router-dom";
 import Masonry from "react-masonry-css";
-import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
+import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import { Modal } from "@material-ui/core";
 import EditProduct from "./EditProduct";
@@ -16,7 +16,7 @@ const ProductDetails = (props) => {
   const [likeListId, setLikeListId] = useState("");
   const [buttonOn, setButtonOn] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
-  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
   const openE = () => {
     setOpenEdit(!openEdit);
   };
@@ -24,9 +24,8 @@ const ProductDetails = (props) => {
     setOpenEdit(!openEdit);
   };
 
-   const myRef = useRef(null)
-   const executeScroll = () => scrollToRef(myRef)
-   
+  const myRef = useRef(null);
+  const executeScroll = () => scrollToRef(myRef);
 
   const { params } = props.match;
   let productId = params.id;
@@ -61,15 +60,24 @@ const ProductDetails = (props) => {
     productInfo !== undefined &&
     allProducts !== undefined &&
     allProducts.map((product) => {
-      return (product.category === productInfo.category &&
-        product.creator !== props.user._id) &&  <Link
-       key={product._id}
-       to={`/private/product-details/${product._id}`}
-     >
-       <div className="creationsCard mt-3">
-         <img onClick={executeScroll} className="sizeMobile" src={product.imgPath} alt=""  />
-       </div>
-     </Link> 
+      return (
+        product.category === productInfo.category &&
+        product.creator !== props.user._id && (
+          <Link
+            key={product._id}
+            to={`/private/product-details/${product._id}`}
+          >
+            <div className="creationsCard mt-3">
+              <img
+                onClick={executeScroll}
+                className="sizeMobile"
+                src={product.imgPath}
+                alt=""
+              />
+            </div>
+          </Link>
+        )
+      );
     });
 
   useEffect(() => {
@@ -122,21 +130,26 @@ const ProductDetails = (props) => {
 
   let isEqual =
     productInfo !== undefined && props.user._id === productInfo.creator._id;
-console.log(userExist,"equaaaal")
+  console.log(userExist, "equaaaal");
   const heartBtn =
     isEqual === false &&
     (userExist !== -1 ? (
       <div className="btn-heart">
-        <FavoriteRoundedIcon onClick={(e) => removeWantSubmit(e)} style = {{ fontSize: 35, color: '#931F1D'}}/>
+        <FavoriteRoundedIcon
+          onClick={(e) => removeWantSubmit(e)}
+          style={{ fontSize: 35, color: "#931F1D" }}
+        />
       </div>
     ) : (
       <div className="btn-heart">
-        <FavoriteBorderRoundedIcon onClick={(e) => addWantSubmit(e)} style = {{ fontSize: 35,  color: 'white'}}/>
+        <FavoriteBorderRoundedIcon
+          onClick={(e) => addWantSubmit(e)}
+          style={{ fontSize: 35, color: "white" }}
+        />
       </div>
     ));
 
-  const swapitBtnMobile = 
-  userExist === -1 && (
+  const swapitBtnMobile = userExist === -1 && (
     <div className="text-center">
       <button
         onClick={(e) => addWantSubmit(e)}
@@ -158,13 +171,12 @@ console.log(userExist,"equaaaal")
 
   const editBtn = isEqual && (
     <div className="text-center mt-2">
-      <Modal open={openEdit}
-            onClose={closeE}>
-        <EditProduct  productId = {productId}/>
+      <Modal open={openEdit} onClose={closeE}>
+        <EditProduct productId={productId} />
       </Modal>
       <button className="btn-blueSwapit mr-2 btnMobile" onClick={openE}>
-            <b>Edit</b>
-          </button>
+        <b>Edit</b>
+      </button>
     </div>
   );
 
@@ -193,11 +205,11 @@ console.log(userExist,"equaaaal")
           to="/private"
         >
           <ArrowBackIosRoundedIcon
-              className="logOutIcon text-dark"
-              alt="backlogo"
-            />
+            className="logOutIcon text-dark"
+            alt="backlogo"
+          />
         </Link>
-        
+
         <div className="detailsCard">
           <span
             className="ImgContainerCard d-flex"
@@ -209,7 +221,6 @@ console.log(userExist,"equaaaal")
               className="detailsImgCard"
               src={productInfo.imgPath}
               alt="logo"
-
             />
             <div
               className="d-flex justify-content-center"

@@ -9,8 +9,7 @@ import ModalDelete from "../components/ModalDelete";
 import InterestedUsers from "../components/InterestedUsers";
 import EditProfile from "../components/EditProfile";
 import AddProduct from "../components/AddProduct";
-import Modal from "@material-ui/core/Modal";
-import { Spinner } from "react-bootstrap";
+import {Modal, Avatar} from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const Profile = (props) => {
@@ -38,9 +37,8 @@ const Profile = (props) => {
 
   const openDelete = (creation) => {
     setOpenModalDelete(!openModalDelete);
-    setProductId(creation._id)
-    console.log(creation !== undefined && creation._id, 'productID')
-
+    setProductId(creation._id);
+    console.log(creation !== undefined && creation._id, "productID");
   };
   const closeDelete = () => {
     setOpenModalDelete(!openModalDelete);
@@ -112,7 +110,7 @@ const Profile = (props) => {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
               >
-                <ModalDelete closeDelete={closeDelete} productId={productId}/>
+                <ModalDelete closeDelete={closeDelete} productId={productId} />
               </Modal>
             </div>
 
@@ -187,7 +185,7 @@ const Profile = (props) => {
         </div>
       </div>
       {finalUser.imgPath === undefined ? (
-        <Spinner animation="border" variant="info" />
+        <Avatar className='avatar-profile'/>
       ) : (
         <div className=" d-flex text-left align-items-center justify-content-center mt-3">
           <div className="">

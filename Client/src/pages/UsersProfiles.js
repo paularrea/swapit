@@ -28,18 +28,21 @@ const UsersProfiles = (props) => {
     fetchData();
   }, [profileId]);
 
-
   const getBackgroundColor = (category) => {
     if (category === "photography") {
-      return {backgroundColor: "rgba(224, 214, 138, .8)"};
-    } if (category === "wood") { 
-      return {backgroundColor: "rgba(81, 23, 48, .8)", color:'white'};
-    } if (category === "decoration") {
-      return {backgroundColor: "rgba(203, 145, 115, .8)"};
-    } if (category === "textile") {
-      return {backgroundColor: "rgba(142, 68, 61, .8)", color:'white'};
-    } if (category === "drawings") {
-      return {backgroundColor: "rgba(66, 21, 55, .8)", color:'white'};
+      return { backgroundColor: "rgba(224, 214, 138, .8)" };
+    }
+    if (category === "wood") {
+      return { backgroundColor: "rgba(81, 23, 48, .8)", color: "white" };
+    }
+    if (category === "decoration") {
+      return { backgroundColor: "rgba(203, 145, 115, .8)" };
+    }
+    if (category === "textile") {
+      return { backgroundColor: "rgba(142, 68, 61, .8)", color: "white" };
+    }
+    if (category === "drawings") {
+      return { backgroundColor: "rgba(66, 21, 55, .8)", color: "white" };
     }
     return "black";
   };
@@ -51,17 +54,27 @@ const UsersProfiles = (props) => {
       </div>
       <img
         className="creatorImage"
-        src={userProfile === undefined ? <Spinner animation="border" variant="info" /> :  userProfile.imgPath}
+        src={
+          userProfile === undefined ? (
+            <Spinner animation="border" variant="info" />
+          ) : (
+            userProfile.imgPath
+          )
+        }
         alt=""
       />
       <h3>
         {userProfile !== undefined && userProfile.name}{" "}
         {userProfile !== undefined && userProfile.lastName}
       </h3>
-  
+
       <div className="containerUserProfile">
-      <p><b>See All {userProfile !== undefined && userProfile.name}'s Creations ({userProfile !== undefined &&
-            userProfile.haveList.length})</b></p>
+        <p>
+          <b>
+            See All {userProfile !== undefined && userProfile.name}'s Creations
+            ({userProfile !== undefined && userProfile.haveList.length})
+          </b>
+        </p>
         <Masonry
           breakpointCols={breakpointColumnsObj}
           className="my-masonry-grid"
@@ -70,18 +83,12 @@ const UsersProfiles = (props) => {
           {userProfile !== undefined &&
             userProfile.haveList.map((product) => {
               return (
-                
                 <div
-                key={product._id}
+                  key={product._id}
                   className="usersProductCards mt-3"
-                  style={
-                    getBackgroundColor(product.category)
-                  }
+                  style={getBackgroundColor(product.category)}
                 >
-                  <Link
-                    
-                    to={`/private/product-details/${product._id}`}
-                  >
+                  <Link to={`/private/product-details/${product._id}`}>
                     <img
                       className="usersProdImg"
                       src={product.imgPath}

@@ -2,7 +2,7 @@ import React from "react";
 import io from "socket.io-client";
 import { withAuth } from "../lib/AuthProvider";
 
-// let socketUrl = "/";
+let socketUrl = "/";
 export const CTX = React.createContext();
 
 function reducer(state, action) {
@@ -35,8 +35,8 @@ function Store(props) {
   
 
   if (!socket) {
-    // socket = io(socketUrl);
-    socket = io(":3001");
+    socket = io(socketUrl);
+    // socket = io(":3001");
     socket.emit('join', {name: props.params});
     
 console.log(props.paramsId)

@@ -18,7 +18,6 @@ const FilterSearch = (props) => {
     700: 2,
     500: 1,
   };
-  
 
   let filterChange = (e) => {
     setFilteredCategory(e.target.value);
@@ -27,7 +26,6 @@ const FilterSearch = (props) => {
   let searchHandler = (query) => {
     setSearchQuery(query.target.value);
   };
-
 
   const displayAllProducts =
     props.allProducts &&
@@ -46,7 +44,6 @@ const FilterSearch = (props) => {
         )
       );
     });
-    
 
   const searchBarProducts =
     searchQuery &&
@@ -100,48 +97,54 @@ const FilterSearch = (props) => {
       });
 
   let categoryFilterDesktop = (
-    <div className='d-flex justify-content-between'>
+    <div className="d-flex justify-content-between">
       <button
-      type='button'
+        type="button"
         onClick={(e) => filterChange(e)}
         className="btn-drawings2 btnCategory2 m-1"
         value="drawings"
-      >Draw
+      >
+        Draw
       </button>
       <button
-      type='button'
+        type="button"
         onClick={(e) => filterChange(e)}
         className="btn-wood2 btnCategory2 m-1"
         value="wood"
-      >Wood
+      >
+        Wood
       </button>
       <button
-      type='button'
+        type="button"
         onClick={(e) => filterChange(e)}
         className="btn-decoration2 btnCategory2 m-1"
         value="decoration"
-      >Deco
+      >
+        Deco
       </button>
       <button
-      type='button'
+        type="button"
         onClick={(e) => filterChange(e)}
         className="btn-textile2 btnCategory2 m-1"
         value="textile"
-      >Textile
+      >
+        Textile
       </button>
       <button
-      type='button'
+        type="button"
         onClick={(e) => filterChange(e)}
         className="btn-photography2 btnCategory2 m-1"
         value="photography"
-      >Photo
+      >
+        Photo
       </button>
       <button
-      type='button'
+        type="button"
         onClick={(e) => filterChange(e)}
         className="btn-allProducts2 btnCategory2 m-1"
         value="allProducts"
-      >All
+      >
+        All
       </button>
     </div>
   );
@@ -254,9 +257,17 @@ const FilterSearch = (props) => {
         className="my-masonry-grid pt-3"
         columnClassName="my-masonry-grid_column"
       >
-        {(searchQuery.length <= 0 && filteredCategory === undefined)
-          ?( displayAllProducts === undefined ? <Spinner  animation="grow" variant="info" /> : displayAllProducts)
-          : (displayFilteredProducts === undefined ? <Spinner  animation="grow" variant="info" /> : displayFilteredProducts)}
+        {searchQuery.length <= 0 && filteredCategory === undefined ? (
+          displayAllProducts === undefined ? (
+            <Spinner animation="grow" variant="info" />
+          ) : (
+            displayAllProducts
+          )
+        ) : displayFilteredProducts === undefined ? (
+          <Spinner animation="grow" variant="info" />
+        ) : (
+          displayFilteredProducts
+        )}
       </Masonry>
     </div>
   );

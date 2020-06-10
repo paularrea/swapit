@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import service from "../api/service";
 import { withAuth } from "../lib/AuthProvider";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import {
   TextField,
   ThemeProvider,
@@ -94,7 +93,7 @@ const AddProduct = (props) => {
       await service.uploadCreation(creation);
       console.log("Creation Added!");
     }
-    props.closeUP()
+    props.closeUP();
   };
 
   return (
@@ -180,10 +179,7 @@ const AddProduct = (props) => {
             </TextField>
           </div>
           <div>
-            <button
-              className="mt-4 btn-blueSwapit"
-              type="submit"
-            >
+            <button className="mt-4 btn-blueSwapit" type="submit">
               Create!
             </button>
           </div>
