@@ -1,28 +1,30 @@
 # PROJECT-2
 Description
-"Changerest" es una plataforma social pensada para realizar intercambios entre creativos, ya sean fotografías, cosas echas a mano, dibujos, articulos de decoración...etc
+Swap it es una plataforma social pensada para realizar intercambios de productos entre personas utilizando las fotografías, cosas echas a mano, dibujos, articulos de decoración, etc, como moneda de cambio.
 
-MVP
-Responsive webpage (mobile-first, tablet, laptop)
-Muestra imágenes, características y datos del producto. Tendrá una página principal con acceso al login y sign up. Una vez registrado el usuario tendrá acceso a una plataforma dónde podrá subir sus creaciones y otra página dónde podrá ver creaciones de otros usuarios y poder intercambiarlos.
+Consiste en una MERN stack responsive web app realizada para poner en práctica conocimientos adquiridos como React Hooks, implementando librerías como Bootstrap, socket.io y componentes de material UI para el frontend.
+Hemos utilizado NodeJS y Express para el server side utilizando Cloudinary para el almacenamiento y gestión de imágenes y 
+MongoDB para el almacenamiento de los datos de los usuarios y deploy con heroku.
 
-Los datos del usuario se guardarán en "MongoDB"
-Backlog
-Una red social dónde intercambias con creaciones y no con dinero.
-En la pagina Discover se mostrarán imágenes que se irán cambiando según los productos disponibles de cada usuario. La página de profile servirá para subir productos nuevos y para gestionar los productos que quieres.
-Data structure
-Los datos de los usuarios se obtendrán del formulario de registro y el almacenamiento en "MongoDB". El formulario de inicio de sesión buscará información en servidor de Mongo que debe coincidir con la información que el usuario proporcionó en el formulario de inicio de sesión para iniciar sesión correctamente.
+Una vez registrado el usuario puede:
 
-Wireframes:
-Página principal
-Sign-up form
-Log in form
-Profile
-Discover
+1. Profile page
+    En esta página el usuario puede editar editar su perfil, modificando su foto o nombre.
+    Subir fotos de sus propias creaciones y editarlas. 
+    Ver sus propias creaciones ya subidas (Own creations).
+    Ver su lista de deseos (whish list).
 
-Task
-En order de prioridad.
+2. Discover page
+    El usuario puede buscar productos de otros usuarios y darle a 'like'. De esta forma se añadirían en su lista de deseos.
+    Para facilitar su búsqueda el usuario puede filtrar según la categoría del producto o mediante palabras clave.
+    Al hacer click en una de las imágenes nos redirige a la pagina detalle del producto donde podemos ver sus características, otros productos relacionados y acceder al perfil del creador.
 
-Git
-URls para la repo del proyecto.
+    2.1. Notifications
+        Consiste en un modal para ver cuales de nuestros productos han gustado y a quién. Al hacer click en alguno nos redirigirá al perfil del usuario donde podremos ver sus creaciones para un posible intercambio.
+
+    2.2. Chat
+        Se nos abrirá un chat para negociar el intercambio de productos cuando nos guste por lo menos un producto de un usuario y a este le guste uno nuestro.
+    
+
+    https://swap-it-app.herokuapp.com/
 
